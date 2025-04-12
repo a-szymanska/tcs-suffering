@@ -1,0 +1,17 @@
+\begin{definition}[Test-driven development]
+To technika tworzenia oprogramowania wpisująca się w Agile, która polega na tworzeniu testów przed przystąpieniem do pisania właściwego kodu. Proces można podzielić na etapy:
+\begin{enumerate}
+    \item Przygotowanie testu jednostkowego.
+    \item Napisanie podstawowego kodu, zapewniającego testowaną funkcjonalność - tylko tyle, żeby pomyślnie zaliczyć test.
+    \item Zapewnienie, że kod przechodzi wszystkie poprzednie testy.
+    \item Dostosowanie kodu do wymagań, zapewnienie poprawnej struktury (refactoring)
+\end{enumerate}
+\end{definition}
+Potencjalnie zastosowanie tej techniki poprawia jakość kodu oraz zmniejsza liczbę niewykrytych błędów. Konieczne do tego jest jednak konsekwentne podporządkowanie tej strategii przez cały zespół oraz nie wprowadzanie zbyt dużych pakietów testów na raz. A przede wszystkim testy powinny być dobrze napisane. \\
+Dobre praktyki TDD:
+\begin{itemize}
+    \item Niezależne testy - wynik wykonania testów powinien być niezależny od ich kolejności
+    \item Czytelne testy - powinny być czytelne, żeby służyć za dokumentację kodu
+    \item Testy dotyczące konkretnych funkcjonalności - nie powinny być zbyt złożone, jedna funkcjonalność per test
+    \item Częste wykonywanie testów w ramach ciągłej integracji oprogramowania
+\end{itemize}

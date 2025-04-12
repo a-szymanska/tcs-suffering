@@ -1,0 +1,11 @@
+\begin{definition}[Wstrzykiwanie zależności]
+To wzorzec projektowy polegający na usuwaniu bezpośrednich zależności pomiędzy obiektami. Ta technika polega na dostarczaniu potrzebnych obiektów (zależności) zamiast samodzielnego konstruowania ich w obiekcie, który ich potrzebuje.
+\end{definition}
+Można wyróżnić parę sposób realizacji wstrzykiwania zależności:
+\begin{itemize}
+    \singlespacing
+    \item poprzez konstruktor - obiekt dostaje konstruktor klasy
+    \item poprzez setter - klient udostępnia setter, który służy do wstrzyknięcia zależności
+    \item poprzez interfejs - zależność udostępnia metodę, która wstrzykuje zależność do przekazanego do niej obiektu
+\end{itemize}
+Wstrzykiwanie zależności ułatwia modyfikację klas bez konieczności dostosowywania tych, które od nich zależą. Umożliwia również testowanie poszczególnych komponentów w odizolowaniu od innych, ponieważ można łatwiej ,,mockować'' zależności. Bez tego, testując klasę, konieczne byłoby również testowanie wszystkich obiektów, które tworzy.
