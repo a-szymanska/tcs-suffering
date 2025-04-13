@@ -1,0 +1,26 @@
+\subsection{Sliding Window}
+Aby zapewnić poprawność i pełność przesyłu każdy pakiet jest wysyłany wraz zjakąś sumą kontrolną. Po otrzymaniu pakietu klient sprawdza czy suma kontrolna się zgadza, a zatem czy pakiet jest poprawny. Jeśli jest poprawny to odpowiada potwierdzeniem poprawnego otrzymania pakietu (ACK) lub prośbą o ponowne przesłanie ostatniego pakietu. W prostym systemie komunikacja odbywa się tylko jeden pakiet na raz - nie wysyłamy kolejnych pakietów zanim nie otrzymamy potwierdzenia dostarczenia ostatniego. Taki mechanizm zapewnia poprawną kolejność, ale znacznie spowalnia przesył. Rozwiązaniem na to spowolnienie jest mechanizm sliding window, wysyłamy wiele pakietów na raz (określoną liczbę), a wraz z nimi ich numer w kolejności. Klient sprawdza poprawność każdego pakietu i odpowiada ACK wraz z jego numerem, serwer zapisuje wtedy że pakiet został dostarczony i wysyła kolejny. Nowe pakiety wysyłamy nadal dopiero gdy dostaniemy potwierdzenie dostarczenia starych, ale wiele pakietów jest naraz wysyłanych więc nie spowalnia to tak transferu. Klient znając kolejność pakietów może oddtworzyć oryginalną wiadomość z kawałków, nawet kiedy przyjdą w niepoprawnej kolejności.
+\subsection{Sterowanie prędkością transmisji}
+Wykorzystywane są różne mechanizmy aby ustalić optymalną prędkość transmisji:
+\begin{itemize}
+  \item \textbf{Slow start} to algorytm na kontrole szybkości transmisji, gdy nie znamy prędkości łącza. Zaczyna
+    my od bardzo powolnego przesyłu i zwiększamy jego prędkość, póki dostajemy poprawne potwierdzenia. Kiedy przestajemy dostawać potwierdzenia to zmniejszamy prędkość. Najczęściej implementowane poprzez bin-search. Nie jest idealne, ale działa bardzo dobrze kiedy wszyscy użytkownicy sieci się do tego stosują, gdyż dzieli wtedy łącze po równo. \item W \textbf{Fast retransmit} mierzymy średni czas oczekiwania na ACK, dzięki czemu jeśli nie otrzymamy jakiegoś pakietu w tym czasie + epsilon to wysyłamy go ponownie, zakładając że się zgubił. 
+  \item
+    \textbf{AIMD} (additive increase/multiplicative decrease) polega na wolnym, liniowym zwiększaniu rozmiaru wysyłanych pakietów (w myśl zasady im większy pakiet tym szybciej), kiedy jednak wystąpi zator (przestaniemy otrzymywać potwierdzenia) to zmniejszenie rozmiaru pakietu jest eksponencjalne. 
+  \end{itemize}
+Różne warianty TCP nazwane od miejsc w kalifornii - Tahoe, Reno, New Reno używają mieszanki tych 3 mechanizmów z różnymi parametrami. \\\\
+\subsection{Moduł Socket}
+Przykładowy kod najprostszego serwera
+\begin{verbatim}
+  import socket
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind(('127.0.0.1', 12345))
+sock.listen(5)
+
+while True:
+    client_socket, client_address = sock.accept()
+    data = client_socket.recv(1024)
+    client_socket.send(b'Hello, client!')
+    client_socket.close()
+\end{verbatim}

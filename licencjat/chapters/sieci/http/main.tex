@@ -1,0 +1,63 @@
+\subsection{Nagłówki}
+W nagłówkach zawieramy dodatkowe informacje, takie jak data, język, typ danych czy informacje o hoście, aktualnie typów nagłówków jest bardzo dużo, w HTTP/1.0 tylko 14.\\
+\subsubsection{Nagłówki w HTTP/1.0}
+\begin{multicols}{2}
+\begin{itemize}
+    \item \textbf{Date}
+    \item \textbf{Pragma} - zależne od implementacji
+    \item \textbf{Authorization} - hasło uwierzytelniające
+    \item \textbf{From} - adres email proszącego o dane (archaizm)
+    \item \textbf{If-Modified-Since} - prosi o przesłanie dokumenty tylko jeśli był zmodyfikowany od podanej daty, używany do cache'owania
+    \item \textbf{Referer} - adres strony, z której było przekierowanie
+    \item \textbf{Server} - identyfikuje serwer i użyte w nim oprogramowanie
+    \item \textbf{WWW-Authenticate} - określa sposób w jaki ma zostać przeprowadzone uwierzytelnienie użytkownika
+    \item \textbf{Allow} - określa metody http obsługiwane przez serwer
+    \item \textbf{Content-Encoding} - podaje format kompresji treści
+    \item \textbf{Content-Length} - długość w bajtach przesyłanej wiadomości, dla danych przesyłanych z serwera obowiązkowy
+    \item \textbf{Content-Type} - w jakim formacie jest dokument (html, pdf i.t.d.)
+    \item \textbf{Expires} - data, po której dokument jest nieaktualny, używany do cache'owania
+    \item \textbf{Last-Modified} - data ostatniej modyfikacji, używany do cache'owania
+\end{itemize}
+\end{multicols}
+\subsection{Statusy}
+Na zapytanie dostajemy od serwera odpowiedź z kodem statusu i opcjonalnie z jakimś plikiem (jeśli się wszystko powiodło)\\
+\begin{itemize}
+  \item \textbf{1xx} oznaczają, że serwer otrzymał poprawny request, i jeszcze go nie prze-procesował 
+  \item \textbf{2xx} Sukces, robię to co mi kazano
+  \item \textbf{3xx} Przekierowania
+  \item \textbf{4xx} Błąd po stronie klienta
+  \item \textbf{5xx} Błąd po stronie serwera
+\end{itemize}
+
+\subsubsection{Przykładowe, i najczęściej używane statusy}
+\begin{multicols}{2}
+\begin{itemize}
+    \item 200 OK
+    \item 201 Created
+    \item 202 Accepted
+    \item 204 No Content
+    \item 301 Moved Permanently
+    \item 302 Moved Temporarily
+    \item 304 Not Modified
+    \item 400 Bad Request
+    \item 401 Unauthorized
+    \item 403 Forbidden
+    \item 404 Not Found
+    \item 418 I am a teapot
+    \item 500 Internal Server Error
+    \item 501 Not implemented
+    \item 502 Bad Gateway
+    \item 503 Service Unavailable
+\end{itemize}
+\end{multicols}
+\subsection{Różnice TCP}
+\begin{itemize}
+  \item HTTP/1.0 \\
+    Każde żądanie wymaga nowego połączenia TCP co skutkowało dużym obciążeniem serwera, za każdym razem trzeba robić uwierzytelnienia i.t.p. 
+  \item HTTP/1.1 \\
+    Domyślnie używa persistent connections – jedno połączenie TCP może obsłużyć wiele żądań i odpowiedzi. 
+  \item HTTP/2.0 \\
+    Wprowadza binarny format nagłówków oraz kompresuje wiadomość co zmniejsza zużycie pasma. Wprowadza także funkcje multiplexingu, można w jednym pakiecie odpowiedzieć na wiele żądań http. 
+  \item HTTP/3.0 \\
+    Nie używa już TCP tylko QUIC, który pozwala na szybsze nawiązywanie połączenia i wydajniejszy multiplexing.
+\end{itemize}

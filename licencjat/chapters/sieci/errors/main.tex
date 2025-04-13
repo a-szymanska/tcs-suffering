@@ -1,3 +1,4 @@
 Protokół TCP koryguje błędy transmisji, w celu weryfikacji wysyłki i poprawności przesłania pakietu używa sum kontrolnych. Jeśli suma kontrolna jest niezgodna to klient prosi o ponowne wysłanie pakietu.\\
 W protokole Ethernet używany jest algorytm CRC (Cyclic redundancy check) obliczany jako reszta z dzielenia ciągu danych przez $n$ bitowy dzielnik zwany wielomianem CRC, otrzymujemy wtedy $n-1$ bitowy kod nadmiarowy. Przesyłamy pakiet wraz z obliczonym dla niego kodem nadmiarowym, klient sprawdza poprawność wysyłania licząc kod nadmiarowy.
 Taki sam kod zostanie wygenerowany dla danych mających inną liczbę zer na początku. W Ethernecie używany był CRC32, który używa 33 bitowego dzielnika.
+

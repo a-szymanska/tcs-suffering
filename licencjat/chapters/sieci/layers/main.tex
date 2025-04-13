@@ -1,8 +1,16 @@
 Warstwowa konstrukcja technologii sieciowych pozwala nad odseparowanie używanego standardu w jednej warstwie od standardu w innej warstwie, pozwala to na kooperacje różnych standardów. \\ 
 W modelu TCP/IP (uproszczonym modelu OSI) wyróżniamy 4 warstwy:
 \begin{itemize}
-    \item Warstwa aplikacji - umożliwienie aplikacjom korzystania z usług innych warstw - HTTP, HTTPS
-    \item Warstwa transportowa - dostarczanie warstwie aplikacji usług sesji i data-gramowych - (TCP i UDP)
-    \item Warstwa internetowa - adresowanie, pakowanie i funkcje routowania(IP)
-    \item Warstwa sieciowa - umieszczanie pakietów w nośniku sieciowym i ich odbiór z nośnika (Ethernet)
+  \item \textbf{Warstwa aplikacji} - umożliwienie aplikacjom korzystania z usług innych warstw - HTTP, HTTPS
+  \item \textbf{Warstwa transportowa} - dostarczanie warstwie aplikacji usług sesji i data-gramowych - (TCP i UDP)
+  \item \textb{Warstwa internetowa} - adresowanie, pakowanie i funkcje routowania(IP)
+  \item \textb{Warstwa sieciowa} - umieszczanie pakietów w nośniku sieciowym i ich odbiór z nośnika (Ethernet)
+\end{itemize}
+Warswy wyższe traktują niższe po prostu jak wiadomość opakowują je w dodatkową ramkę i przesyłają dalej. \\
+W 1000Base-T jest to po kolei od najniższej
+\begin{itemize}
+  \item \textbf{HTTP} - nagłówek określa typ rządania (np. GET, POST) albo typ odpowiedzi (np. OK, FORBIDDEN, I AM A TEAPOT).
+  \item \textbf{TCP}  - dzieli strumień danych na segmenty, dodaje nagłówek z numerem portu, numerem sekwencyjnym oraz sumą kontrolną 
+  \item \textbf{IPv4} - dodaje nagłówek określający adres nadawcy i odbiorcy
+  \item \textbf{Ethernet} - opakowuje w nagłówek ethernet, który zawiera adresy MAC (unikalny adres charakterystyczy dla urządzeń fizycznych) oraz typy użytych protokołów oraz sumę kontrolną CRC do wykrywania błędów
 \end{itemize}
