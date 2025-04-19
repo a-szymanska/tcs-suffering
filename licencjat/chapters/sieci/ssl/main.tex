@@ -1,0 +1,39 @@
+SSL to protokół, który umożliwia bezpieczną komunikację w Internecie w ramach HTTPS, chroni dane w warstwie transportowej poprzez ich zaszyfrowanie, pozwala na weryfikacje tożsamości i zapewnia integralność danych. zapobiega atakom man in the middle. Używa do tego podpisów cyfrowych i haszowania za pomocą SHA2.
+\subsection{Wystawianie certyfikatów}
+Certyfikaty SSL strony uzyskują od urzędów certyfikacji na pewien okres czasu, po tym jak sprawdzą one w jakiś sposób (np. przez to, że uruchomimy jakiś skrypt je pingujący z serwera, do którego jest podpięta domena), naszą tożsamość. Wystawiają także specjalne certyfikaty prywatnym instytucją, które umożliwiają im podpisywanie kolejnych domen, tworzy się w ten sposób łańcuch certyfikatów, gdyż każdy certyfikat, aby móc potwierdzić jego autentyczność musi także podać certyfikat wystawiającego.
+\subsection{Inicjacja połączenia}
+\begin{enumerate}
+    \item W trakcie handshake'u, serwer wysyła swój certyfikat SSL, albo ich łańcuch i użytkownik decyduje czy im ufać czy nie. Wysyła także informacje o metodzie szyfrowania, czasem też prosi klienta o jego certyfikat.
+    \item Klien generuje klucz sesji, wysyła go serwerowi szyfrując go kluczem publicznym serwera, dzięki temu tylko serwer z jego unikalnym kluczem prywatnym może odszyfrować klucz sesji.
+    \item Wysyłane są komunikaty potwierdzające pomyślne wymianę kluczami od teraz całość interakcji jest szyfrowana tajnym kluczem sesji.
+\end{enumerate}
+\subsection{Moduł SSL w Pythonie}
+Poniżej prezentuje kod przykładowego prostego serwera i klienta 
+\subsubsection{Klient}
+\begin{verbatim}
+import socket
+import ssl
+
+hostname = 'example.com'
+context = ssl.create_default_context()
+
+with socket.create_connection((hostname, 443)) as sock:
+    with context.wrap_socket(sock, server_hostname=hostname) as ssock:
+        ssock.send(b"GET / HTTP/1.1\r\nHost: example.com\r\n\r\n")
+\end{verbatim}
+\subsubsection{Serwer}
+\begin{verbatim}
+import ssl
+import socket
+
+context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+context.load_cert_chain(certfile='cert.pem', keyfile='key.pem')
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as sock:
+    sock.bind(('localhost', 8443))
+    sock.listen(5)
+    with context.wrap_socket(sock, server_side=True) as ssock:
+        conn, addr = ssock.accept()
+        conn.send(b"Bezpieczne połączenie TLS!")
+        conn.close()
+\end{verbatim}

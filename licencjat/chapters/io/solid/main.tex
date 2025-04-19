@@ -1,0 +1,13 @@
+\subsection{Zasady SOLID}
+Zostały wprowadzone przez Roberta C Martina, żeby zachęcać do tworzenia bardziej zrozumiałego i elastycznego oprogramowania, szczególnie przy rozrastaniu się projektu. Oto \( 5 \) zasad:
+\begin{itemize}
+    \item Zasada pojedynczej odpowiedzialności (single responsibility) - klasa powinna mieć tylko jeden powód do zmian, czyli realizować jedną funkcjonalność
+    \item Zasada Otwarte/Zamknięte (open/closed) - klasy powinny być otwarte na rozszerzanie a zamknięte na modyfikacje, czyli dać się łatwo rozszerzać bez konieczności wprowadzania zmian w oryginalnej klasie
+    \item Zasada podstawienia Liskov (liskov substitution) - każda klasa pochodna powinna móc zastąpić swoją klasę bazową
+    \item Zasada segregacji interfejsów (interface segregation) - klient nie powinien musieć implementować interfejsu, ani być zależnym od metod, których nie używa.
+    \item Zasada odwrócenia zależności (dependency inversion) - moduły wysokiego poziomu nie powinny zależeć od tych niższego poziomu a wszystkie powinny zależeć od abstrakcji. Konkretne implementacje powinny zależeć od abstrakcji, nie w przeciwnym kierunku.
+\end{itemize}
+
+\subsection{Przykłady naruszeń}
+Pierwszy przykład dotyczy zasady pojedynczej odpowiedzialności. Załóżmy, że stworzyliśmy klasę, która wykonuje pewne obliczenia, a następnie zwraca wynik w jednym z wybranych formatów (np. JSON lub HTML). Oprócz funkcji odpowiadającej za poprawne wyznaczenie wyniku, musi więc zawierać też logikę związaną z zapisaniem go w odpowiednim formacie, co narusza zasadę SRP. Należałoby więc stworzyć osobną klasę, która przyjmuje wynik i zwraca go w wybranym formacie. \\
+Drugi przykład odnosi się do zasady segregacji interfejsów, która mówi o tym, że duże interfejsy należy podzielić na mniejsze, bardziej wyspecjalizowane. Chcąc zaimplementować interfejs \texttt{Animal} zwierzęcia, który dostarcza metod: \texttt{walk}, \textt{swim}, \texttt{fly} trzeba ograniczyć się tylko do tych zwierząt, które mają te wszystkie umiejętności, czyli do kaczek oraz kaczkopodobnych. To łamie zasadę ISP. Lepszym rozwiązaniem jest więc podzielenie funkcjonalności na trzy interfejsy \texttt{WalkingAnimal}, \texttt{SwimmingAnimal}, \texttt{FlyingAnimal} i rozszerzanie dowolnej kombinacji z nich wedle potrzeb.

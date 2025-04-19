@@ -1,0 +1,17 @@
+\begin{definition}[Wzorzec projektowy]
+To rekomendowane rozwiązanie pewnego problemu powszechnie występującego w projektowaniu oprogramowania. Wzorzec jest ogólnym, wypróbowanym sposobem implementacji, który można dostosować do konkretnego przypadku użycia.
+\end{definition}
+Wzorce projektowe ułatwiają rozwój projektu, dzięki uporządkowanym zależnościom, komponentom o wyodrębnionych funkcjonalnościach, które można łatwo łączyć i wykorzystywać ponownie. Wadą jest to, że niekiedy trzymanie się wzorców może wymuszać dodatkowy nakład pracy i czasu, a także zatrzymywać przed szukaniem nowych, być może lepszych, rozwiązań.
+
+\subsection{Przykłady wzorców do kontroli zależności}
+Dobrym przykładem wzorca projektowego pozwalającego rozwiązać problem niepożądanych zależności jest \textbf{Fabryka Abstrakcyjna}. Służy on do tworzenia rodzin podobnych obiektów, unikając specyfikacji konkretnego typu tworzonego obiektu. Wzorzec polega na usunięciu zależności komponentu wysokiego poziomu od komponentu niższego poziomu poprzez przeniesienie zależności na interfejsy (w obrębie abstrakcji).
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=14cm]{img/design_patterns1}
+\end{figure}
+
+Innym przykładem może być wzorzec \textbf{Obserwator}, który definiuje zależność jeden-do-wielu pomiędzy obiektami, tak żeby, gdy jeden obiekt zmienia stan, wszystkie jego obiekty zależne były automatyczne powiadamiane. W ten sposób eliminuje bezpośrednią zależność pomiędzy obiektem obserwowanym a jego obserwatorami, ponieważ jest ona przeniesiona na poziom abstrakcji.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=14cm]{img/design_patterns2}
+\end{figure}
