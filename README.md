@@ -10,6 +10,7 @@ Currently, this repository contains notes for the following:
 - Algorithms in Algebra and Number Theory (Algorytmy Algebry i Teorii Liczb)
 - Probabilistic Methods in Computer Science (Metody Probabilistyczne Informatyki)
 - Models of Computation (Modele Obliczeń); incomplete
+- Numerical Algorithms (Algorytmy Numeryczne)
 - Final exam for the licencjat degree; incomplete
 
 # Usage
