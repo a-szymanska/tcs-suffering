@@ -9,6 +9,7 @@ Currently, this repository contains notes for the following:
 - Probabilistic Methods in Machine Learning (Metody Probabilistyczne w Uczeniu Maszynowym)
 - Algorithms in Algebra and Number Theory (Algorytmy Algebry i Teorii Liczb)
 - Models of Computation (Modele Obliczeń); incomplete
+- Numerical Algorithms (Algorytmy Numeryczne)
 - Final exam for the licencjat degree; incomplete
 
 # Usage
