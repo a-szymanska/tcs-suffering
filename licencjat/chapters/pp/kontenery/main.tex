@@ -1,0 +1,43 @@
+\subsection*{Lista}
+To zbiór elementów z liniowym porządkiem i możliwością wykonania na nich operacji ADD, DEL, FIND, RETRIEVE.
+
+Implementacje:
+\begin{itemize}
+    \item \textbf{Tablica} - pozycją na liście jest indeks \\
+        - cykliczna lub nie
+    \item \textbf{Lista wskaźnikowa} - pozycją na liście jest wskaźnik \\
+        - pojeynczo wiązana (jednokierunkowa) lub podwójnie wiązana (dwukierunkowa), z głową i ogonem lub bez, cykliczna lub nie
+    \item \textbf{Lista kursorowa} - pozycją na liście jest indeks w tablicy elementów
+\end{itemize}
+
+\subsection*{Stos}
+To struktura LIFO (Last In, First Out) z operacjami: PUSH, POP, TOP, EMPTY, CLEAR.
+
+Implementacje:
+\begin{itemize}
+    \item \textbf{Tablica} z indeksem szczytu,
+    \item \textbf{Lista dynamiczna} - wskaźnikowa lub kursorowa,
+    \item \textbf{Lista ADT}: PUSH \( \to \) ADD\_FIRST, POP \( \to \) DEL\_FIRST.
+\end{itemize}
+
+\subsection*{Kolejka}
+Struktura FIFO (First In, First Out) z operacjami: ENQUEUE, DEQUEUE, FRONT, EMPTY, CLEAR.
+
+Implementacje:
+\begin{itemize}
+    \item \textbf{Tablica cykliczna} - wykorzystuje indeksy początku i końca.
+    \item \textbf{Lista wskaźnikowa} - dodawanie na koniec, usuwanie z początku.
+    \item \textbf{ADT List}: ENQUEUE \( \to \) ADD\_END, DEQUEUE \( \to \) DEL\_FIRST.
+\end{itemize}
+
+\subsection*{Kolejka dwustronna}
+Struktura, w której możliwe jest dodawanie i usuwanie elementów na obu końcach. Operacje: PUSH\_FRONT, PUSH\_BACK, POP\_FRONT, POP\_BACK, FRONT, BACK.
+
+Implementacje:
+\begin{itemize}
+    \item lista dwukierunkowa,
+    \item lista cykliczna (z wartownikiem lub bez),
+    \item tablica (mniej efektywna przy wielu operacjach z przodu).
+\end{itemize}
+
+Ogólnie tablice zapewniają szybki dostęp do elementów, ale mają kosztowne operacje dodawania/usuwania. Listy wskaźnikowe umożliwiają efektywne wstawianie/usuwanie, ale dostęp bezpośredni jest trudniejszy. 

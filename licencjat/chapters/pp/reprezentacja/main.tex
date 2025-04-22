@@ -1,0 +1,93 @@
+\subsection{System o podstawie \( p \)}
+
+Liczbę zapisaną w systemie pozycyjnym o podstawie \( p \) można przedstawić jako wielomian:
+
+\[
+    (b_n, b_{n-1}, \dots, b_0)_p = b_n \cdot p^n + b_{n-1} \cdot p^{n-1} + \ldots + b_1 \cdot p^1 + b_0 \cdot p^0
+\]
+
+Żeby skonwertować liczbę do systemu dziesiętnego i z powrotem można wykorzystać schemat Hornera:
+
+\[
+    W(p) = ((((b_n \cdot p + b_{n-1}) \cdot p + b_{n-2}) \cdot p + \ldots + b_2) \cdot p + b_1) \cdot p + b_0
+\]
+
+\subsection{Reprezentacja liczb całkowitych ze znakiem}
+\subsubsection*{Znak-moduł prosty (ZMP)}
+Po prostu dodajemy bit znaku (0 - liczba dodatnia, 1 - liczba ujemna) jako pierwszy bit. Pozostałe bity kodują wartość bezwzględną liczby.
+
+\textbf{Wady:} Dwie reprezentacje zera, skomplikowane operacje arytmetyczne.
+
+\subsubsection*{Kod uzupełnieniowy do 1 (UZP1)}
+\begin{itemize}
+    \item Dla liczb dodatnich - bez zmian (pierwszy bit 0)
+    \item Dla liczb ujemnych - zamiana każdego bitu na przeciwny
+\end{itemize}
+
+\textbf{Wady:} Dwie reprezentacje zera, skomplikowane operacje.
+
+\subsubsection*{Kod uzupełnieniowy do 2 (UZP2)}
+To najczęściej stosowany sposób kodowania.
+\begin{itemize}
+    \item Dla liczb dodatnich: bez zmian
+    \item Dla liczb ujemnych: odjęcie 1 od \( \abs{x} \), zamiana bitów na przeciwne, dodanie 1
+\end{itemize}
+Przykład:
+\[
+    \text{UZP2}(17) = 0001 \ 0001
+\]
+\[
+    \text{UZP2}(-17) = 1110 \ 1111
+\]
+
+\textbf{Zalety:} Jedna reprezentacja zera, poprawne działanie operacji arytmetycznych.
+
+\subsubsection*{Kod nadmiarowy (NDM)}
+Kodowanie za pomocą stałego przesunięcia \( ndm \):
+\[
+    \text{NDM}(x) = x + ndm, \ \text{gdzie } ndm = 2^{k-1}
+\]
+Wszystkie liczby są przesunięte o \( ndm \), a ich kod binarny mieści się na \( k \) bitach.
+
+\textbf{Zalety:} Jako jedyne z omawianych zachowuje kolejność liczb, czyli \( x < y \implies \text{NDM}(x) < \text{NDM}(y) \).
+
+\subsection{Reprezentacja liczb rzeczywistych}
+Ułamki w formacie komputerowym można czytać w ten sposób:
+\[
+    (d_n, d_{n-1}, \dots, d_1, 0)_p = d_n \cdot \left(\frac{1}{p}\right)^n + d_{n-1} \cdot \left(\frac{1}{p}\right)^{n-1} + \ldots + d_1 \cdot \left(\frac{1}{p}\right)^1
+\]
+Przykład:
+\[
+    (101, 110011)_2 = 5\frac{110011}{1000000} = 5 + \frac{1}{2} + \frac{1}{4} + \frac{1}{32} + \frac{1}{64} = 5\frac{16+4+2+1}{64} = 5\frac{51}{64}
+\]
+
+\subsubsection*{Zapis stałopozycyjny}
+\begin{itemize}
+    \item Liczby zapisane z ustaloną liczbą cyfr przed i po przecinku.
+    \item Część całkowita: np. UZP2, część ułamkowa: bez kodowania.
+\end{itemize}
+Wada: nieefektywne wykorzystanie pamięci, ograniczony zakres.
+
+\subsection*{Zapis zmiennoprzecinkowy}
+Liczby są zapisywane w postaci
+\[
+    x = m \cdot p^c,
+\]
+gdzie \( m \) to mantysa, \( c \) to cecha, \( p \) to podstawa (zwyczajowo 2).
+Ponieważ mantysa jest postaci liczba całkowite + ułamek, to w rejestrze zapisywany jest tylko ułamek. Najczęściej cecha kodowana jest kodem nadmiarowym, a mantysa jako znak-moduł.
+
+Kodowanie:
+\begin{enumerate}
+    \item Zapis liczby w postaci binarnej
+    \item Normalizacja mantysy: \( 1,\ldots \cdot 2^c \)
+    \item Zakodowanie cechy: \( c + \text{ndm} \)
+    \item Zakodowanie zaokrąglonej mantysy
+\end{enumerate}
+
+\subsubsection*{Specjalne wartości}
+\begin{itemize}
+    \item \( \pm 0 \): \( c = 0,\; m = 0 \)
+    \item \( \pm\infty \): \( c = 255,\; m = 0 \)
+    \item NaN: \( c = 255,\; m \neq 0 \)
+    \item Liczby bliskie zeru: \( c = 0, m \neq 0 \)
+\end{itemize}
