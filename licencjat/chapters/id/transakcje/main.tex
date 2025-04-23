@@ -1,0 +1,20 @@
+\textbf{Transakcja} to jedna lub wiele operacji czytania i pisania oraz porządkiem wykonania ich traktowanych jako całość.
+Mogą zostać wykonane albo wszystkie z nich, albo żadna. Jeśli coś pójdzie nie tak, transakcja może zostać wycofana (\textit{abort / rollback}).
+
+Celem nie jest oczywiście wykonywanie transakcji szeregowo, tylko współbieżnie na ile to możliwe. Żeby efektem nie było więcej problemów niż przyspieszenia, wymaga to jednak zachowania własności ACID:
+\begin{itemize}
+    \item \textbf{atomowość (atomicity)} - transakcja jest neipodzielna, czyli nie może być wykonana częściowo \\
+    Transakcja może być wycofana, na przykład, gdy prowadzi do rozspójnienia lub zakleszczenia. Podczas transakcji może też wystąpić awaria.
+    Rozwiązaniem może być logowanie zmian lub tworzenie kopii zmienianych stron plików i umożliwianie odczytu dopiero po zatwierdzeniu (shadow paging).
+    
+    \item \textbf{integralność (consistency)} - po zatwierdzeniu transakcji baza danych musi spełniać wszystkie warunki poprawności \\
+    Czasami dozwolone jest, żeby pojedyncze operacje w transakcji tymczasowo naruszało warunki, ale po zakończeniu transakcji musi być przywrócony poprawny stan.
+    
+    \item \textbf{izolacja (isolation)} - wynik równoległego wykonania transakcji musi być szeregowalny \\
+    Mówiąc prościej, dwie transakcje wykonywane w tym samym czasie nie mogą wpływać na siebie.
+    Aby zapewnić izolację wykorzystuje się metody pesymistyczne, które nie pozwalają na zaistnienie problemu, i optymistyczne, które naprawiają sytuację po zaistnieniu problemu.
+    
+    \item \textbf{trwałość (durability)} - po pomyślnym zakończeniu transakcji jej efekty w bazie danych są trwałe \\
+    Oznacza to, że wyniki zatwierdzonej transakcji nie zostaną utracone nawet w przypadku twardych awarii (brak zasilania, błąd oprogramowania).
+    Dane mogą zniknąć z pamięci głónej, ale pozostaną zapisane na dysku. Sposobami zapewnienia trwałości jest zapisywanie zmian na dysku przed zakończenie transakcji  lub przechowywanie wystarczających informacji o nich, tak żeby można było stan sprzed awarii.
+\end{itemize}

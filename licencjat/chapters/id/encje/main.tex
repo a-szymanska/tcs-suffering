@@ -1,0 +1,29 @@
+\textbf{Encja \textit(entity)} to obiekt przechowywany w bazie. Zbiorem encji nazywamy zbiór obiektów posiadającyh te same atrybuty.
+Atrybuty encji mogą być:
+\begin{itemize}
+    \item proste (o niepodzielnych wartościach) lub złożone (np. adres)
+    \item jednoartościowe (np. id) lub wielowartościowe (np. adresy mailowe danej osoby)
+    \item pochodne, czyli takie, których wartość oblicza się za pomocą pewnej funkcji na wartościach innych atrybutów
+\end{itemize}
+Instancje encji są parami różne, więc dla zbioru encji pojęcia superklucza, klucza, klucza głównego i klucza wtórnego działają analogicznie jak
+w modelu relacyjnym.
+\textbf{Słaba encja} to taka encja, której występuje tylko w kontekście innych encji (np. instytut w kontekście wydziału). Słabe encje nie posiadają własnego identyfikatora, a ich klucz główny zależy również od klucza encji, przy których występują.
+
+\textbf{Związek \textit(relationship)} to wzajemna zależność pomiędzy dwiema lub więcej encjami. Instancja związku reprezentuje związek między instancjami encji.
+Związek może być:
+\begin{itemize}
+    \item unarny, binarny, ternarny, n-arny (klasyfikacja ze względu na stopień)
+    \item opcjonalny, obowiązkowy (klasyfikacja ze względu na klasę przynaleźności)
+    \item 1 : 1, 1 : M, M : N (klasyfikacja ze względu na typ asocjacyjny)
+\end{itemize}
+Superkluczem dla \( \mathcal{R} \) zbioru związków o atrybutach \( A_1, \dots, A_k \) pomiędzy zbiorami encji \( E_1, \dots, E_n \) o kluczach głównych \( \text{PK}(E_1), \dots, text{PK}(E_n) \)
+jest \( \text{PK}(E_1) \cup \ldots \cup \text{PK}(E_n) \cup \{A_1, \dots, A_k\} \).
+
+\subsection*{Reprezentacja na diagramie}
+Do reprezentacji modelu związków encji często wykorzystuje się notację kurzej stopki.
+
+\begin{figure}[h!]
+    \centering
+    \input{chapters/id/encje/figure}
+    \caption{Strzałki modelu ER w notacji kurzej stopki}
+\end{figure}
