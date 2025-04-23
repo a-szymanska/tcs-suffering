@@ -8,6 +8,11 @@ Jest implementowana jako ukorzenione, zbalansowane drzewo \( M \)-arne, w który
 a węzeł wewnętrzny o \( k \) kluczach ma \( k+1 \) potomków. Węzły wewnętrzne przechowują tablice z parami <node*, key>, a liście wartości (krotki lub adresy) <value, key>.
 Ogólnie im wolniejsza jest pamięć, tym większy jest optymalny rozmiar węzła.
 Najszybciej można zbudować B+-drzewo, sortując klucze, a potem budując indeks od dołu (bulk loading).
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\linewidth]{chapters/id/indeksy/b_tree}
+    \caption{Schemat B+-drzewa}
+\end{figure}
 
 Zalety B+-drzew:
 \begin{itemize}

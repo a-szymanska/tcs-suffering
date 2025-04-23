@@ -1,13 +1,13 @@
 Żeby zrozumieć strategie optymalizacji, warto krótko przypomnieć schemat przetwarzania przez SZBD zapytań SQL na kod wykonywalny.
 \begin{enumerate}
     \item zapytanie SQL \\
-    \downarrow tłumaczenie kanoniczne
+    \( \downarrow \) tłumaczenie kanoniczne
     \item wyrażenie algebry relacyjnej \\
-    \downarrow optymalizacja heurystyczna
+    \( \downarrow \) optymalizacja heurystyczna
     \item dostosowane wyrażenie \\
-    \downarrow optymalizacja na podstawie kosztu
+    \( \downarrow \) optymalizacja na podstawie kosztu
     \item plan fizyczny \\
-    \downarrow dodanie instrukcji wykonania operatorów
+    \( \downarrow \) dodanie instrukcji wykonania operatorów
     \item kod wykonywalny
 \end{enumerate}
 
