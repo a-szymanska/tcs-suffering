@@ -1,0 +1,23 @@
+Normalizacja to technika projektowania bazy danych, której celem jest uniknięcie niepożądanych cech w schematach relacji. Analizując zależności pomiędzy atrybutami, można zidentyfikować te, w których potencjalnie wystąpi redundancja lub anomalia modyfikacji.
+Takie schematy należy rozłożyć na mniejsze (dekompozycja), żeby zminimalizować niebezpieczeństwo rozspójnienia danych. Mówiąc inaczej, normalizacja polega na dostosowaniu schematu relacji, czyli struktury tabel tak, żeby spełniały założenia postaci normalnej.
+
+\subsection*{Postaci normalne}
+\begin{itemize}
+    \item Pierwsza postać normalna (1NF) - każda wartość powinna być atomowa, nie występują powtórzenia
+    \item Druga postać normalna (2NF) - 1NF + atrybut niekluczowy nie jest częściowo zależny od klucza
+    \item Trzecia postać normalna (3NF) - 2NF + każdy atrybut jest zależny bezpośrednio (nie przechodnio) od każdego klucza
+    \item Postać normalna Boyce'a Codda (BCNF) - 2NF + każdy atrybut, od którego zależny jest inny atrybut jest superkluczem relacji
+    \item Czwarta postać normalna (4NF) - każdy atrybut, od którego w relacji wielowartościowej* zależny jest inny atrybut jest superkluczem relacji 
+\end{itemize}
+* Jeśli \( X,\;Y,\;Z \) to w sumie wszystkie atrybuty \( \mathcal{R} \) oraz \( Z \cap (X \cup Y) = \empty \), to \( \mathcal{R} \) spełnia zależność wielowartościową \( X \twoheadrightarrow Y \),
+gdy dla dowolnych \( t_1,\; t_2 \) jeśli \( t_1[X] = t_2[X] \), to istnieje taka krotka \( t_3 \), że \( t_1[X, Y] = t_3[X, Y] \) oraz \( t_2[Z] = t_3[Z] \).
+
+
+Zyski:
+\begin{itemize}
+    \item zmniejszenie ilości danych przy zachowaniu wszystkich informacji
+    \item uniknięcie anomalii przy dodawaniu, aktualizacji, usuwaniu
+    \item ułatwienie tworzenia indeksów, więc przyspieszenie wykonania niektórych zapytań
+    \item umożliwienie szybszego zarządzania transakcjami
+    \item bardziej efektywne składowanie tabel na dysku
+\end{itemize}

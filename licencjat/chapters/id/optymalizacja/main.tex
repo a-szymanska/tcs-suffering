@@ -1,0 +1,39 @@
+Żeby zrozumieć strategie optymalizacji, warto krótko przypomnieć schemat przetwarzania przez SZBD zapytań SQL na kod wykonywalny.
+\begin{enumerate}
+    \item zapytanie SQL \\
+    \downarrow tłumaczenie kanoniczne
+    \item wyrażenie algebry relacyjnej \\
+    \downarrow optymalizacja heurystyczna
+    \item dostosowane wyrażenie \\
+    \downarrow optymalizacja na podstawie kosztu
+    \item plan fizyczny \\
+    \downarrow dodanie instrukcji wykonania operatorów
+    \item kod wykonywalny
+\end{enumerate}
+
+Poniżej kolejne fazy optymalizacji nieco bardziej szcezgółowo:
+\subsection*{Optymalizacja heurystyczna}
+Polega na iteracyjnej modyfikacji wyrażenia kanonicznego, tak żeby uzyskać jak najlepszy plan logiczny. Zmiany nie mogą doprowadzić do tego, żeby wynik wykonania wyrażenia różnił się od wyniku dla początkowego wyrażenia.
+Stosuje się następujące heurystyki:
+\begin{itemize}
+    \item Wykonuj operację selekcji jak najwcześniej - zmniejsza to rozmiar relacji
+    \item Jeśli po iloczynie kartezjańskim występuje selekcja, zastąp obie operacje przez złączenie
+    \item Stosując łączność selekcji wykonaj ja najwcześniej najbardziej restrykcyjną selekcję
+    \item Wykonuj operację rzutowania jak najwcześniej - zmniejsza to rozmiar relacji
+    \item Każdą operację wykonuj tylko raz - jeśli jakieś wyrażenie powtarza się w drzewie, zapamiętaj jego wynik
+\end{itemize}
+
+\subsection*{Optymalizacja oparta na podstawie kosztów}
+Polega na analizie kosztów planów zapytania. Optymalizator szacuje koszt dla pewnego
+podzbioru potencjalnych planów i wybiera ten ,,najtańszy''.
+
+Przybliżony koszt planu jest wyliczany jako:
+\begin{itemize}
+    \item szacunkowy koszt wykonania każdego operatora (zależy od rozmiarów argumentów wejściowych)
+    \item szacunkowy rozmiar wyniku wykonania każdego operatora
+\end{center}
+Na potrzeby tych obliczeń system bazodanowy przechowuje statystyki dotyczące relacji oraz atrybutów.
+
+
+\subsection*{Próbkowanie}
+System bazy danych może pobrać próbki z tabel i na tej podstawie oszacować selektywność. Próbki są aktualizowane po większych zmianach w tabeli.

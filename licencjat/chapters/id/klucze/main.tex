@@ -1,0 +1,9 @@
+\textbf{Klucz} to minimalny w sensie inkluzji pozbiór atrybutów \( \{B_1, \dots, B_k\} \subseteq \{A_1, \dots, A_n\} \) relacji \( \mathcal{R}(A_1, \dots, A_n) \), który jest wystarczający do rozróżnienia krotek, czyli
+\[
+    t_1[B_1, \dots, B_k] = t_2[B_1, \dots, B_k] \implies t_1 = t_2
+\]
+
+\textbf{Kluz podstawowy} to jeden wybrany klucz dla danej relacji. Jej pozostałe klucze, to \textbf{klucze wtórne (kandydujące)}.
+
+\textbf{Klucz obcy} relacji \( \mathcal{R} \) to zbiór jej atrybutów \( \{B_1, \dots, B_k\} \), który jest kluczem \( \{A_1, \dots, A_k\} \) innej relacji \( \mathcal{S} \). Atrybuty muszą mieć identyczną dziedzinę w obu relacjach oraz 
+dla każdej krotki \(t_1 \) relacji \( \mathcal{R} \) musi istnieć co najwyżej jedna taka krotka \( t_2 \) relacji \( \mathcal{S} \), że \( t_1[B_1, \dots, B_k] = t_2[A_1, \dots, A_k] \).

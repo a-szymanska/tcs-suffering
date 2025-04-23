@@ -1,0 +1,49 @@
+Jednym z zadań SZBD jest zapewnianie tego, żeby zmiany dokonane przez widoczną lub zatwierdzoną transakcję były trwałe, a efekty transakcji wycofanej lub przerwanyj przez awarię nie.
+
+Jest parę typów awarii:
+\begin{itemize}
+    \item awaria systemu: awaria sprzętu, błędy oprogramowania, uszkodzenie dysku
+    \item błędy logiczne (np. naruszenie ograniczeń integralnościowych)
+    \item błędy systemowe (np. zakleszczenia)
+\end{itemize}
+Do poradzenia sobie z pierwszym rodzajem wystarczy replikacja bazy i rozproszenie danych. W przypadku pozostałych dwóch trzeba odtworzyć bazę po awarii.
+Ważne jest, żeby zminimalizować czas potrzebny do tego, ponieważ w trakcie odtwarzania bazy serwer musi być wyłączony dla użytkowników.
+Służące do tego algorytmy składają się z dwóch części:
+\begin{enumerate}
+    \item zapisywanie informacji potrzebnych do odtworzenia stanu bazy na bieżąco podczas zwykłych operacji
+    \item czynności po awarii, prowadzące do przywrócenia spójności, atomowości i trwałości
+\end{enumerate}
+
+\subsection*{Strategie SZBD}
+Brudne strony, czyli zmieniane po ostatnim zapisie na dysku, mogą pozostawać w buforze długo po zatwierdzeniu transakcji. Jeśli nastąpi awaria, to naniesione zmiany są tracone.
+Żeby zadbać o poprawny stan bazy można wykonać operacje:
+\begin{itemize}
+    \item UNDO, wycofanie zmian - zapewnia atomowość
+    \item REDO, powtórzenie transakcji - zapewnia trwałość.
+\end{itemize}
+Podjęte czynności zależą od strategii SZBD: \\
+Czy niezatwierdzona transakcja może nadpisać wartość w pamięci trwałej? \\
+\begin{itemize}
+    \item strategia steal: TAK
+    \item strategia no-steal: NIE
+\end{itemize}
+Czy wszystkie zmiany muszą być zapisane w pamięci trwałej przed zatwierdzeniem transakcji?
+\begin{itemize}
+    \item strategia force: TAK
+    \item strategia no-force: NIE
+\end{itemize}
+
+Strategia \textbf{no-steal + force} pozwala uniknąć wykonywania sekwencji UNDO i REDO. Jednak jest mało efektywna i istnieje ryzyko samozakleszczenia transakcji, jeśli braknie miejsca w buforze.
+Częściej wykorzystywana jest strategia \textbf{steal + no-force} opakowana przez \textbf{protokół WAL (write-ahead log)}.
+Oprócz plików z danymi przechowywany jest dziennik z logami (dziennik), w którym zapisywane są wszystkie zmiany przed wprowadzeniem ich na dysku.
+Zawiera on informacje wystarczające odzyskania zawartości bazy za pomocą operacji UNDO i REDO.
+Żeby dzienniki nie rozrastały się w nieskończoność, tworzy się punkty kontrolne. W przypadku awarii powtarzane są tylko transakcja zatwierdzona po ostatnim punkcie kontrolnym, a niezatwierdzone są wycofywane.
+
+\subsection{Algorytm ARIES}
+Algorytm ARIES (Algorithm for Recovery and Isolation Exploiting Semantics) służy do odtwarzania transakcji, korzystając z dziennika WAL i blokad.
+Składa się z trzech faz:
+\begin{enumerate}
+    \item Analiza: rekonstrukcja Tabeli Brudnych Stron (DPT) i Tabeli Transakcji (TT), wyznaczenie pierwszego wpisu o zmianach tworzących brudną stronę
+    \item Faza REDO: powtórzenie wszystkich operacji od momentu powstania brudnej strony, przywrócenie stanu sprzed awarii
+    \item Faza UNDO: wycofanie efektów niezatwierdzonych transakcji, dodanie wpisów kompensacyjnych do dziennika
+\end{enumerate}
