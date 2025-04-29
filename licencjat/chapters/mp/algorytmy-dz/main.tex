@@ -1,0 +1,60 @@
+Algorytmy ,,Dziel i Zwyciężaj'' opierają się na strategii bitewnej podziel - pokonaj - połącz. Oznacza to, że oryginalne zadanie zostaje
+podzielone na mniejsze i potencjalnie łatwiejsze do rozwiązania podzadania, których wyniki otrzymane rekurencyjnie są scalane w ostateczny. 
+Zadania o rozmiarze poniżej pewnej ustalonej stałej są rozwiązywane zwykłą metodą. Podział podzadań niekiedy wymaga dodatkowych obliczeń.
+
+\subsection{Złożoność algorytmów D-Z}
+\begin{theorem}[o rekurencji uniwersalnej (Master Theorem)]
+    Załóżmy, że podział generuje \( a \geq 1 \) podzadań o rozmiarze \( \floor{\frac{n}{b}} \) lub \( \ceil{\frac{n}{b}} \), gdzie \( b \geq 1 \)
+    oraz złożoność algorytmu jest wyrażona równaniem
+    \[ T(n) = a \cdot T(n/b) +\Theta(n^p \log^qn), n > c, \]
+    \[ T(n) = \Theta(1), n \leq c, \]
+    gdzie \( p,\; q \geq 0 \) oraz \( \log_b a = d \). Wówczas:
+    \begin{enumerate}
+        \item jeśli \( d > p \), to \( T(n) = \Theta(n^d) \),
+        \item jeśli \( d = p \), to \( T(n) = \Theta(n^d \log^{q+1}n) \),
+        \item jeśli \( d < p \), to \( T(n) = \Theta(n^p \log^qn) \).
+    \end{enumerate}
+\end{theorem}
+
+
+\subsection{Algorytm mnożenia macierzy Strassena}
+Dane są macierze kwadratowe \( A, B \in \real^{n \times n},\; n = 2^k \). Celem jest obliczyć \( C = A \cdot B \).
+Możemy potraktować każdą macierz jako macierz \( 2 \times 2 \), czyli każdy z 4 elementów jest podmacierzą kwadratową rozmiaru \( \frac{n}{2} \times \frac{n}{2} \).
+Oznaczmy podmacierze \( A \) przez \( A_{1,1}, A_{1,2}, A_{2,1}, A_{2,2} \), analogicznie dla \( B \) i \( C \). Standardowy algorytm wykonuje 8 mnożeń:
+\[ C_{i,j} = A_{i,i,} \cdot B_{i,j} + A_{i,j} \cdot B_{j,j} \]
+Złożoność podstawowego algorytmu jest więc równa \( T(n) = 8 \cdot T(n/2) + b \cdot n^2 = \Theta(n^3) \).
+
+Poprawka Strassena polega na zmniejszenie liczby mnożeń do 7, poprzez sprytne obliczenia.
+% \begin{center}
+%     \( p_1 = a_{1,1} \cdot (b_{1,2}-b_{2,2}) \) \\
+%     \( p_2 = (a_{1,1}+a_{1,2}) \cdot b_{2,2} \) \\
+%     \( p_3 = (a_{2,1}+a_{2,2}) \cdot b_{1,1} \) \\
+%     \( p_4 = a_{2,2} \cdot (b_{2,1}-b_{1,1}) \) \\
+%     \( p_5 = (a_{1,1}+a_{2,2}) \cdot (b_{1,1}+b_{2,2}) \) \\
+%     \( p_6 = (a_{1,2}-a_{2,2}) \cdot (b_{2,1}+b_{2,2}) \) \\
+%     \( p_7 = (a_{1,1}-a_{2,1}) \cdot (b_{1,1}+b_{1,2}) \)
+% \end{center}
+% \begin{center}
+%     \( c_{1,1} = p_5+p_4-p_2+p_6 \) \\
+%     \( c_{1,2} = p_1+p_2 \) \\
+%     \( c_{2,1} = p_3+p_4 \) \\
+%     \( c_{2,2} = p_5+p_1-p_3-p_7 \)
+% \end{center}
+% (Powyższe wzory są dla zobrazowania, na czym polega trik. Ich znajomość nie jest wymagana na egzaminie!)
+Kluczowy jest fakt, że metoda ta nie korzysta z przemienności mnożenia liczb, dzięki czemu może być wykorzystana do mnożenia podmacierzy.
+
+Algorytm Strassena wygląda następująco:
+\begin{verbatim}
+function strassen_multiply(A11, ..., B11, ...):
+    // scalanie wyniku mnożenia podmacierzy za pomocą wzorów Strassena
+    // z rekurencyjnem wywołaniem multiply przy mnożeniu
+
+function multiply(A, B):
+    if n == 2 then
+        return A * B
+    strassen_multiply(split(A), split(B))
+\end{verbatim}
+
+Algorytm jest opisany równaniem 
+\[ T(n) = 7 \cdot T(n/2) + \Theta(n^2), n > 2, \]
+więc jego złożoność jest równa \( T(n) = \Theta(n^{\lg 7}) \approx \Theta(n^{2.808}) \).

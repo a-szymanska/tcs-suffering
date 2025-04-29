@@ -1,0 +1,108 @@
+Oba algorytmy są przykładami zastosowania metody ,,Dziel i Zwyciężaj''.
+
+\subsection{Sortowanie przez scalanie (mergesort)}
+Algorytm wygląda następująco:
+\begin{verbatim}
+merge(A, l, m, r, B):
+    static int B[n];
+    for (i = l; i <= r; i++)
+        B[i] = A[i];
+    i = l; j = m+1; k = l;
+    while (i <= m and j <= r)
+        if (B[i] <= B[j])
+            A[k++] = B[i++];
+        else
+            A[k++] = B[j++];
+    while (i <= m)
+        A[k++]=B[i++];
+    while (j <= r)
+        A[k++]=B[j++];
+
+mergesort(A, l, r) // sortowanie A[l..r]
+    if (l == r)
+        return;
+    m = (l+r) // 2 ;
+    mergesort(a, l, m);
+    mergesort(a, m+1, r);
+    merge(A, l, m, r, B);
+\end{verbatim}
+
+\subsubsection*{Złożoność}
+Algorytm można opisać równaniem:
+\[ T(n) = T( \floor{n/2}) + T(\ceil{n/2}), \]
+zatem złożoność całego algorytmu jest równa \( \Theta(n \log n) \).
+
+\subsubsection*{Zalety i wady}
++ złożoność pesymistyczna równa średniej \\
++ stabilność numeryczna \\
+- pamięć robocza wielkości \( \Theta(n) \) \\
+- złożoność czasowa przy posortowanych danych wejściowych również \( \Theta(n) \)
+
+\subsection{Sortowanie szybkie (quicksort)}
+Na każdym poziomie rekurencji, celem jest takie uporządkowanie elementów tablicy \( A \), żeby dla pewnego \( p \), \( l \leq p < r \)
+zachodziło \( A[i] \leq A[j] \), dla dowolnych \( i = l, \dots, p, j = p+1, \dots, r \).
+
+W podziale w wesji Hoare'a, dla ustalonego \( p \in A[l \dots r] \), idąc wskaźnikiem \ ( i \) od lewej, szukamy \( A[i] > p \) oraz idąc wskaźnikiem \( j \) od prawej, szukamy \( A[j] < p \).
+Jeśli znalezione \( i < j \), to zamieniamy \( A[i] \) z \( A[j] \) i kontynuujemy przesuwanie wskaźników. Jeśli \( i \geq j \), to ustalamy \( p \) gdzieś w pobliżu \( i,\; j \) tak, żeby powyższy warunek był spełniony.
+
+Procedura z podziałem Hoare'a wygląda następujęco:
+\begin{verbatim}
+getPivot(l, r)
+    return (r+l) / 2;
+
+partition(A, l, r)
+    pivot_idx = getPivot(l, r);
+    pivot_val = A[pivot_idx];
+    swap(A[pivot_idx], A[r]);
+    j = l;
+    for i=l to r-1 do
+        if A[i] < pivot_val then
+            swap(A[i], A[j]);
+            j++;
+    swap(A[j], A[r]);
+    return j;
+
+quicksort(A, l, r)
+    if l < r then
+        i = partition(A, l, r);
+        quicksort(A, l, i-1);
+        quicksort(A, i+1, r);
+\end{verbatim}
+Mogą wystąpić przypadki brzegowe - piwot może być największym lub najmniejszym elementem. Dobrze jest więc dodać wartowników na początku i końcu tablicy.
+Można też zaimplementować podział w wersji Lomuto:
+\begin{verbatim}
+partition(A, l, r)
+    p = A[R];
+    i = l-1;
+    for (j = l; j < r; j++)
+        if (A[j] <= p)
+            i++;
+            swap(A[i], A[j]);
+    swap(A[i+1], A[r]);
+    return i+1;
+\end{verbatim}
+Ta wersja jest łatwiejsza do implementacji i nie wymaga wartowników, wykonuje jednak do trzech razy więcej zamian i jest szczególnie nieefektywna, gdy jakaś wartość powtarza się wielokrotnie w tablicy.
+Rozwiązaniem może być zastosowanie potrójnego podziału Lomuto, gdzie wartości równe piwotowi zostają zgrupowane w środkowej części tablicy, a rekurencja jest wywoływana tylko na lewej i prawej podtablicy.
+
+Dobre praktyki:
+\begin{itemize}
+    \item Losowanie piwota - uniemożliwia zadanie złośliwych danych
+    \item Wybór piwota jako mediany z \( A[l], A[(l+r)/2], A[r] \) - poprawia działanie dla posortowanych ciągów, skonstruowanie złośliwego przypadku nadal jest możliwe
+    \item Pozostawienie małych podzadań nieposortowanych, a po zakończeniu procedury \texttt{quicksort} posortowanie całej tablicy przez wstawianie (ostatni krok jest \( \Theta(n) \))
+\end{itemize}
+
+\subsubsection*{Złożoność}
+W przypadku oczekiwanym (dla losowych danych), algorytm można opisać równaniem:
+\[ T(n) = 2 \cdot T(n/2) + n+1, \]
+zatem średnia złożoność algorytmu jest równa \( \Theta(n \log n) \).
+Jednak w przypadku pesymistycznym złożoność algorytmu jest równa:
+\[ T(n) = T(n-1) + n+1 = \frac{1}{2} \cdot n^2 + \frac{3}{2} \cdot n \]
+
+
+\subsubsection*{Zalety i wady}
++ duża efektywność w oczekiwanym przypadku \\
++ w miejscu - brak jawnej pamięci roboczej \\
+- niestabilność numeryczna \\
+- pamięć robocza pesymistycznie wielkości \( \Theta(n) \) - niejawna, stos rekursji w pesymistycznym przypadku wymaga \( \Theta(n) \) pamięci
+
+Z ostatnim punktem można sobie radzić, sortując mniejszą podtablicę rekurencyjnie, a większą iteracyjnie.

@@ -1,0 +1,119 @@
+\subsection{Kopiec (heap)}
+Kopiec jest drzewem, w którym każdy wierzchołek \( v \) spełnia warunek key(parent(i)) \( \geq \) key(i), czyli na dowolnej ścieżce w dół drzewa wartości maleją.
+Omówiony zostanie max-kopiec, w wersji min-kopiec nierówność jest odwrotna.
+
+W przypadku kopca binarnego każdy wierzchołek wewnętrzny ma dwa następniki, a poziom liści jest wypełniony od lewej strony.
+Wysokość kopca binarnego to \( h = \floor{\lg n} \).
+
+\subsubsection*{Implementacja}
+Strukturę kopca można zrealizować przy pomocy zwykłej tablicy A o rozmiarze równym zaokrągleniu \( n \) w górę do najbliższej potęgi 2.
+\begin{itemize}
+    \item A[1] - korzeń
+    \item A[2i] - lewy następnik A[i]
+    \item A[2i+1] - prawy następnik A[i]
+    \item A[i/\!/2] - poprzednik A[i]
+\end{itemize}
+
+Jeśli wartość A[k] zwiększy się, trzeba uaktualnić wierzchołki na ścieżce od A[k] do korzenia.
+Wykonuje się to, trochę jak przy sortowaniu przez wstawianie, przez \textbf{przesiewanie w górę (sift-up)}:
+\begin{verbatim}
+siftUp(A, k):
+    j = k;
+    i = k//2;
+    tmp = A[k];
+    while j > 1 and A[i] < tmp do
+        A[j] = A[i];
+        j = i;
+        i = i//2;
+    A[j] = tmp;
+\end{verbatim}
+
+Jeśli wartość A[k] zmniejszyła się, trzeba uaktualnić wierzchołki w poddrzewie A[k], do czego służy \textbf{przesiewanie w dół}:
+\begin{verbatim}
+siftDown(A, k, n):
+    tmp = A[k];
+    while k <= n//2 do
+        j = 2*k;
+        if j < n and A[j] < A[j+1] then
+            j++;
+        if tmp >= A[j] then
+            break;
+        A[k] = A[j];
+        k = j;
+    A[k] = tmp;
+\end{verbatim}
+Złożoność tych operacji wynosi \( \Theta(\lg n) \).
+
+
+\subsection{Kolejka priorytetowa}
+Kolejka priorytetowa obsługuje trzy rodzaje operacji:
+Operacje kolejki priorytetowej na kopcu:
+\begin{itemize}
+    \item insert(x): wstaw element x do kolejki Q
+    \begin{verbatim}
+    insert(x):
+        A[++n] = x;
+        siftUp(A, n);
+    \end{verbatim}
+    Złożoność: \( \Theta(\lg n) \)
+    \item max(Q): podaj wartość największego elementu w kolejce Q
+    \begin{verbatim}
+    max():
+        return A[1];
+    \end{verbatim}
+    Złożoność: \( \Theta(1) \)
+    \item deleteMax(Q): usuń największy element z kolejki
+    \begin{verbatim}
+    deleteMax():
+        A[1] = A[n];
+        siftDown(A, 1, --n);
+    \end{verbatim}
+    Złożoność: \( \Theta(\lg n) \)
+\end{itemize}
+
+\subsection{Sortowanie metodą kopca (heapsort)}
+Mając do dyspozycji kolejkę priorytetową, żeby posortować ciąg \( n \) obiektów, wystarczy włożyć każdy z nich do kolejki, po czym \( n \)-krotnie wykonać operację deleteMax.
+Elementy opuszczają kolejkę w porządku malejącym. Złożoność takiego sortowania to \( \Theta(n \lg n) \). Wadą tej metody jest jednak, że potrzebuje dodatkowej tablicy na przechowywanie kolejki (kopca).
+
+Ulepszeniem sortowania z wykorzystaniem kopca jest Heapsort (wersja Williamsa):
+\begin{verbatim}
+heapsort(A, n):
+    // Konstrukcja kopca
+    for k = n//2 downto 1 do
+        siftDown(A, k, n);
+
+    // Usuwanie maksimum
+    while n > 1 do
+        swap(A[1], A[n]);
+        n--;
+        siftDown(A, 1, n);
+\end{verbatim}
+
+Pozostaje jeden istotny mankament, mianowicie średni czas jest prawie równy pesymistycznemu. Heapsort przegrywa więc z quicksortem dla dużych danych i również jest niestabilny numerycznie
+Rozwiązaniem jest wersja Floyda algorytmu, która zmniejsza średnią liczbę porównań około dwukrotnie.
+W fazie usuwania maksimum korzysta ona ze zmodyfikowanej wersji przesiewania. Najpierw przesuwa w górę całą ścieżkę od korzenia do liścia (większy z następników jest przesuwany w miejsce
+rodzica). Wracając od liścia w górę elementy mniejsze od przesiewanego są z powrotem przesuwane w dół.
+W tej wersji średnia liczba porównań wynosi \( \lg n + c \), a pesymistyczna, tak jak w wersji Williamsa \( 2\lg n \).
+
+\begin{verbatim}
+siftDownFloyd(A, k, n):
+    tmp = A[k];
+    i = k;
+    while i <= n//2 do
+        j = 2*i;
+        if j < n and A[j] < A[j+1] then
+            j++;
+        A[i] = A[j];
+        i = j;
+    while i > k and A[i//2] < tmp do
+        A[i] = A[i//2];
+        i = i//2;
+    A[i] = tmp;
+\end{verbatim}
+
+Zalety sortowania metodą kopca:
+\begin{itemize}
+    \item pesymistyczna złożoność \( \Theta(n \lg n) \),
+    \item brak pamięci roboczej (również niejawnej na stos rekurencji)
+    \item prostota implementacji
+\end{itemize}
