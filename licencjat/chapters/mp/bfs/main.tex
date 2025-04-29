@@ -1,0 +1,43 @@
+Algorytm przeglądu grafu wszerz (BFS) przechodzi po wierzchołkach, zaczynając od ustalonego wierzchołka początkowego \( u \) i odwiedza je w kolejności niemalejącej odległości od \( u \).
+
+Pełny algorytm BFS wygląda następująco:
+\begin{verbatim}
+// G - graf, u - wierzchołek początkowy
+// c[v] = WHITE - kolor v (WHITE - nieodwiedzony, GRAY - w kolejce, BLACK - odwiedzony)
+// d[v] = INF - odległość v od u
+// p[v] = NULL - poprzednik v w drzewie rozpinającym
+// Q - kolejka
+c[u] = GRAY, d[s] = 0, p[s] = NULL
+Q.enqueue(s)
+while !Q.empty() do
+    u = Q.dequeue()
+    for each v in Adj[u] do
+        if c[v] == WHITE then
+            c[v] = GRAY
+            d[v] = d[u] + 1
+            p[v] = u
+            Q.enqueue(v)
+    c[u] = BLACK
+\end{verbatim}
+Dla każdego wierzchołka \( v \), obliczona odległość d[\(v\)] rzeczywiście jest odległością od \( v \) do \( u \), co można udowodnić indukcyjnie.
+
+\subsection{Złożoność}
+Ponieważ każdy wierzchołek v jest wstawiany do kolejki i usuwany z niej dokładnie jeden raz, to pętla \texttt{while} wykona się \( n \) razy.
+Również każda krawędź wychodząca z wierzchołka jest badana dokładnie raz, więc pętla \texttt{for each} w sumie wykona \( 2m \) iteracji (\( m \) dla grafu skierowanego) - tyle ile wynosi suma długości wszystkich list sąsiedztwa.
+Całkowita złożoność jest zatem równa \( \Theta(n + m) \).
+
+\subsection{Zastosowania}
+\begin{itemize}
+    \item Wyznaczanie odległości wierzchołków od wierzchołka startowego
+    \item Wyznaczanie najkrótszej ścieżki łączącej dwa wierzchołki
+    \item Wyznaczanie spójnej składowej wierzchołka
+    \item Wyznaczanie drzewa rozpinającego: \\
+    \( T = (V, \{(p[u], u), u \in V, u \neq s\}) \) rozpina graf \( G=(V, E) \).
+    \item Sprawdzanie dwudzielności grafu:
+    \begin{verbatim}
+        isBipartite(V, E, d):
+            for each (u,v) in E do
+                if (d[u] == d[v]) return false
+            return true       
+    \end{verbatim}
+\end{itemize}

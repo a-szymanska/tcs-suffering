@@ -1,0 +1,25 @@
+\begin{circuitikz}
+    \tikzstyle{every node}=[font=\LARGE]
+    \draw  (2.5,10.75) circle (0cm);
+    \draw  (2.5,10.75) circle (2cm) node {\LARGE a} ;
+    \draw  (2.5,4.5) circle (2cm) node {\Huge b} ;
+    \draw  (2.5,-1.75) circle (2cm) node {\LARGE d} ;
+    \draw  (2.5,-8) circle (2cm) node {\LARGE c} ;
+    \draw  (8.75,-1.75) circle (2cm) node {\LARGE e} ;
+    \draw  (15,4.5) circle (2cm) node {\LARGE g} ;
+    \draw  (21.25,4.5) circle (2cm) node {\LARGE h} ;
+    \draw  (15,10.75) circle (2cm);
+    \draw  (15,10.75) circle (2cm) node {\LARGE f} ;
+    \draw [->, >=Stealth] (2.5,8.75) -- (2.5,6.5)node[pos=0.5, fill=white]{T};
+    \draw [->, >=Stealth] (2.5,2.5) -- (2.5,0.25)node[pos=0.5, fill=white]{T};
+    \draw [->, >=Stealth] (2.5,-3.75) -- (2.5,-6)node[pos=0.5, fill=white]{T};
+    \draw [->, >=Stealth] (4,3.25) -- (7.75,0)node[pos=0.5, fill=white]{T};
+    \draw [->, >=Stealth] (15,8.75) -- (15,6.5)node[pos=0.5, fill=white]{T};
+    \draw [->, >=Stealth] (16.75,9.75) -- (20.25,6.25)node[pos=0.5, fill=white]{T};
+    \draw [->, >=Stealth, dashed] (6.75,-1.75) -- (4.5,-1.75)node[pos=0.5, fill=white]{P};
+    \draw [->, >=Stealth, dashed] (14.25,2.5) .. controls (13.5,-1.75) and (14.5,-9) .. (4,-3)node[pos=0.5, fill=white]{P};
+    \draw [->, >=Stealth, dashed] (0.5,-8) .. controls (-0.5,-3.25) and (-1,-2.25) .. (0.5,4.25)node[pos=0.5, fill=white]{W};
+    \draw [->, >=Stealth, dashed] (19.25,4.5) -- (17,4.5)node[pos=0.5, fill=white]{P};
+    \draw [->, >=Stealth, dashed] (22.75,5.75) .. controls (20.5,9) and (19.75,9.5) .. (17,10.75)node[pos=0.5, fill=white]{W};
+    \draw [->, >=Stealth, dashed] (0.5,10.75) .. controls (-3.25,2.5) and (-4,0.25) .. (0.25,-8)node[pos=0.5, fill=white]{Z};
+\end{circuitikz}

@@ -1,0 +1,39 @@
+Dla zadanego acyklicznego grafu skierowanego \( G=(V,E) \) zadanie polega na wyznaczeniu takiego liniowego porządku \( v_1, \dots, v_n \) wierzchołków,
+że, jeśli \( (v_i, v_j) \in E \), spełnione jest \( i < j \). Jeśli graf zawiera cykle, taki porządek nie istnieje.
+Sortowanie topologiczne ma zastosowanie w planowaniu kolejności, zrównoleglenia wykonywania czynności lub, bardziej teoretycznie, w oblicznaiu najdłuższej ścieżki w grafie acyklicznym.
+
+\subsection{Metoda z przeglądem DFS}
+\begin{verbatim}
+// t_out[v] - czas wyjścia z v (kolejność w postorder)
+toposort(G):
+    t_out = DFS(G)
+    V_sort = sort(V, key=t_out)
+    return V_sort
+\end{verbatim}
+Złożoność: \( \Theta(n + m) \)
+
+Wynikiem są wierzchołki posortowane w kolejności malejących t\_out. Sortowanie jest de facto odwróceniem permutacji zadanej tablicą t_out, które można wykonać w czasie oraz pamięci \( \bigO(n) \)
+Algorytm można wykonać również bez konieczności tego kroku, trzymając stos roboczy i dodając do niego wierzchołki w momencie kolorowwania na czarno w procedurze BFS.
+Wynikiem jest porządek wierzchołków odpowiadający zdejmowaniu ich ze stosu.
+
+Algorytm (w obu implementacjach) działa poprawnie:
+\begin{proof}
+    W momencie badania krawędzi \( (u,v) \) wierzchołek  \( u \) jest szary, a wierzchołek \( v \) biały lub czarny, bo wpp krawędź \( (u, v) \) zamykałaby cykl.
+    Jeśli jest biały, to \( \text{t\_in}[u] < \text{t\_in}[v] < \text{t\_out}[v] < \text{t\_out}[u] \).
+    Jeśli jest czarny, to \( \text{t\_out}[v] < \text{time} < \text{t\_out}[u] \), ponieważ poddrzewo \( u \) nie jest jeszcze przeglądnięte w całości.
+    Zatem, jeśli \( (u,v) \in E \), to \( \text{t\_out}[v] < \text{t\_out}[u] \).
+\end{proof}
+
+\subsection{Metoda przez eliminację wierzchołków (obgryzanie)}
+\begin{verbatim}
+// V_sort - wynik
+while !V.empty() do
+    find u such that deg_in(u) == 0
+    V_sort.push_back(u)
+    for each e=(u, v) in E do
+        E.erase(e)
+    V.erase(u)
+\end{verbatim}
+Złożoność: \( \Theta(n + m) \)
+
+Dla usprawnienia implementacji można przechowywać aktualny stopień wchodzący każdego wierzchołka oraz kolejkę elementów o zerowym stopniu wchodzącym jeszcze nie dodanych do rozwiązania.

@@ -1,0 +1,97 @@
+Algorytm przeglądu grafu w głąb (DFS) przechodzi po wierzchołkach, odwiedzając wszystkie na pewnej ścieżce i wycofując się dopiero, kiedy kolejne przejście jest niemożliwe. Koncepcyjnie przypomina metodę nawrotów (backtracking).
+
+Pełny algorytm DFS wygląda następująco:
+\begin{verbatim}
+// G - graf, u - wierzchołek początkowy
+// c[v] = WHITE - kolor v
+//    (WHITE - nieodwiedzony, GRAY - w kolejce, BLACK - odwiedzony)
+// p[v] = NULL - poprzednik v w drzewie rozpinającym
+// t_in[v] - czas wejścia do v (kolejność w preorder)
+// t_out[v] - czas wyjścia z v (kolejność w postorder)
+// time = 0 - zmienna globalna
+
+DFS(G):
+    for each u in V(G) do
+        if c[u] = WHITE then
+        DFS_visit(u);
+
+DFS_visit(u):
+    c[u] = GRAY
+    t_in[u] = ++time
+    for each v in Adj[u] do
+        if c[v] = WHITE then
+            p[v] = u
+            DFS_visit(v)
+    c[u] = BLACK
+    t_out[u] = ++time
+\end{verbatim}
+
+Krawędź (u, v) w drzewie DFS może być sklasyfikowana jako: \\
+drzewowa (T) - do następnika w drzewie: \texttt{c(v) = WHITE} \\
+powrotna, wsteczna (W) - do przodka w drzewie: \texttt{c(v) = GRAY} \\
+wzdłużna (Z) - do potomka w drzewie: \texttt{c(v) = BLACK, t\_in(u) < t\_in(v)} \\
+poprzeczna (P) - do starszego poddrzewa: \texttt{c(v) = BLACK, t\_in(u) > t\_in(v)} \\
+W przypadku grafu nieskierowanego występują tylko krawędzie drzewowe i powrotne.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}
+        \centering
+        \resizebox{0.45\textwidth}{!}{
+            \input{chapters/mp/dfs/graph}
+        }
+    \end{subfigure}%
+    ~
+    \begin{subfigure}
+        \centering
+        \resizebox{0.45\textwidth}{!}{
+            \input{chapters/mp/dfs/tree}
+        }
+    \end{subfigure}
+    \caption{Graf \( G \) i odpowiadające mu drzewo przeglądu DFS dla list sąsiedztwa posortowanych alfabetycznie}
+    \label{fig:num_bits}
+\end{figure}
+
+\subsection{Złożoność}
+Ponieważ odwiedzane wierzchołki dostają kolor, funkcja \texttt{DFS\_visit} jest wywołana dokładnie jeden raz dla każdego wierzchołka (w części głównej lub jako wywołanie rekurencyjne).
+Pętla \texttt{for each} przeglądająca sąsiadów odwiedzanego wierzchołka ma koszt \( \Theta(\abs{Adj(u)}) \), więc suma iteracji tej pętli dla wszystkich wierzchołków jest równa \( \Theta(m) \).
+Zatem całkowita złożoność DFS to \( \Theta(n + m) \).
+
+\subsection{Zastosowania}
+\subsubsection{Silnie spójne składowe}
+W grafie skierowanym \( G=(V,E) \) silnie spójna składowa to maksymalny w sensie inkluzji podgraf indukowany,
+w którym dla każdej pary wierzchołków istnieje ścieżka z pierwszego do drugiego, czyli dowolne dwa wierzchołki są w obrębie jednej silnie spójnej składowej wtw leżą na cyklu.
+
+Algorytm wyznaczania silnie spójnych składowych wygląda następująco:
+\begin{verbatim}
+t_out = DFS(G)
+E' = {(u, v): (v, u) in E}
+G' = (V, E')
+DFS(G') // główne wywołania DFS_visit(u) po malejących t_out[u]
+\end{verbatim}
+Każde drzewo lasu wygenerowanego w wywołaniu \texttt{DFS(GT)} jest oddzielną silnie spójną składową.
+\begin{proof}
+    Dowód indukcyjny po kolejnych generowanych drzewach:
+    Jako przypadek bazowy służy brak drzew. Załóżmy, że wygenerowane drzewa \( T_1, \dots, T_{k-1} \) odpowiadają silnie spójnym składowym \( C_1, \dots, C_{k-1} \) w \( G \).
+    Z faktu, że dwa wierzchołki są w jednej silnie spójnej składowej wtw leżą na cyklu, wprost wynika, że spójne składowe w \( G \) oraz \( G^T \) są takie same.
+    Z korzenia \( T_k \) wychodzą więc białe ścieżki do wszystkich wierzchołków \( C_k \), zatem \( C_k \subseteq T_k \).
+    Składowe \( C_1, \dots, C_{k-1} \) również mogą być osiągalne z korzenia \( T_k \), ale w tym momencie przeglądu ścieżki prowadzące do nich są czarne, więc nie zostaną one uwzględnione w  \( T_k \).
+    W \( T_k \) nie wystąpi też żaden wierzchołek z \( C_{k+1}, \dots \) - dlaczego? Jeśli \( C_{k+i}, i > 0 \), jest składową różną od \( C_1, \dots, C_k \), to \( \text{t\_out}[C_{k+i}] < \text{t\_out}[C_k] \).
+    Gdyby istniała krawędź \( (u, v) \) z \( C_{k+i} \) do \( C_k \), to \( \text{t\_out}[C_{k+i}] > \text{t\_out}[C_k] \), czyli nie ma takiego połączenia. Nie może też być krawędzi z \( C_k \) do \( C_{k+i} \).
+    Wynika z tego, że \( C_k = T_k \), co dowodzi kroku indukcyjnego.
+\end{proof}
+
+Złożoność algorytmu jest równa \( \Theta(n + m) \).
+
+\subsubsection{Cykl Eulera}
+Cykl Eulera to cykl w grafie przechodzący każdą krawędzia dokładnie raz. Nieskierowany graf \( G=(V,E) \) posiada cykl Eulera wtedy i
+tylko wtedy, gdy \( G \) jest spójny oraz każdy wierzchołek w \( G \) ma parzysty stopień.
+
+Idea algorytmu:
+\begin{enumerate}
+    \item Wybierz dowolny wierzchołek początkowy.
+    \item W każym kroku idź niewykorzystaną dotąd krawędzią wychodzącą z wierzchołka, w którym się znajdujesz.
+    \item Powtarzaj krok 2, dopóki to możliwe.
+\end{enumerate}
+Jeśli algorytm zatrzymuje się w wierzchołku bez wyjścia, musi to być wierzchołek początkowy, ponieważ stopień każdego wierzchołka jest parzysty.
+Przedstawiona metoda pozwala na znalezienie kolejnych cykli, które po połączeniu dają cykl Eulera. Można skleić je w złożoności liniowej, więc cały algorytm ma złożoność \( \Theta(n+m) \). 
