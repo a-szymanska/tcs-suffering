@@ -2,9 +2,9 @@
     Języki bezkontekstowe są zamknięte na sumę.
 \end{theorem}
 \begin{proof}
-    Niech \( L_1, L_2 \in CFL \). Mamy zatem gramatyki bezkontekstowe \( G_1, G_2 \)
+    Niech \( L_1, L_2 \in CFL \). Mamy zatem gramatyki bezkontekstowe \( G_1, G_2 \) i zakładamy, że ich zbiory nieterminali są rozłączne.
     
-    Dla języka \( L = L_1 \cup L_2 \) konstruujemy gramatykę \( G = G_1 \cup G_2 \) (zakładamy, że zbiory nieterminali tych gramatyk są rozłączne).
+    Dla języka \( L = L_1 \cup L_2 \) konstruujemy gramatykę \( G = G_1 \cup G_2 \).
     Dodajemy do gramatyki produkcję:
     \[
         S \rightarrow S_1 \mid S_2
