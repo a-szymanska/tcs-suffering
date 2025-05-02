@@ -2,30 +2,29 @@
 \(\complement L_{HALT} \not \in \re\)
 \end{theorem}
 
-Powyższe twierdzenie wynika wprost z poniższego lematu:
+Powyższe twierdzenie wynika wprost z lematu:
 
 \begin{lemma}
-    Jeśli \( L \in RE \setminus R \), to \( \complement{L} \not \in RE\) 
+    Jeśli \( L \in RE \setminus R \), to \( \complement{L} \not \in RE\).
 \end{lemma}
 \begin{proof}
-    Załóżmy, że \( L \in RE \setminus R \) i \( \complement{L} \in RE\). 
+    Załóżmy, że \( L \in RE \setminus R \) oraz \( \complement{L} \in RE\). 
     Mamy więc maszynę \( M \) rozpoznającą \( L \) oraz \( N \) rozpoznającą \( \complement{L} \)
     
     Konstruujemy DMT \( M' \) która:
     \begin{enumerate}
-        \item Wczytuje wejście \( w \)
-        \item Aż do akceptacji:
+        \item wczytuje wejście \( w \)
+        \item powtarza, aż do akceptacji:
         \begin{enumerate}
-            \item wykonaj jeden krok symulacji \( M \) na \( w \)
-            \item wykonaj jeden krok symulacji \( N \) na \( w \)
+            \item wykonuje jeden krok symulacji \( M \) na \( w \)
+            \item wykonuje jeden krok symulacji \( N \) na \( w \)
         \end{enumerate}
-        \item Jeśli \( M \) zaakceptowało to wypisz ,,TAK''
-        \item Jeśli \( N \) zaakceptowało to wypisz ,,NIE''
+        \item jeśli \( M \) zaakceptowała, wypisuje ,,TAK''
+        \item jeśli \( N \) zaakceptowała, wypisuje ,,NIE''
     \end{enumerate}
     
-    Oczywiście \( w \in L \lor w \in \complement{L} \) więc albo \( M \) zaakceptuje \( w \) albo zrobi to \( N \) -- któraś w końcu musi.
-    Stanie się to po skończonej liczbie kroków niezależnie od \( w \) zatem \( L(M') = M \) oraz \( M' \) ma własność stopu.
+    Oczywiście \( w \in L \lor w \in \complement{L} \), więc albo \( M \), albo \(N\) akceptuje \( w \).
+    Stanie się to po skończonej liczbie kroków niezależnie od \( w \), zatem \( L(M') = M \) oraz \( M' \) ma własność stopu.
     
-    Trochę przypał bo w takim razie \( L \in (RE \setminus R) \cap R \) czyli nie istnieje.
-    
+    W takim razie \( L \in (RE \setminus R) \cap R = \empty \).
 \end{proof}

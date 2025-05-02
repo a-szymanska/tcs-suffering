@@ -4,41 +4,35 @@
         L_{HALT} = \set{(M, w) : M \text{ zatrzymuje się na } w}
     \]
 \end{definition}
-
-Oczywiście, pisząc \(M\) mamy na myśli pewne kodowanie jakiejś Maszyny Turinga z którym jesteśmy w stanie pracować. 
+W tym kontekście \(M\) oznacza pewne kodowanie Maszyny Turinga. 
 
 \begin{theorem}
     \( L_{HALT} \in \re \setminus \r \)
 \end{theorem}
 \begin{proof}
-    Oczywiście \( L_{HALT} \in \re \) bo możemy po prostu zasymulować \( M \) na \( w \) i jeśli się zatrzymamy to odpowiedź jest ,,TAK'' i wszystko super. Jeśli zaś odpowiedź to ,,NIE'' to nie musimy się w ogóle zatrzymywać.
+    Problem \( L_{HALT} \in \re \), ponieważ możemy zasymulować \( M \) na \( w \) i jeśli się zatrzymamy to odpowiedź jest ,,TAK''. Jeśli odpowiedź to ,,NIE'', maszyna w ogóle nie musi się zatrzymywać.
     
-    Aby pokazać że \( L_{HALT} \notin \r \) zakładamy nie wprost, że istnieje \( M \) z własnością stopu, taka że \( L(M) = L_{HALT} \).
+    Aby pokazać, że \( L_{HALT} \notin \r \), zakładamy nie wprost, że istnieje \( M \) z własnością stopu, taka że \( L(M) = L_{HALT} \).
     
-    Konstruujemy teraz \( M' \) która:
+    Konstruujemy maszynę \( M' \), która:
     \begin{enumerate}
-        \item wczytuje wejście \( x \)
-        \item symuluje \( M \) na \( (x, x) \)
-        \item jeśli \( M \) odpowiedziała ,,TAK'' to wpadamy w nieskończoną pętlę
-        \item w przeciwnym razie zatrzymujemy się w dowolnym stanie
+        \item wczytuje wejście \( x \),
+        \item symuluje \( M \) na \( (x, x) \),
+        \item jeśli \( M \) odpowiedziała ,,TAK'', to wpada w nieskończoną pętlę,
+        \item w przeciwnym przypadku zatrzymujemy się w dowolnym stanie.
     \end{enumerate}
     
-    Wrzucamy teraz do \( M \) wejście \( (M', M') \)
-    
-    Mamy dwie sytuacje:
+    Uruchamiamy \( M \) z wejściem \( (M', M') \). Możliwe są dwie sytuacje:
     \begin{itemize}
         \item \( M \) zaakceptowała \( (M', M') \)
-        
-        Skoro \( (M', M') \in L(M) = L_{HALT} \) to oznacza, że
-        wykonaliśmy krok (4) co ma miejsce jedynie gdy \( (x, x) \notin L(M) \). Tak się składa że u nas \( x = M' \) czyli \( (M', M') \notin L(M) \).
-        
+
+        Skoro \( (M', M') \in L(M) = L_{HALT} \), to  \(M\) wykonała krok (4), co oznacza, że \( (x, x) \notin L(M) \). Wiedząc, że \( x = M' \), otrzymujemy \( (M', M') \notin L(M) \).
+
         \item \( M \) odrzuciła \( (M', M') \)
-        
-        Tutaj sytuacja jest podobna -- skoro \( (M', M') \notin L(M) = L_{HALT} \) to
-        wykonaliśmy krok (3) co ma miejsce jedynie gdy \( (x, x) \in L(M) \), a ponieważ \( x = M' \) to \( (M', M') \in L(M) \).
+
+        Skoro \( (M', M') \notin L(M) = L_{HALT} \), to \(M\) wykonała krok (3), co ma miejsce jedynie, gdy \( (x, x) \in L(M) \), a ponieważ \( x = M' \), to \( (M', M') \in L(M) \).
     \end{itemize}
+    Łącząc powyższe przypadki, dostajemy \( (M', M') \in L(M) \iff (M', M') \notin L(M) \), co jest sprzeczne. 
     
-    Łącząc oba powyższe dostajemy \( (M', M') \in L(M) \iff (M', M') \notin L(M) \) co jest oczywiście sprzeczne. 
-    
-    W takim razie nie istnieje \( M \) z własnością stopu rozpoznająca \( L_{HALT} \), zatem \( L_{HALT} \notin \r \).
+    Nie istnieje więc \( M \) z własnością stopu, rozpoznająca \( L_{HALT} \), zatem \( L_{HALT} \notin \r \).
 \end{proof}
