@@ -1,0 +1,12 @@
+\subsection{Deeply pipelined}
+Nowoczesne procesory x86 posiadają głębokie potoki wykonawcze. Cykl przetwarzania instrukcji (pobranie, dekodowanie, wykonanie, zapis wyników) jest rozbity na wiele mniejszych etapów. Dzięki temu możliwe jest przetwarzanie wielu instrukcji równolegle, choć każda z nich znajduje się na innym etapie wykonania. Im głębszy potok, tym większy potencjalny zysk z wysokiego taktowania, ale też większe straty przy błędach przewidywania.
+\subsection{Speculative execution}
+Jeśli mamy skoki warunkowe to możemy próbować przewidywać czy skok nastąpi czy nie i na tej podstawie wykonywać instrukcje na zapas, czekając jedynie z fazą commit na faktyczne potwierdzenie czy skok następuje czy nie.
+Jeśli zgadliśmy poprawnie to super – od razu commitujemy wynik. Natomiast jeśli nie zgadliśmy to musimy teraz wyrzucić cały pipeline na śmietnik i w efekcie dostajemy opóźnienie.
+Robimy to zwykle automatem, który kiedy raz skoczyliśmy następnym razem wie, że też pewnie skoczymy.
+\subsection{Out-of-order execution}
+Procesory nie czekają na wykonanie instrukcji w kolejności ich występowania, analizują zależnośći i przestawiają instrukcje tak aby efektywniej wykorzystać zasoby. 
+\subsection{Superscalar}
+Procesor równolegle wykonuje wiele instrukcji w jednym cyklu zegara. Pozwala to na większą liczbę operacji niż by to wynikało z taktowania zegara. 
+\subsection{Complex instruction set computer}
+Procesory x86 mają bardzo wiele instukcji, które są często skomplikowane. Procesory typu ARM mają mało instrukcji i muszą często wywołać ich wiele, aby uzyskać tą samą funkcjonalność co x86. Skomplikowane instrukcje są optymalne, ale trudne w skalowaniu.

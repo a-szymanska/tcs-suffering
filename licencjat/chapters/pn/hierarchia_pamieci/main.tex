@@ -1,0 +1,8 @@
+Typowa hierarchia pamięci to 
+\begin{itemize}
+  \item Rejestry procesora - bardzo małe, trzymają po kilka bajtów, ale za to turbo szybkie
+  \item Pamięć Cache - także na procesorze, ale znacznie wolniejsza od rejestrów. Procesor wrzuca do cache często używane wartości dla przyspieszenia. Dzieli się zwykle dalej na L1, L2, L3, gdzie każdy kolejny jest większy ale wolniejszy.
+  \item Pamięć RAM - duża, przeciętnie od paru do paruset GB. Nie znajduje się na procesorze przez co jest znacznie wolniejsza.
+  \item Pamięć masowa - pojemna, ale o rzędy wielkości wolniejsza od RAMu. 
+\end{itemize}
+Ostatecznie, aby móc przeprowadzić operacje na danych muszą one się znaleźć w rejestrach, więc jeśli coś się w nich nie znajduje to przy każdym użyciu będziemy musieli to do nich skopiować. Kopiowanie z Cache jest znacznie szybsze niż z RAMu, tym bardziej z dysku. Procesor zwykle kopiuje do Cache całe obszary pamięci przed użyciem. Z tego wynika, że programy, które idą po danych liniowo, a nie skaczą po pamięci są znacznie obtymalniejsze, bo minimalizują kopiowania.  

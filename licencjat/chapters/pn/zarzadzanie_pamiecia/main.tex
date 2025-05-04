@@ -1,0 +1,14 @@
+\subsection{Stronnicowanie}
+Służy do zarządzania pamięcią. Zakłada, że zarówno pamięć fizyczna jak i wirtualna są dzielone na bloki stałej długości, odpowiednio ramki i strony. Rozmiary stron i ramek są identyczne, na bieżąco w miarę potrzeb strony są mapowane na odpowiednie ramki. \\\\
+Dzięki tablicy stron procesowi działającemu na pamięci wirtualnej wydaje się, że działa na ciągłej przestrzeni adresowej, mimo że strony mogą być mapowane na ramki bardzo odległe, dzięki temu łatwiej zaalokować dużo miejsca, bo ramki nie muszą być po kolei, wielkość ramki zwykle jest określona systemowo np. 4KB. \\\\
+Pamięc wirtualna może być znacznie większa od fizycznej.  Strony mapowane na ramki lazy, dopiero po pierwszym użyciu. Dzięki temu programy się nie wywalają wcześniej niż muszą. Chroni przed dostępem do cudzej pamięci. 
+\subsection{Segmentacja}
+Segmentacja zakłada, że pamięc wirtualna jest dzielona na segmenty - np. kod, dane, stos. Procesor alokuje dla procesu jakieś segmenty, a program operuje tylko na nich. Nie ma możliwości znaleźć właściwości tych segmentów, fizycznych adresów, ani nie ma dostępu do segmentów należących do innych procesów. Każdy segment ma z góry określony zakres.
+\\\\Z punktu widzenia procesu adresy w ramach segmentu są liczone od zera. Segmenty muszą być w pamięci ciągłe, adres składa się z numeru segmentu i offsetu względem początku. 
+\\\\
+Jest to bardzo bezpieczny mechanizm, jednak jak się okazało jego wady i problemy z alokacją ciągłej pamięci przeważyły i dziś jest w zasadzie nieistniejący. \subsection{Tryby pracy procesora}
+Procesor dla bezpieczeństwa ma dwa tryby 
+\begin{itemize}
+  \item Tryb użytkownika - ograniczony dostęp, brak możliwości bezpośredniego dostępu do całej pamięci. 
+  \item Tryb jądra - pełny dostęp do wszystkiego, działa w nim tylko sam system operacyjny. 
+\end{itemize}

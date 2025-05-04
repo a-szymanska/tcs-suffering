@@ -1,0 +1,61 @@
+
+\subsection{Podział urządzeń I/O}
+
+\subsubsection{Ze względu na szybkość}
+\begin{itemize}
+    \item wolne - dostarczają/obsługują dane znacznie wolniej niż CPU
+    \item średnio szybkie - porównywalnie szybkie (ale wciąż wolniejsze) do CPU
+    \item szybkie -- dostarczają dane szybciej niż CPU
+\end{itemize}
+możliwa jest modyfikacja prędkości przez (sprzętowe) buforowanie
+
+\subsubsection{Ze względu na obsługę gotowości}
+\begin{itemize}
+    \item \textbf{Polling (polled)} - wymagają sprawdzenia, proces cyklicznie sprawdza czy urządzenie jest gotowe do wykonania operacji, najprostsze ale mało efektywne, używane zwykle jak przesył jest w miarę ciągły, monitor ethernet
+    \item \textbf{Komunikacja przez przerwania sprzętowe (Asynchronous)} - informują o gotowości (przez przerwania), skomplikowane w implementacji, możliwość wystąpienia błędów związanych z przerwaniami, ale efektywne, klawiatury tak działają
+    \item \textbf{Sampling} - zawsze gotowe do wykonania operacji, nie trzeba nic sprawdzać, najprostszy model, małe opóźnienia, ale nie wszystkie urządzenia są w stanie zapewnić pełną gotowość, używane do krytycznych operacji typu komunikacja z RAM
+\end{itemize}
+
+\subsection{Obsługa urządzeń}
+\subsubsection{Port mapped (PIO)}
+Urządzenia są dostępne poprzez specjalne adresy portów I/O, oddzielne od przestrzeni adresowej pamięci. Znajdują się w przestrzeni portów, w której standardowo jest miejsce na 64k portów.
+
+Są różne typu portów, read-only, write-only, read-write i dual (dual obsługują różne funkcje w zależności od operacji)
+
+W \textbf{standardzie x86} mamy dedykowane instrukcje do komunikacji z portami \texttt{in} i \texttt{out}
+
+Odczyt/zapis każdego słowa wymaga (zazwyczaj wielu) operacji procesora, więc mapowanie przez port \textit{możliwe jest zwykle tylko dla wolnych urządzeń}, jest możliwość używania pollingu
+
+\subsection{Memory mapped (MMIO)}
+Urządzenia są mapowane do tej samej przestrzeni adresowej co pamięć, komunikujemy się więc używając normalnych instrukcji zapisu odczytu przez \textbf{pipe}.
+
+Używa tych samych magistrali adresów i danych, co pamięć operacyjna, co pozwala na jednolitą obsługę operacji pamięciowych oraz operacji I/O.
+
+Operacje odczytu i zapisu wymagają użycia standardowych instrukcji procesora co jest niemożliwe dla szybkich urządzeń.
+
+Konieczne jest zarządzanie sposobem, w jaki dane z urządzeń peryferyjnych są buforowane przez cache procesora, aby zapewnić spójność danych. Istnieją różne strategie zarządzania cache'm:
+\begin{itemize}
+    \item \textbf{Wyłączony cache}: Cache jest wyłączony dla przestrzeni adresowej MMIO, co zapewnia, że dane są zawsze bezpośrednio odczytywane z urządzenia.
+    \item \textbf{Write-back}: Dane są najpierw zapisywane do cache, a następnie do pamięci RAM. Może to poprawić wydajność, ale wymaga ostrożnego zarządzania spójnością danych.
+    \item \textbf{Write-through}: Dane są zapisywane bezpośrednio do pamięci RAM i opcjonalnie do cache. Zapewnia to spójność, ale może być mniej wydajne.
+    \item \textbf{Write-combining}: Dane są grupowane w cache przed zapisaniem do pamięci, co może zwiększyć wydajność dla pewnych typów operacji.
+\end{itemize}
+
+Możemy w dodatku korzystać z pollingu.
+
+\subsubsection{Direct memory access (DMA)}
+Urządzenie komunikuje się bezpośrednio z RAMem bez udziału CPU, dzięki czemu można w ten sposób podpiąć szybkie urządzenia, a polling staje się absolutnie niemożliwy, konieczne są specjalne protokoły zarządzania szynami adresów i danych, tak żeby urządzenie nie zeżarło całego przesyłu przez szynę danych / całej uwagi RAMu.
+
+\paragraph{Silniki DMA}
+Silniki DMA to programowalne urządzenia do transferu danych między urządzeniami a RAM, albo pomiędzy urządzeniami, pozwalają na odciążenie CPU, można dzięki temu nadbudować memory mapped I/O.
+
+Wadami jest to, że konkurują z procesorem o dostęp do szyny systemowej i to że są drogie i skomplikowane
+
+\subsubsection{Rozwiązania hybrydowe}
+Prawda jest jednak taka, że najczęściej w naturze spotykane są rozwiązania hybrydowe, przykładem jest konfiguracja w której:
+\begin{itemize}
+    \item kontrola stanu gotowości za pomocą PIO/MMIO
+    \item Transfer danych za pomocą DMA
+    \item wbudowany DMA engine, programowany za pomocą PIO/MMIO
+    \item dostępny zarówno polling, jak i działanie asynchroniczne przez przerwania
+\end{itemize}

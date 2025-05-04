@@ -1,0 +1,21 @@
+mmap pozwala odwzorować pik bezpośrednio do przestrzeni adresowej procesu, tak aby mieć dostęp do danych jak do zwykłej pamięci.
+\begin{itemize}
+  \item Wywołanie mmap – rejestracja odwzorowania w jądrze.
+  \item Próba odczytu przez proces
+  \item System zarządzania pamięcią sprawdza obecność strony, jeśli jej nie ma to do jądra idzie page fault. Jeśli jest to odczytuje mu dalej normalnie.
+  \item Jądro analizuje dostęp do pliku i lokalizuje żądane dane 
+  \item Dane są wczytywane z dysku do RAM do nowej strony
+  \item Jądro aktualizuje tablice stron i wznawia proces 
+  \item Po załadowaniu stron, kolejne odczyty już są szybkie. 
+\end{itemize}
+
+
+
+
+
+
+Dane są wczytywane z dysku do RAM.
+
+Jądro aktualizuje tablicę stron i wznawia proces.
+
+Kolejne odczyty korzystają z już załadowanych stron (szybko).

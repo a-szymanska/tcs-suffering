@@ -1,0 +1,21 @@
+Instrukcje wektorowe pozwalają nam na równoległe wykonywanie operacji na dużym zestawie danych. Służą nam do tego rejestry:
+\begin{itemize}
+    \item 8, 64 bitowe rejestry \texttt{mmx0} - \texttt{mmx7} (współdzielone z FPU)
+    \item 16, 128 bitowe rejestry \texttt{xmm0} - \texttt{xmm15}
+    \item 16, 256 bitowe rejestry \texttt{ymm0} - \texttt{ymm15} (roższerzające \texttt{xmm})
+\end{itemize}
+
+Dzięki nim, gdy np. chcemy pomnożyć przez siebie liczby z dwóch tabel $x_1 \cdot y_1, x_2 \cdot y_2 \ldots$ to możemy to zrobić jedną operacją mnożenia wrzucając $x_1, x_2$ do jednego rejestru i $y_1, y_2$ do drugiego.
+
+\subsection{Sytuacje wyjątkowe}
+
+Gdy coś się złego stało (np. dzielenie przez zero) w jednej z części to nie znaczy, że stało się na obu. Wtedy ustawiana jest flaga \texttt{mxcsr} i musimy sobie jakoś poradzić.
+
+\subsection{Jak używać?}
+
+\begin{itemize}
+    \item im mniejsze pojedyńcze elementy tym większa równoległość.
+    \item trzeba minimaluizować liczbę transferów \texttt{xmm} $\leftrightarrow$ pamięć i \texttt{xmm} $\leftrightarrow$ \texttt{gpr}
+    \item unikać instrukcji sterujących
+    \item unikać wyjątków
+\end{itemize}
