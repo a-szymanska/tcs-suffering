@@ -1,0 +1,35 @@
+Algorytm ten jest heurystyką, korzystającą z tego, że rząd grupy często jest liczbą złożoną. Mając daną grupę \( G = \langle g \rangle \) o \( n \) elementach oraz element \( b \in G \), chcemy znaleźć \( x \), dla którego \( g^x = b \). Algorytm działa następująco:
+\begin{greyframe}
+    \begin{enumerate}[I]
+        \item Jeśli \( n \) jest liczbą pierwszą, to wyznaczamy \( x \) algorytmem Baby-Step-Giant-Step w czasie \( \bigO(\sqrt{n}) \).
+        \item Jeśli \( n = p^k \), gdzie \( p \) jest pierwsze oraz \( k > 1 \), to:
+            \begin{enumerate}
+                \item Zapisujemy (nieznany jeszcze) \( x \) w systemie o podstawie \( p \) jako 
+                \[
+                    x = x_0 + x_1 \cdot p + \ldots + x_{k-1} \cdot p^{k-1}
+                \]
+                \item Równanie \( g^x = b \) podniesione do potęgi \( p^{k-1} \) upraszcza się do \( g^{x_0p^{k-1}} = b{p^{k-1}} \), ponieważ \( g^{p^k} = 1 \). Oznaczamy \( \gamma = g^{p^{k-1}} \) o rzędzie \( p \).
+                \item Rozwiązujemy równanie postaci \( γ^{x_0} = b^{p^{k-1}} \) dla \( x_0 \), czyli obliczamy logarytm dyskretny w grupie \( \set{1, \gamma, \gamma^2, \ldots, \gamma^{p-1}} \) w czasie \( \bigO(\sqrt{p}) \) (przypadek 1).
+                \item Przekształcamy równanie na: 
+                \[
+                    g^{x_1 \cdot p + \ldots + x_{k-1} \cdot p^{k-1}} = b \cdot g^{-x_0}
+                \]
+                Po podniesieniu go do potęgi \( p^{k-2} \), możemy obliczyć \( x_1 \), rozwiązując \( \gamma^{x_1} = \pars{b \cdot g^{-x_0}}^{p^{k-2}} \), analogicznie kolejne \( x_i \).
+            \end{enumerate}
+        Wykonujemy tę procedurę \( k \) razy dla \( x_0, x_1, \ldots, x_{k-1} \), więc złożoność wynosi \( \bigO(k \cdot \sqrt{p}) \).
+        \item Jeśli \( n  = q_1 \cdot q_2 \) gdzie \( \gcd(q_1, q_2) = 1 \), to
+        \begin{enumerate}
+            \item Zapisujemy \( x \) jako: \( x = u_1 \cdot q_1 + r_1 \).
+            \item Podnosimy równanie do potęgi \( q_2\):
+            \[
+                g^{u1·n+r1·q2} = b^{q2},
+            \]
+            przy \( g^n = 1 \) otrzymujemy \( g^{r_1 \cdot q_2} = b^{q_2} \), czyli \( h^{r_1} = b^{q_2} \), gdzie \( h = g^{q_2} \) ma rząd \( q_1 \).
+            \item Obliczamy \( r_1 \), dla którego \( x = r_1 \pmod{q_1} \), wywołując się rekurencyjnie na grupie \( H = \langle h \rangle \).
+            \item Analogicznie, obliczamy \( r_2 \), dla którego \( x = r_2 \pmod{q_2} \).
+            \item Z chińskiego twierdzenia o resztach otrzymujemy jednoznaczne rozwiązanie \( x \) układu powyższych dwóch kongruencji.
+        \end{enumerate}
+        Jeśli \( n = p_1^{\alpha_1} \cdot \ldots \cdot p_s^{\alpha^s} \), to rekurencyjnie zostanie wywołany przypadek 2 dla każdego \( p_i^{\alpha_i} \). Zatem łączna złożoność to \( \bigO(\sum_i \alpha_i \sqrt{p_i}) \), co nie przekracza \( \bigO(\log n \cdot \sqrt{\max{p_i}}) \), ponieważ \( \alpha_i \leq \log n \).
+    \end{enumerate}
+\end{greyframe}
+Algorytm działa szybko, jeśli rząd grupy ma tylko małe dzielniki. Z dużym prawdopodobieństwem poradzi sobie również z grupą \( GF(p^k) \) ciała skończonego, ponieważ rząd grupy \( p^k - 1 \) jest liczbą złożoną. Rozsądnym wyborem jest natomiast \( \integer*_p \) dla \( p = 2q + 1 \), gdzie \( p, \ q \) są pierwsze (liczby pierwsze Sophie Germain).

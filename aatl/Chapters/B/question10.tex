@@ -1,0 +1,27 @@
+\begin{theorem}
+Dane jest ciało \( \mathbb{F} \) charakterystyki \( p \) oraz liczba \( q = p^k \) dla pewnego \( k \). Jeśli wielomian \( f(X) = X^q - X \) ma \( q \) pierwiastków, to stanowią one \( q \)-elementowe podciało \( \mathbb{F} \).
+\end{theorem}
+\begin{proof}
+    Niech \( A = \{a \in \mathbb{F}: f(a) = 0\} = \{a \in \mathbb{F}: a^q = a\} \) będzie rozważanym zbiorem wszystkich pierwiastków. Wystarczy pokazać, że A jest zamknięty na działania, bo inne aksjomaty ciała (łączność, przemienność, rozdzielność, etc.) wynikają z faktu, że cały czas pracujemy w~\( \mathbb{F} \), które od początku je spełniało. Widać, że:
+    \begin{itemize}
+        \item Elementy neutralne: \( 0, 1, -1 \in A \) \\
+        \( -1 \cdot q = -1 \)
+        \item Zamkniętość na mnożenie: \\
+        \( (a \cdot b)^q = a^q \cdot b^q = a \cdot b \) \\
+        W szczególności, jeśli \( a \in A \), to \( -a = -1 \cdot a \in  A \).
+        \item Elementy odwrotne: \\
+        \( \pars{a^{-1}}^q \cdot a = \pars{a^{-1}}^q \cdot a^q = 1 \), czyli \( \pars{a^{-1}}^q = a^{-1} \in A \)
+        \item Zakmniętość na dodawanie: \\
+        Najpierw udowodnimy, że w \( \mathbb{F} \) zachodzi \( (a + b)^p = a^p + b^p \) dla dowolnych \( a, \ b \). \\
+        Wiemy, że:
+        \[
+            (a + b)^p = a^p + \ldots + {p \choose i}a^{p-i}b^i + \ldots + b^p
+        \]
+        Wszystkie współczynniki \( p \choose i \) dla \( 1 \leq i < p \) są podzielne przez \( p \), bo licznik jest równy \( p! \) a mianownik jest niepodzielny przez \( p \), czyli w ciele charakterystyki \( p \) wszystkie składniki oprócz \( a^p, \ b^p \) są równe \( 0 \). \\
+        Korzystając z tego, że \( q = p^k \), dostajemy:
+        \[
+            (a + b)^q = ((a + b)^p)^{p^{k-1}} = (a^p + b^p)^{p^{k-1}} = (a^{p^2} + b^{p^2})^p^{k-2} = \text{\dots} = a^{p^k} + b^{p^k} = a^q + b^q = a + b
+        \]
+    \end{itemize}
+\end{proof}
+\textcolor{blue}{Archiwalne niezweryfikowane rozwiązanie do drugiej części pytania: \\ Generowanie innych grup o liczności \( p^k \) -- po prostu strzelamy w wielomian stopnia \( k \) i sprawdzamy, czy jest nierozkładalny i mamy na to bardzo dużą szansę.}

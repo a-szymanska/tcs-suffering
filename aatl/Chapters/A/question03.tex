@@ -1,0 +1,54 @@
+Algorytmy RSA i Elgamal są asymetryczne, czyli wykorzystują jawną funkcję szyfrującą \( E \) (klucz publiczny) i tajną funkcję deszyfrującą \( D \) (klucz prywatny).
+Najważniejszym założeniem jest, że nie potrafimy efektywnie odtworzyć klucza prywatnego z publicznego. Dodatkowo zakładamy, że problem Factoring nie jest w klasie BPP.
+
+\subsection{Algorytm RSA}
+\begin{greyframe}
+    Algorytm RSA:
+    \begin{enumerate}
+        \item Wybierz liczby pierwsze \( p, q \) i oblicz \( N = p \cdot q \). \\
+        Wtedy \( \varphi(N) = (p-1) \cdot (q-1) \).
+        \item Wybierz \( e \) względnie pierwsze z \( \varphi(N) \). Oblicz \( d \) takie, że  \( e\cdot d = 1 \pmod{\varphi(N)} \).
+        \item Zdefiniuj \( E(x) = x^e \pmod{N} \) oraz \( D(x) = x^d \pmod{N} \).
+    \end{enumerate}
+\end{greyframe}
+
+Ad 1. Zamiast \( \varphi(N) \) można użyć (rozwiązanie często stosowane) funkcji Carmichaela
+\[
+    \lambda(N) = \lcm(p - 1, q - 1)
+\]
+Funkcja \( \lambda \) znajduje najmniejszą liczbę całkowitą taką, że \( x^{\lambda(N)} = 1 \pmod{N} \) dla każdego \( x \) względnie pierwszego z \( N \).
+Wybór \( \lambda(N) \) zamiast \( \varphi(N) \) nie zmniejsza bezpieczeństwa, a daje zazwyczaj mniejszy wykładnik. \\
+Ad 2. Do znalezienia liczby \( d \) można użyć rozszerzonego algorytmu Euklidesa:
+\[
+    e \cdot s + \varphi(N) \cdot t = 1
+\]
+\[
+    s + \varphi(N) \cdot t \cdot e^{-1} = e^{-1} \pmod{\varphi(N)}
+\]
+\[
+    d = s = e^{-1} \pmod{\varphi(N)}
+\]
+Dlaczego deszyfrowanie działa? \\
+Rząd grupy multiplikatywnej modulo \( N \) jest równy \( \varphi(N) \), więc dla każdego \( x \) względnie pierwszego z \( N \) zachodzi
+\[
+    (x^{e})^d = x^{ed} = x,
+\]
+ponieważ \( e \cdot d = 1 \pmod{\varphi(N)} \), czyli \( e \cdot d \) dzieli rząd grupy multiplikatywnej modulo \( N \).
+
+Szyfrowanie RSA można złamać, jeśli pozna się rozkład \( N \) na czynniki pierwsze, czyli wyznaczy liczby \( p \) i \( q \).
+Można wtedy obliczyć \( \varphi(N) \) oraz \( d \) algorytmem Euklidesa. Dlatego tak ważne jest założenie o dużej trudności problemu Factoring.
+W tym dniu (18.05.2025), nie ma ani dowodu na to, że algorytm rozkładu na czynniki pierwsze nie istnieje, ani dowodu NP-zupełności problemu Factoring.
+
+\subsection{Algorytm Elgamal}
+\begin{greyframe}
+    Algorytm Elgamal:
+    \begin{enumerate}
+        \item Wybierz jakąś grupę \( G \) (np. grupę multiplikatywną ciała \( \mathbb{F}_q \)) oraz element \( g \in G \) (najlepiej generator).
+        \item Wylosuj liczbę \( x \in \set{1, \ldots, \abs{G}-1} \).
+        \item Klucz publiczny to \( (g,g^x) \), a klucz prywatny to \( (g,x) \).
+        \item Szyfrowanie wiadomości \( M \): wylosuj liczbę \( y \), wyślij \( (g^y, M \cdot g^{xy}) \). 
+    \end{enumerate}
+\end{greyframe}
+Otrzymawszy \( (g^y, \ M \cdot g^{xy}) \) i znając klucz prywatny \( x \) łatwo obliczyć \( g^{xy} \), czyli też odtworzyć \( M = \pars{M \cdot g^{xy}} \cdot g^{-xy} \).
+Gdyby odszyfrowanie \( M \) było łatwe, to również problem Diffiego-Hellmana byłby rozwiązywalny, podstawiając \( M = g^{-xy} \).
+Jednak nie jest łatwe, ponieważ znając \( g^x, \ g^y \) nie potrafimy obliczyć \( g^{xy} \), czyli sprowadza się to do szyfrowanie Diffiego-Hellmana, czyli wyznaczenia logarytmu dyskretnego, którego obecnie nie potrafimy efektywnie obliczać.
