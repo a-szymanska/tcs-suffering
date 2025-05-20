@@ -63,14 +63,13 @@ Odzyskanie klucza prywatnego wymaga rozwiązania logarytmu dyskretnego w~grupie 
 
 Algorym działa poprawnie.
 \begin{proof}
-    Definiujemy \( w = (H + x\cdot r)^{-1} \mod q \), a wtedy \( \alpha = H \cdot k \cdot w \mod q \) oraz \( \beta = r \cdot k \cdot w \mod q \).
+    Definiujemy \( w = (H + x \cdot r)^{-1} \mod q \), a wtedy \( \alpha = H \cdot k \cdot w \mod q \) oraz \( \beta = r \cdot k \cdot w \mod q \).
     Element \( \zeta \) jest dobrany tak, że ma rząd \( q \) modulo \( p \), czyli dla dowolnego \( t \) zachodzi 
     \[
-        \zeta^t \mod p = \zeta^{t \!\mod q} \mod p
+        \zeta^t \mod p = \zeta^{t \!\!\mod q} \mod p
     \]
-    Wynika z tego, że
     \[
-        \gamma = (\zeta^{\alpha} \cdot y^{\beta} \mod p) \mod q = (\zeta^{H \cdot k \cdot w \mod q} \cdot (\zeta^{x})^{r \cdot k \cdot w} \mod p) \mod q  = \zeta^{k \cdot w \cdot (H + x\cdot r) \mod q} \mod p \mod q
+        \gamma = (\zeta^{\alpha} y^{\beta} \!\!\mod p) \!\!\mod q = (\zeta^{H k w \!\!\!\mod q} (\zeta^{x})^{r k w} \!\!\mod p) \!\!\mod q  = \zeta^{k w \cdot (H + x r) \!\!\!\mod q} \!\!\mod p, q
     \]
-    Z definicji \( w \) jest odwrotnością \( (H + x\cdot r) \) modulo \( q \), zachodzi więc \( \gamma = (\zeta^k \mod p) \mod q \), co (ponownie z definicji) jest równe \( r \).
+    Z definicji \( w \) jest odwrotnością \( (H + x \cdot r) \) modulo \( q \), zachodzi więc \( \gamma = (\zeta^k \mod p) \mod q \), co (ponownie z definicji) jest równe \( r \).
 \end{proof}

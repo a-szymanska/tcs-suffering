@@ -15,8 +15,8 @@ Zatem jeśli znajdziemy \( a \) takie, że \( a^2 - n = b^2 \), gdzie \( b^2 \) 
 \end{greyframe}
 
 \textbf{Złożoność:} \\
-Algorytm znajduje rozkład \( n \) na dwa czynniki po około \( a - \sqrt{n} \) krokach, ponieważ trzeba sprawdzić po kolei przypadki dla \( \sqrt{n}, \dots, a \), każdy w \( \Theta(1) \).
-To skutkuje całkowitą liczbą operacji równą:
+Algorytm znajduje rozkład \( n \) na dwa czynniki po około \( a - \sqrt{n} \) krokach, bo trzeba sprawdzić po kolei przypadki dla \( \sqrt{n}, \dots, a \), każdy w \( \Theta(1) \).
+Całkowita liczba operacji jest równa:
 \[
     a - \sqrt{n} = \frac{a^2 - n}{a + \sqrt{n}} = \frac{b^2}{a + \sqrt{n}} \leq \frac{b^2}{\sqrt{n}} = \frac{(p-q)^2}{4\sqrt{n}}
 \]

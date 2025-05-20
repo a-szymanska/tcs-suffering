@@ -9,18 +9,20 @@
 \end{theorem}
 \begin{proof}
     Trzeba udowodnić, że rozwiązanie istnieje oraz że wszystkie rozwiązania przystają do siebie modulo \( M \). \\
-    \textbf{Istnienie} \\
+    \textbf{Istnienie}\footnote{Dowód został zaczerpnięty z \href{https://en.wikipedia.org/wiki/Chinese_remainder_theorem#Proof}{,,Chinese remainder theorem'', Wikipedia}.} \\
     Korzystamy z twierdzenia B\'ezout, które mówi, że dla względnie pierwszych liczb całkowitych \( x \), \( y \) istnieją takie liczby całkowite \( a \) i \( b \), że \( ax + by = 1 \). \\
-    Definiujemy \( M_i = \frac{M}{m_i} \), wtedy \( M_i, \ M_j \) są względnie pierwsze dla \( i \neq j \) oraz istnieją takie liczby \( B_i, \ b_i \), że \( B_iM_i + b_im_i = 1 \). Możemy zatem skonstruować rozwiązanie
+    Definiujemy \( M_i = \frac{M}{m_i} \), wtedy \( M_i \) oraz \( m_i \) są względnie pierwsze dla \( i \neq j \) oraz istnieją takie liczby \( B_i, \ b_i \), że \( B_iM_i + b_im_i = 1 \).
+    Możemy zatem skonstruować rozwiązanie
     \[
         x = \sum_{i=1}^{k} a_iB_iM_i
     \]
     Rozwiązanie rzeczywiście spełnia układ kongruencji, ponieważ:
-    \begin{center}
-        \( \quad \ a_iB_iM_i = a_iB_i \cdot 0 = 0 \pmod{m_j} \ \text{dla } j \neq i\) \\
-        \( a_iB_iM_i = a_i(1 - b_im_i) = a_i \pmod{m_i} \) \\
-    \end{center}
-    (Idea dowodu została zaczerpnięta z artykułu \href{https://en.wikipedia.org/wiki/Chinese_remainder_theorem#Proof}{,,Chinese remainder theorem'', Wikipedia}.)
+    \[
+        a_iB_iM_i = 0 \pmod{m_j} \ \text{dla } i \neq j
+    \]
+    \[
+        a_iB_iM_i = a_i(1 - b_im_i) = a_i \pmod{m_i}
+    \]
 
     \textbf{Jedyność} \\
     Załóżmy, że istnieją dwa rozwiązania \( x \) oraz \( y \), przy czym \( x \neq y \pmod{M} \). Wówczas
@@ -28,5 +30,6 @@
         \( x = a_i \pmod{m_i} \) \\
         \( y = a_i \pmod{m_i} \)
     \end{center}
-    Zatem otrzymujemy \( x-y = 0 \pmod{m_i} \). Skoro \( m_i \) są parami względnie pierwsze, to zachodzi \(  x-y = 0 \pmod{M} \). Ponieważ \( x, y < M \), to \( x-y \) jest wielokrotnością \( M \) tylko wtedy, kiedy \( x = y \).
+    Zatem otrzymujemy \( x-y = 0 \pmod{m_i} \). Skoro \( m_i \) są parami względnie pierwsze, to zachodzi \(  x-y = 0 \pmod{M} \).
+    Ponieważ \( x, y < M \), to musi zachodzić \( x = y \).
 \end{proof}

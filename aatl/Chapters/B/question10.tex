@@ -17,11 +17,13 @@ Dane jest ciało \( \mathbb{F} \) charakterystyki \( p \) oraz liczba \( q = p^k
         \[
             (a + b)^p = a^p + \ldots + {p \choose i}a^{p-i}b^i + \ldots + b^p
         \]
-        Wszystkie współczynniki \( p \choose i \) dla \( 1 \leq i < p \) są podzielne przez \( p \), bo licznik jest równy \( p! \) a mianownik jest niepodzielny przez \( p \), czyli w ciele charakterystyki \( p \) wszystkie składniki oprócz \( a^p, \ b^p \) są równe \( 0 \). \\
+        Wszystkie współczynniki \( p \choose i \) dla \( 1 \leq i < p \) są podzielne przez \( p \), bo licznik jest równy \( p! \) \linebreak a mianownik jest niepodzielny przez \( p \), czyli w ciele charakterystyki \( p \) wszystkie składniki oprócz \( a^p, \ b^p \) są równe \( 0 \). \\
         Korzystając z tego, że \( q = p^k \), dostajemy:
         \[
             (a + b)^q = ((a + b)^p)^{p^{k-1}} = (a^p + b^p)^{p^{k-1}} = (a^{p^2} + b^{p^2})^p^{k-2} = \text{\dots} = a^{p^k} + b^{p^k} = a^q + b^q = a + b
         \]
     \end{itemize}
 \end{proof}
+
+\subsection{Generowanie ciała skończonego}
 \textcolor{blue}{Archiwalne niezweryfikowane rozwiązanie do drugiej części pytania: \\ Generowanie innych grup o liczności \( p^k \) -- po prostu strzelamy w wielomian stopnia \( k \) i sprawdzamy, czy jest nierozkładalny i mamy na to bardzo dużą szansę.}

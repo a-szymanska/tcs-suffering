@@ -22,13 +22,15 @@ Definiujemy relację równoważności \( R \) następująco:
 Pierścień ilorazowy to zbiór klas abstrakcji \( R/I = \set{[x]_{\sim} : x \in R} = \set{x + I : x \in R} \). \\
 Mniej formalnie mówimy po prostu o operacjach modulo ideał \( I \).
 
-Przykładem pierścienia ilorazowego jest pierścień \( \integer \) z ideałem głównym \( n \integer = \set{n \cdot x : x \in \integer} \), dla pewnego \( n \). Wtedy pierścień ilorazowy \( \integer / n\integer \) to pierścień liczb całkowitych z działaniami modulo \( n \).
+Przykładem pierścienia ilorazowego jest pierścień \( \integer \) z ideałem głównym \( n \integer = \set{n \cdot x : x \in \integer} \), dla pewnego \( n \).
+Wtedy pierścień ilorazowy \( \integer / n\integer \) to pierścień liczb całkowitych z działaniami modulo \( n \).
 \begin{theorem}
 Pierścień \( \integer_p[X]/(W) \) jest ciałem wtw, gdy \( W \) jest nierozkładalny, czyli nie daje się przedstawić jako iloczyn wielomianów stopnia co najmniej 1.
 \end{theorem}
 \begin{proof}
     \textit{Pierścień \( \mathbb{Z}_p[X]/(W) \) jest ciałem \( \implies \) \( W \) jest nierozkładalny} \\
-    Załóżmy nie wprost, że \( \mathbb{Z}_p[X]/W \) jest ciałem oraz \( W \) jest rozkładalny, czyli można zapisać \( W = g_1 \cdot g_2 \), gdzie \( 1 < \deg(g_1), \deg(g_2) < \deg(W) \). Wynika z tego, że \( g_1 \cdot g_2 = 0 \) w rozważanym ciele, czyli są dzielnikami zera. Nie mają więc odwrotności względem mnożenia, co daje sprzeczność.
+    Załóżmy nie wprost, że \( \mathbb{Z}_p[X]/W \) jest ciałem oraz \( W \) jest rozkładalny, czyli można zapisać \linebreak \( W = g_1 \cdot g_2 \), gdzie \( 1 < \deg(g_1), \deg(g_2) < \deg(W) \).
+    Wynika z tego, że \( g_1 \cdot g_2 = 0 \), czyli są dzielnikami zera w tym ciele. Nie mają więc odwrotności względem mnożenia, co daje sprzeczność.
 
     \textit{Pierścień \( \mathbb{Z}_p[X]/(W) \) jest ciałem \( \impliedby \) \( W \) jest nierozkładalny} \\
     Wiemy, że \( \integer_p[X]/W \) jest pierścieniem. Wystarczy pokazać, że każdy wielomian \( g \) stopnia mniejszego niż \( W \) ma odwrotność.
