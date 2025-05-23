@@ -1,34 +1,46 @@
-Rachunek indeksów to obecnie (stan na 30 kwietnia 2025) najlepszy znany algorytm na
-logarytm dyskretny w \( \integer_p \).
+Rachunek indeksów to obecnie (stan na 30.04.2025) najlepszy znany algorytm na logarytm dyskretny w \( \integer_p \).
 
-Działając w grupie \( \integer_p \) o znanym generatorze \( a \) modulo \( p \), dla zadanej liczby \( b \), chcemy rozwiązać równanie: \( a^x = b \).
+Działając w grupie \( \integer_p \) o znanym generatorze \( g \) modulo \( p \), dla zadanej liczby \( b \), chcemy rozwiązać równanie: \( g^x = b \).
 Zapisujemy \( x = \log b \) i taki logarytm zachowuje własności zwykłego logarytmu
-\[ \log(uv) = \log(u) + \log(v) \pmod{p-1}, \]
-\[ \log(u^k) = k \cdot \log(u) \pmod{p-1}. \]
+\[
+    \log(u \cdot v) = \log(u) + \log(v) \pmod{p-1},
+\]
+\[
+    \log(u^k) = k \cdot \log(u) \pmod{p-1}.
+\]
 
 \textbf{Faza I:} \\
-Ustalamy zbiór małych liczby pierwszych \( Q = \{q_1, \dots, q_r\} \) - bazę czynników.
-Wybieramy lub losujemy \( k \), tak żeby uzyskać \( r \) różnych liczb, dla których \( a^k \pmod{p} \) jest gładkie, czyli rozkłada się na czynniki z bazy \( Q \). W ten sposób otrzymujemy \( r \) równań postaci
-\[ a^k = q_1^{\beta_1} \cdot \ldots \cdot q_r^{\beta_r} \pmod{p}, \]
-\[ \text{czyli } k = \beta_1 \cdot \log q_1 + \ldots + \beta_r \cdot \log q_r \pmod{p - 1} \]
-Chcemy zgromadzić co najmniej r takich równań.
+Ustalamy zbiór małych liczby pierwszych \( Q = \{q_1, \dots, q_r\} \) -- bazę czynników.
+Wybieramy lub losujemy \( k \), tak żeby uzyskać \( r \) różnych liczb, dla których \( g^k \pmod{p} \) jest gładkie, czyli rozkłada się na czynniki z bazy \( Q \). W ten sposób otrzymujemy \( r \) równań postaci
+\[
+    g^k = q_1^{\beta_1} \cdot \ldots \cdot q_r^{\beta_r} \pmod{p},
+\]
+\[
+    \text{czyli } k = \beta_1 \cdot \log q_1 + \ldots + \beta_r \cdot \log q_r \pmod{p - 1}
+\]
 
 \textbf{Faza II:} \\
 Znając wszystkie \( \beta_i \) oraz \( k \), chcemy rozwiązać układ równań:
-\[ k^{(1)} = \beta_1^{(1)} \cdot \log q_1 + \ldots + \beta_r^{(1)} \cdot \log q_r, \]
-\[ \dots \]
-\[ k^{(r)} = \beta_1^{(r)} \cdot \log q_1 + \ldots + \beta_r^{(r)} \cdot \log q_r, \]
+\[
+    k^{(1)} = \beta_1^{(1)} \cdot \log q_1 + \ldots + \beta_r^{(1)} \cdot \log q_r,
+\]
+\[
+    \cdots
+\]
+\[
+    k^{(r)} = \beta_1^{(r)} \cdot \log q_1 + \ldots + \beta_r^{(r)} \cdot \log q_r,
+\]
 gdzie niewiadomymi są \( \log q_i \). Możemy wykorzystać do tego metody algebry liniowej z dokładnością do jednej trudności - operacje są modulo \( p-1 \), które nie jest pierwsze, więc niekoniecznie da się policzyć odwrotność względem mnożenia.
-Jako wynik otrzymujemy logarytmy dyskretny \( q_1, \dots, q_r \).
+Jako wynik otrzymujemy logarytmy dyskretny liczb \( q_1, \dots, q_r \).
 
 \textbf{Faza III:} \\
 Żeby znaleźć \( \log b \), próbujemy wygenerować jakąkolwiek liczbę postaci \( b^u \cdot a^v \), która jest gładka modulo \( p \). Wystarczy przyjąć \( u = 1 \) i losować \( v \) do skutku. Z równości
 \[ b^u \cdot a^v = q_1^{\gamma_1} \cdot \ldots \cdot q_r^{\gamma_r} \]
 ostatecznie wynika:
-\[ x = \log b = u^{−1} \cdot (\gamma_1 \cdot \log q_1 + \ldots + \gamma_r \cdot \log q_r - v) \]
+\[ x = \log b = u^{-1} \cdot (\gamma_1 \cdot \log q_1 + \ldots + \gamma_r \cdot \log q_r - v) \]
 
-Oczekiwana złożoność algorytmu to \( e^{(\sqrt{2}+o(1))sqrt{\ln n \ln\ln n}} \), czyli podwykładnicza. Metoda rachunku indeksów daje się uogólnić na ciała skończone \( \integer_p/h(X) \), gdzie \( h \) jest pewnym wielomianem. Wtedy baza czynników, zamiast liczb pierwszych, zawiera nierozkładalne wielomiany małych stopni.
+Oczekiwana złożoność algorytmu to \( e^{(\sqrt{2}+\bigO(1))\sqrt{\ln n \ln\ln n}} \), czyli podwykładnicza. Metoda rachunku indeksów daje się uogólnić na ciała skończone \( \integer_p/h(X) \), gdzie \( h \) jest pewnym wielomianem. Wtedy baza czynników, zamiast liczb pierwszych, zawiera nierozkładalne wielomiany małych stopni.
 
 \subsection{Atak Logjam}
-Rachunek indeksów, jeśli stosowany w sposób leniwy, ma słaby punkt - fazy I i II są niezależne od wejściowego elementu \( b \), co więcej dobrze się zrównoleglają.
-Żeby rozszyfrować ciąg informacji, dla których zawsze używana była ta sama liczba pierwsza \( p \), wystarczy wykonać fazy I i II tylko raz, a faza III jest już bardzo szybka. Bardziej ogólny atak polega więc na poświęceniu czasu i środków na wykonanie faz I i II dla kilku konkretnych, najczęściej używanych na świecie liczb pierwszych i ciał skończonych.
+Rachunek indeksów, jeśli stosowany w sposób leniwy, ma słaby punkt -- fazy I i II są niezależne od wejściowego elementu \( b \), co więcej dobrze się zrównoleglają.
+Żeby rozszyfrować ciąg informacji, dla których zawsze używana była ta sama liczba pierwsza \( p \), wystarczy wykonać fazy I i~II tylko raz, a faza III jest już bardzo szybka.

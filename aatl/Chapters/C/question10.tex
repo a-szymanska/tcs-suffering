@@ -1,7 +1,10 @@
-Algorytm Grovera to kwantowy algorytm wyszukiwania, czyli dla zdefiniowanej funkcji \( f : \set{0, 1, \ldots, N - 1} \rightarrow \set{0, 1} \) taką, że dla dokładnie jednego \( x* \) funkcja \( f \) przyjmuje wartość 1,
-znajduje \( x* \) z prawdopodobieństwem \( \frac{2}{3} \) w \( \bigO(\sqrt{N}) \) obliczeniach \( f \).
+Algorytm Grovera to kwantowy algorytm wyszukiwania -- dla zdefiniowanej funkcji
+\[
+    f : \set{0, 1, \ldots, N - 1} \rightarrow \set{0, 1}
+\]
+znajduje \( x^{*} \) jedyny ciąg wartościowany przez \( f \) na 1 z prawdopodobieństwem \( \frac{2}{3} \) w \( \bigO(\sqrt{N}) \) obliczeniach \( f \).
+Na potrzeby algorytmu zakładamy, że \( N = 2^n \) oraz \( f \) jest określona na \( n \)-bitowych ciągach z \( \set{0, 1}^n \), z których dokładnie na jednym \( x^{*} \) przyjmuje wartość -1, a na pozostałych \( x \) jest równa 1.
 
-Na potrzeby algorytmu zakładamy, że \( N = 2^n \) oraz \( f \) jest określona na \( n \)-bitowych ciągach z \( \set{0, 1}^n \), z których dokładnie na jednym \( x* \) przyjmuje wartość -1, a na pozostałych \( x \) jest równa 1.
 Tworzymy bramkę \( O_f \) z \( n \) kubitowymi wejściami, określoną regułą \( O_f (|x\rangle) = f(x) \cdot |x \rangle \), czyli:
 \begin{center}
     \( f (|00\ldots0 \rangle) = |00\ldots0 \rangle \) \\
@@ -17,7 +20,7 @@ Wykorzystując specjalną bramkę \( O_f \), konstruujemy obwód kwantowy, któr
     \item składa się z bramek \( H \), \( T \) i \( O_f \),
     \item ma \( n \) wejść i \( n \) wyjść,
     \item otrzymuje na wejściu \( |00\ldots0 \rangle \),
-    \item daje na wyjściu ciąg \( x* \), dla którego \( f(x*) = -1 \) z prawdopodobieństwem \( \frac{1}{10} \),
+    \item daje na wyjściu ciąg \( x^{*} \), dla którego \( f(x^{*}) = -1 \) z prawdopodobieństwem \( \frac{1}{10} \),
     \item zawiera \( \bigO(\sqrt{N}) = \bigO(\sqrt{2^n}) \) bramek \( O_f \) oraz \( \bigO(\sqrt{N} \log N) \) bramek w sumie.
 \end{itemize}
 
@@ -31,12 +34,12 @@ Dysponując opisanym wyżej obwodem, możemy przejść do właściwego algorytmu
         \[
             \sum_{x \in \set{0,1}^n} \delta_x |x\rangle \rightarrow \sum_{x \in \set{0,1}^n} \delta'_x |x\rangle
         \]
-        Każda warstwa zwiększa współczynnik przy \( x* \), a zmniejsza przy pozostałych \( x \neq x* \). Po każdej warstwie \( delta_x \in \real^{+} \)
-        oraz zachowane jest \( \delta'_{x*} > \delta_{x*} + \frac{1}{\alpha\sqrt{N}} \) dla stałej \( \alpha \).
-        Zapewnia to, że po  \( \bigO(\sqrt{N}) \) kroków \( \abs{\delta_{x*}}^2 > \frac{1}{10} \), czyli z prawdopodobieństwem co najmniej \( \frac{1}{10} \) ciągiem wyjściowym będzie \( x* \).
+        Każda warstwa zwiększa współczynnik przy \( x^{*} \), a zmniejsza przy pozostałych \( x \neq x^{*} \). Po każdej warstwie \( delta_x \in \real^{+} \)
+        oraz zachowane jest \( \delta'_{x^{*}} > \delta_{x^{*}} + \frac{1}{\alpha\sqrt{N}} \) dla stałej \( \alpha \).
+        Zapewnia to, że po  \( \bigO(\sqrt{N}) \) kroków \( \abs{\delta_{x^{*}}}^2 > \frac{1}{10} \), czyli z prawdopodobieństwem co najmniej \( \frac{1}{10} \) ciągiem wyjściowym będzie \( x^{*} \).
         Do osiągnięcia tego służą operacje liniowe:
         \begin{itemize}
-            \item bramka \( O_f \), która przekształca \( \delta_{x*} \) na \( -delta_{x*} \), nie zmieniając \( x \neq x* \),
+            \item bramka \( O_f \), która przekształca \( \delta_{x^{*}} \) na \( -delta_{x^{*}} \), nie zmieniając \( x \neq x^{*} \),
             \item bramka dyfuzyjna Grovera (operacja \( D \)), która przekształca \( (\delta_0, \delta_1, \ldots, \delta_{N-1}) \) na \( (2s - \delta_0, 2s - \delta_1, \ldots, 2s - \delta_{N-1}) \),
             gdzie \( s = \frac{1}{N}(\delta_0 + \delta_1 + \ldots + \delta_{N-1}) \), czyli jest średnią współczynników (operacja określona macierzą unitarną).
             Operacja \( D \) odbija symetrycznie każdą \( \delta_x \) względem średniej.
@@ -46,12 +49,12 @@ Dysponując opisanym wyżej obwodem, możemy przejść do właściwego algorytmu
 
 Ad krok 2:
 \begin{proposition}
-    Operacje \( D \) i \( O_f \) wystarczają, żeby zwiększyć współczynnik przy \( x* \), a zmniejszyć przy pozostałych \( x \neq x* \).
+    Operacje \( D \) i \( O_f \) wystarczają, żeby zwiększyć współczynnik przy \( x^{*} \), a zmniejszyć przy pozostałych \( x \neq x^{*} \).
 \end{proposition}
 \begin{proof}
     Stan układu kubitów to \( \sum_{x \in \set{0,1}^n} \delta'_x |x\rangle \). Początkowo \( \delta_x = \frac{1}{\sqrt{N}} \) dla każdego \( x \),
-    a w każdym kroku jeden ze współczynników \( (\delta_{x*}) \) jest zamieniany na przeciwny. Następnie odejmujemy wszystkie współczynniki od \( 2s \), gdzie \( s \) to średnia.
-    Wyniak z tego, że po \( k \) krokach wszystkie \( (\delta_x) \) dla \( x \neq x* \) są sobie równe (oznaczmy \( (\delta_x) = a_k \)) z wyjątkiem \( (\delta_{x*}) = b_k \).
+    a w każdym kroku jeden ze współczynników \( (\delta_{x^{*}}) \) jest zamieniany na przeciwny. Następnie odejmujemy wszystkie współczynniki od \( 2s \), gdzie \( s \) to średnia.
+    Wyniak z tego, że po \( k \) krokach wszystkie \( (\delta_x) \) dla \( x \neq x^{*} \) są sobie równe (oznaczmy \( (\delta_x) = a_k \)) z wyjątkiem \( (\delta_{x^{*}}) = b_k \).
     Bramka \( O_f \) zamienia \( b_k \) na \( -b_k \) , po czym bramka \( D \) oblicza \( b_{k+1} = 2s_k + b_k \), gdzie \( s_k \) jest średnią współczynników.
     Można udowodnić indukcyjnie, że \( b_{k+1} - b_k > \frac{1}{\sqrt{N}} \) tak długo, jak \( b_k < \frac{1}{2} \).
     Stąd po co najwyżej \( \frac{1}{10} \sqrt{N} \) krokach, dostaniemy \( b_k > \frac{1}{10} \), co było do pokazania.
