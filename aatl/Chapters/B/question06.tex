@@ -1,4 +1,4 @@
-Celem jest rozłożyć liczbę \( n \) na czynniki pierwsze. Zakładamy, że \( n \) jest nieparzysta (wpp można wydzielić największą potęgę 2) i nie jest liczbą pierwszą.
+Celem jest rozłożyć liczbę \( n \) na czynniki pierwsze. Zakładamy, że \( n \) jest nieparzysta (można wydzielić największą potęgę 2) i nie jest liczbą pierwszą.
 Podsumowując, \( n = p \cdot q \), gdzie \( p, \ q \) są nieparzyste. Bez straty ogólności przyjmujemy, że \( p > q \). Definiujemy \( a = \frac{p+q}{2} \) oraz \( b = \frac{p-q}{2} \). Wtedy:
 \[
     a^2 - b^2 = (a+b) \cdot (a-b) = p \cdot q = n
@@ -9,8 +9,8 @@ Zatem jeśli znajdziemy \( a \) takie, że \( a^2 - n = b^2 \), gdzie \( b^2 \) 
     Algorytm faktoryzacji Fermata:
     \begin{enumerate}
         \item Przypisz \( a = \ceil{\sqrt{n}} \).
-        \item Jeśli istnieje \( b \in \natural \) takie, że \( b^2 = a^2 - n \) (co sprawdzamy wyszukiwaniem binarnym), to zwróć dzielniki \( p = a+b, \ q = a-b \).
-        \item Wpp \( a = a + 1\), powtórz procedurę.
+        \item Jeśli istnieje \( b \in \natural \) takie, że \( b^2 = a^2 - n \), to zwróć dzielniki \( p = a+b, \ q = a-b \).
+        \item Wpp powtórz procedurę dla \( a = a + 1\).
     \end{enumerate}
 \end{greyframe}
 

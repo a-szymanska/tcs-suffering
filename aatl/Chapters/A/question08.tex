@@ -8,9 +8,9 @@ Niech \( n, a \in \integer \) będą liczbami względnie pierwszymi. Równość
 zachodzi wtedy i tylko wtedy, gdy \( n \) jest liczbą pierwszą.
 \end{theorem}
 \begin{proof}[Szkic dowodu]\\
-Jeśli \( n \) jest liczbą pierwszą, to wszystkie współczynniki \( n \choose k \) dla \( 0 < k < n \) są podzielne przez \( n \), więc \( (X + a)^n = X^n + a^n \pmod{n} \) oraz z małego twierdzenia Fermata \( a^n = a \pmod{n} \).
+Jeśli \( n \) jest liczbą pierwszą, to wszystkie współczynniki \( n \choose k \) dla \( 0 < k < n \) są podzielne przez \( n \), więc \( (X + a)^n = X^n + a^n \pmod{n} \) oraz z małego twierdzenia Fermata wiemy, że \( a^n = a \pmod{n} \).
 
-Jeśli $n$ nie jest liczbą pierwszą, to któryś współczynnik \( n \choose k \) nie jest podzielny przez \( n \), więc wielomian \( (X + a)^n \) zawiera wyraz \( {n \choose k} X^ka^{n-k} \), gdzie \( k \) jest równe najmniejszemu dzielnikowi \( n \).
+Jeśli \( n \) nie jest liczbą pierwszą, to któryś współczynnik \( n \choose k \) nie jest podzielny przez \( n \), więc wielomian \( (X + a)^n \) zawiera wyraz \( {n \choose k} X^ka^{n-k} \), gdzie \( k \) jest najmniejszym dzielnikiem \( n \).
 \end{proof}
 
 Ponieważ obliczenie \( (X + a)^n \) jest zbyt czasochłonne, przenosimy się do pierścienia ilorazowego \( \integer_n[X]/(X^r - 1) \) dla pewnego \( r \) takiego, że rząd \( n \)

@@ -11,7 +11,7 @@ Korzystamy z tego, że \( \integer_p^* \) ma rząd równy \( p-1 \) wtedy i tylk
 Jeśli otrzymamy od wyroczni \( g \), generator \( \integer_p^* \) oraz rozkład liczby \( p-1 \) na czynniki pierwsze \( p-1 = p_1^{\alpha_1} \cdots p_s^{\alpha_s} \), możemy:
 \begin{itemize}
     \item rekurencyjnie sprawdzić pierwszość \( p_i \). \\
-    (Nie trzeba uwzględniać potęg \( p_i \), ponieważ jeśli \( p_i \) nie przejdzie testu, to potęgi \( p_i \) również.)
+    (Nie trzeba uwzględniać potęg \( p_i \), ponieważ jeśli \( p_i \) nie przejdzie testu, to potęgi \( p_i \) tym bardziej.)
     \item sprawdzić, czy \( g^{p-1} = 1 \pmod{p} \).
     \item sprawdzić, czy \( g^{\frac{p-1}{p_i}} \neq 1 \pmod{p} \).
 \end{itemize}
@@ -35,4 +35,4 @@ Jeśli otrzymamy od wyroczni \( 2 \leq d \leq k \) potencjalny dzielnik \( n \),
 Factoring \( \in \) coNP: \\
 Otrzymujemy od wyroczni rozkład liczby \( n \) na czynniki pierwsze \( n = p_1^{\alpha_1} \cdots p_s^{\alpha_s} \). Sprawdzamy, czy \( p_1^{\alpha_1} \cdots p_s^{\alpha_s} = n \) oraz czy każde \( p_i \) jest pierwsze albo algorytmem AKS, albo niedeterministycznie z pomocą wyroczni. Jeśli poprawność rozkładu się potwierdzi, to odpowiedzą jest \( (p_1 \leq k) \) ? TAK : NIE, gdzie \( p_1 \) to najmniejszy z dzielników.
 
-Na ten moment (02.04.2025) nie potrafimy powiedzieć więcej o tym problemie.
+Na ten moment nie potrafimy powiedzieć więcej o tym problemie.

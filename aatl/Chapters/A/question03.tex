@@ -5,10 +5,10 @@ Najważniejszym założeniem jest, że nie potrafimy efektywnie odtworzyć klucz
 \begin{greyframe}
     Algorytm RSA:
     \begin{enumerate}
-        \item Wybierz liczby pierwsze \( p, q \) i oblicz \( N = p \cdot q \). \\
+        \item Oblicz \( N = p \cdot q \) dla wybranych liczb pierwszych \( p \), \( q \). \\
         Wtedy \( \varphi(N) = (p-1) \cdot (q-1) \).
         \item Wybierz \( e \) względnie pierwsze z \( \varphi(N) \). Oblicz \( d \) takie, że  \( e\cdot d = 1 \pmod{\varphi(N)} \).
-        \item Zdefiniuj \( E(x) = x^e \pmod{N} \) oraz \( D(x) = x^d \pmod{N} \).
+        \item Zdefiniuj \( E(x) = x^e \pmod{N} \) oraz \( D(x) = x^d \pmod{N} \). Kluczem publicznym jest \( (e, n) \).
     \end{enumerate}
 \end{greyframe}
 
@@ -16,7 +16,7 @@ Ad 1. Zamiast \( \varphi(N) \) można użyć (rozwiązanie często stosowane) fu
 \[
     \lambda(N) = \lcm(p - 1, q - 1)
 \]
-Funkcja \( \lambda \) znajduje najmniejszą liczbę całkowitą taką, że \( x^{\lambda(N)} = 1 \pmod{N} \) dla każdego \( x \) względnie pierwszego z \( N \).
+Funkcja \( \lambda \) znajduje najmniejszą liczbę całkowitą \( x \) taką, że \( x^{\lambda(N)} = 1 \pmod{N} \) dla każdego \( x \) względnie pierwszego z \( N \).
 Wybór \( \lambda(N) \) zamiast \( \varphi(N) \) nie zmniejsza bezpieczeństwa, a daje zazwyczaj mniejszy wykładnik. \\
 Ad 2. Do znalezienia liczby \( d \) można użyć rozszerzonego algorytmu Euklidesa:
 \[
@@ -35,7 +35,7 @@ Rząd grupy multiplikatywnej modulo \( N \) jest równy \( \varphi(N) \), więc 
 \]
 ponieważ \( e \cdot d = 1 \pmod{\varphi(N)} \), czyli \( e \cdot d \) dzieli rząd grupy multiplikatywnej modulo \( N \).
 
-Szyfrowanie RSA można złamać, jeśli pozna się rozkład \( N \) na czynniki pierwsze, czyli wyznaczy liczby \( p \) i \( q \).
+Szyfrowanie RSA można złamać, jeśli wyznaczy się liczby \( p \) i \( q \), czyli pozna się rozkład \( N \) na czynniki pierwsze.
 Można wtedy obliczyć \( \varphi(N) \) oraz \( d \) algorytmem Euklidesa. Dlatego tak ważne jest założenie o dużej trudności problemu Factoring.
 W tym dniu (18.05.2025), nie ma ani dowodu na to, że algorytm rozkładu na czynniki pierwsze nie istnieje, ani dowodu NP-zupełności problemu Factoring.
 
@@ -51,4 +51,4 @@ W tym dniu (18.05.2025), nie ma ani dowodu na to, że algorytm rozkładu na czyn
 \end{greyframe}
 Otrzymawszy \( (g^y, \ M \cdot g^{xy}) \) i znając klucz prywatny \( x \) łatwo obliczyć \( g^{xy} \), czyli też odtworzyć \( M = \pars{M \cdot g^{xy}} \cdot g^{-xy} \).
 Gdyby odszyfrowanie \( M \) było łatwe, to również problem Diffiego-Hellmana byłby rozwiązywalny, podstawiając \( M = g^{-xy} \).
-Jednak nie jest łatwe, ponieważ znając \( g^x, \ g^y \) nie potrafimy obliczyć \( g^{xy} \), czyli sprowadza się to do szyfrowanie Diffiego-Hellmana, czyli wyznaczenia logarytmu dyskretnego, którego obecnie nie potrafimy efektywnie obliczać.
+Jednak tak nie jest, ponieważ znając \( g^x, \ g^y \), nie potrafimy obliczyć \( g^{xy} \) -- wymaga to wyznaczenia logarytmu dyskretnego, którego obecnie nie potrafimy efektywnie obliczać.

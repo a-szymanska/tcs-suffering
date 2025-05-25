@@ -2,15 +2,16 @@
 Dane jest ciało \( \mathbb{F} \) charakterystyki \( p \) oraz liczba \( q = p^k \) dla pewnego \( k \). Jeśli wielomian \( f(X) = X^q - X \) ma \( q \) pierwiastków, to stanowią one \( q \)-elementowe podciało \( \mathbb{F} \).
 \end{theorem}
 \begin{proof}
-    Niech \( A = \{a \in \mathbb{F}: f(a) = 0\} = \{a \in \mathbb{F}: a^q = a\} \) będzie rozważanym zbiorem wszystkich pierwiastków. Wystarczy pokazać, że A jest zamknięty na działania, bo inne aksjomaty ciała (łączność, przemienność, rozdzielność, etc.) wynikają z faktu, że cały czas pracujemy w~\( \mathbb{F} \), które od początku je spełniało. Widać, że:
+    Niech \( A = \{a \in \mathbb{F}: f(a) = 0\} = \{a \in \mathbb{F}: a^q = a\} \) będzie rozważanym zbiorem wszystkich pierwiastków. Wystarczy pokazać, że A jest zamknięty na działania, bo inne aksjomaty ciała (łączność, przemienność, rozdzielność, etc.) wynikają z faktu, że cały czas pracujemy w~\( \mathbb{F} \), które od początku je spełniało.
     \begin{itemize}
-        \item Elementy neutralne: \( 0, 1, -1 \in A \) \\
-        \( -1 \cdot q = -1 \)
+        \item Elementy neutralne: \( 0, 1 \in A \)
+        \item Element \( -1 \in A \): \\
+        \( (-1)^q = -1 \) (również dla \( p = 2 \))
+        \item Elementy odwrotne: \\        
+        \( \pars{a^{-1}}^q \cdot a = \pars{a^{-1}}^q \cdot a^q = 1 \), czyli \( \pars{a^{-1}}^q = a^{-1} \in A \)
         \item Zamkniętość na mnożenie: \\
         \( (a \cdot b)^q = a^q \cdot b^q = a \cdot b \) \\
         W szczególności, jeśli \( a \in A \), to \( -a = -1 \cdot a \in  A \).
-        \item Elementy odwrotne: \\
-        \( \pars{a^{-1}}^q \cdot a = \pars{a^{-1}}^q \cdot a^q = 1 \), czyli \( \pars{a^{-1}}^q = a^{-1} \in A \)
         \item Zakmniętość na dodawanie: \\
         Najpierw udowodnimy, że w \( \mathbb{F} \) zachodzi \( (a + b)^p = a^p + b^p \) dla dowolnych \( a, \ b \). \\
         Wiemy, że:

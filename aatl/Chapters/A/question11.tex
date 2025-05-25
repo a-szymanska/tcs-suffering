@@ -41,22 +41,22 @@ Podsumowując:
     Jeśli prosta \( PQ \) nie przecina krzywej w dodatkowym punkcie, to \( P + Q = O \).
 \end{definition}
 
-Na tej podstawie można wyprowadzić dokładne wzory na działania. Mając dane \( P = (x_P, y_P) \) oraz \( Q = (x_Q, y_Q) \), obliczamy \( P + Q = S = (x_S , y_S ) \) ze wzorów:
-\begin{center}
-    \( x_S = \lambda^2 - x_P - x_Q, \) \\
-    \( y_S = -y_P - \lambda(x_S - x_P), \) \\
-    \( \lambda = 
-    \begin{cases}
-        \frac{y_Q - y_P}{x_Q - x_P}, & \text{jeśli } x_P \ne x_Q \\
-        \frac{3x_P^2 + a}{2y_P}, & \text{jeśli } P = Q
-    \end{cases} \),
-\end{center}
-z wyjątkiem specjalnych przypadków \( P = -Q \), \( P = O \), \( Q = O \).
+% Na tej podstawie można wyprowadzić dokładne wzory na działania. Mając dane \( P = (x_P, y_P) \) oraz \( Q = (x_Q, y_Q) \), obliczamy \( P + Q = S = (x_S , y_S ) \) ze wzorów:
+% \begin{center}
+%     \( x_S = \lambda^2 - x_P - x_Q, \) \\
+%     \( y_S = -y_P - \lambda(x_S - x_P), \) \\
+%     \( \lambda = 
+%     \begin{cases}
+%         \frac{y_Q - y_P}{x_Q - x_P}, & \text{jeśli } x_P \ne x_Q \\
+%         \frac{3x_P^2 + a}{2y_P}, & \text{jeśli } P = Q
+%     \end{cases} \),
+% \end{center}
+% z wyjątkiem specjalnych przypadków \( P = -Q \), \( P = O \), \( Q = O \).
 
 Ponieważ mnożenie wymaga stałej liczby operacji, to dla dowolnego punktu \( P \) oraz liczby \( k \) można obliczyć \( k \cdot P \) w \( \bigO(\log k) \) operacjach arytmetycznych w ciele, stosując coś w rodzaju szybkiego potęgowania.
 
-Uwaga: Powyższe wzory nie działają w ciałach o charakterystyce 2 lub 3, ponieważ przy sprowadzaniu ogólnego równania do postaci \( y^2 = x^3 + ax + b \) występuje dzielenie przez 2.
-W tych przypadkach trzeba używać bardziej skomplikowanych wzorów.
+% Uwaga: Powyższe wzory nie działają w ciałach o charakterystyce 2 lub 3, ponieważ przy sprowadzaniu ogólnego równania do postaci \( y^2 = x^3 + ax + b \) występuje dzielenie przez 2.
+% W tych przypadkach trzeba używać bardziej skomplikowanych wzorów.
 
 \subsection{Grupa krzywej eliptycznej}
 Dodawanie punktów na krzywej jest przemienne i (co nieoczywiste) łączne, więc otrzymujemy grupę przemienną.
