@@ -13,12 +13,10 @@ Traktujemy tak zapisane liczby jak wielomiany:
 \[
     \mathcal{B}(X) = B_{m-1} \cdot X^{m-1} + \dots + B_1 \cdot X + B_0
 \]
-Wtedy wynikiem mnożenia, którego szukamy, będzie \( \mathcal{C}(K) = \mathcal{A}(K) \cdot \mathcal{B}(K) \). Ponieważ wielomian \( \mathcal{C} \) jest stopnia \( 2m \), obliczamy wartości wielomianów \( \mathcal{A}(X) \) i \( \mathcal{B}(X) \) w \( 2m+1 \) punktach.
+Wtedy wynikiem mnożenia, którego szukamy, będzie \( \mathcal{C}(K) = \mathcal{A}(K) \cdot \mathcal{B}(K) \). Ponieważ wielomian \( \mathcal{C} \) jest stopnia \( 2m-2 \), obliczamy wartości wielomianów \( \mathcal{A}(X) \) i \( \mathcal{B}(X) \) w \( 2m-1 \) punktach.
 Następnie mnożymy punktowo i interpolujemy \( \mathcal{C} \), korzystając z twierdzenia, że dla dowolnych wielomianów \( f \), \( g \) zachodzi:
 \[
     f(x) \cdot g(x) = (f \cdot g)(x)
 \]
 Wartość wielomianu w punkcie obliczamy w czasie \( \bigO(n) \). \\
 Przyjrzyjmy się złożoności całego algorytmu dla \( m = 3 \). Dzielimy \( A \) i \( B \) na 3 części i interpretujemy je jako wielomiany \( \mathcal{A} \) i \( \mathcal{B} \) stopnia 2. Wyznaczamy wartości tych wielomianów w 5 wybranych punktach rekurencyjnie na liczbach długości \( \frac{n}{3} \). To daje złożoność \( T(n) = 5T(\frac{n}{3}) + \bigO(n) \), czyli \( T(n) \in \bigO(n^{\log_3 5}) \approx \bigO(n^{1.46}) \).
-
-

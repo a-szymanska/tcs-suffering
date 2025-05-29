@@ -24,7 +24,7 @@ modulo \( r \) jest wysoki, co najmniej \( \log^2n \). Przeprowadzenie testu dla
         \item \textcolor{Blue}{Znajdź najmniejsze \( r \) takie, że rząd \( n \) modulo \( r \) jest większy od \( \log^2n \).}
         \item Jeśli \( 1 < \gcd(a, n) < n \) dla jakiegoś \( a \leq r \), zwróć ZŁOŻONA.
         \item Jeśli \( n \leq r \), zwróć PIERWSZA.
-        \item \textcolor{Blue}{Niech \( l = \sqrt{r}\log n \). Dla \( 1 \leq a \leq l \) sprawdź równość:}
+        \item \textcolor{Blue}{Dla \( 1 \leq a \leq \sqrt{r}\log n \) sprawdź równość:}
         \[
             \textcolor{Blue}{(X + a)^n = X^n + a \mod (p, X^r-1)}
         \]
@@ -34,13 +34,7 @@ modulo \( r \) jest wysoki, co najmniej \( \log^2n \). Przeprowadzenie testu dla
 \end{greyframe}
 {\small (W kolorze wyróżniony jest właściwy algorytm. Pozostałe kroki obsługują przypadki brzegowe.)}
 
-Trzeba osobno sprawdzić przypadki brzegowe:
-\begin{itemize}
-    \item \( n \) będące potęgą liczby pierwszej (krok 1),
-    \item \( n \) mające dzielnik mniejszy niż \( r \) (krok 3).
-\end{itemize}
-
 \textbf{Złożoność} \\
-Sprawdzamy \( l \approx \bigO(\sqrt{r} \log n) \) równań na wielomianach stopnia \( r \) każde w \( \Tilde{\bigO}(r \log^2n) \) krokach, co daje złożoność \( \Tilde{\bigO}(r^{3/2} \log^3n) = \Tilde{\bigO}(\log^{10.5}n)\).
+Sprawdzamy \( \bigO(\sqrt{r} \log n) \) równań na wielomianach stopnia \( r \) każde w \( \Tilde{\bigO}(r \log^2n) \) krokach, co daje złożoność \( \Tilde{\bigO}(r^{3/2} \log^3n) = \Tilde{\bigO}(\log^{10.5}n)\).
 
 Panowie Lenstry i Pomerance przyspieszyli algorytm AKS do \( \Tilde{\bigO}(\log^6n) \).
