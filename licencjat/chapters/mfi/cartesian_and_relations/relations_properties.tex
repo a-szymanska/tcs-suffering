@@ -8,7 +8,8 @@ Relacje mają bardzo dużo różnych własności. Większość z~nich nie jest s
         \end{align*}
         Wtedy
         \begin{itemize}
-            \item \(T \composition \pars{S \composition R} = \pars{T \composition S} \composition R\)\qquad (składanie relacji jest łączne --- własność znana także jako ,,to-sor równa się tos-or'')
+            \item \(T \composition \pars{S \composition R} = \pars{T \composition S} \composition R\)\\
+            (składanie relacji jest łączne --- własność znana także jako ,,to-sor równa się tos-or'')
                 \begin{proof}
                     ,,Typ'' się zgadza, ponieważ obie strony są podzbiorami \(A \times D\).
                     \begin{equation*}
@@ -75,7 +76,7 @@ Relacje mają bardzo dużo różnych własności. Większość z~nich nie jest s
                                 \iff& a \in \lproj{R}
                         \end{split}
                     \end{equation*}
-                    Warto zauważyć, że trzy z~powyższych przejść są tylko implikacjami (bo zapominamy na przykład o~pewnych członach konjunkcji) i~nie jest to przypadek. Istotnie, zachodzi tylko inkluzja w~podaną stronę. Aby się o~tym przekonać możemy przyjąć
+                    Warto zauważyć, że trzy z~powyższych przejść są tylko implikacjami (bo zapominamy na przykład o~pewnych członach koniunkcji) i~nie jest to przypadek. Istotnie, zachodzi tylko inkluzja w~podaną stronę. Aby się o~tym przekonać możemy przyjąć
                     \begin{align*}
                         A &= \set{a}\\
                         B &= \set{b}\\
@@ -137,37 +138,38 @@ Relacje mają bardzo dużo różnych własności. Większość z~nich nie jest s
                 \begin{proof}
                     Zbyt skomplikowany, zdecydowanie wykracza poza materiał przedmiotu. Dlatego pomijamy.
                 \end{proof}
-            \item \(\pars{R \cup S} \composition T = \pars{R \composition T} \cup \pars{S \composition T}\)\qquad (rozdzielność złożenia względem sumy --- ,,rusot równa się rotusot'')
+            \item \(\pars{R \cup S} \composition T = \pars{R \composition T} \cup \pars{S \composition T}\)\\
+            (rozdzielność złożenia względem sumy --- ,,rusot równa się rotusot'')
                 \begin{proof}
                     \begin{equation*}
                         \begin{split}
                             \pars{a, c} \in \pars{R \cup S} \composition T
-                                \iff& \exists_{b \in B} \pars{\pars{a, b} \in T \land \pars{b, c} \in R \cup S}\\
-                                \iff& \exists_{b \in B} \pars{\pars{a, b} \in T \land \pars{\pars{b, c} \in R \lor \pars{b, c} \in S}}\\
-                                \iff& \exists_{b \in B} \pars{\pars{\pars{a, b} \in T \land \pars{b, c} \in R} \lor \pars{\pars{a, b} \in T \land \pars{b, c} \in S}}\\
-                                \iff& \pars{\exists_{b \in B} \pars{\pars{a, b} \in T \land \pars{b, c} \in R}}\\
-                                    &\lor \pars{\exists_{b \in B}\pars{\pars{a, b} \in T \land \pars{b, c} \in S}}\\
+                                \iff& \exists_{b \in B} \ \pars{\pars{a, b} \in T \land \pars{b, c} \in R \cup S}\\
+                                \iff& \exists_{b \in B} \ \pars{\pars{a, b} \in T \land \pars{\pars{b, c} \in R \lor \pars{b, c} \in S}}\\
+                                \iff& \exists_{b \in B} \ \pars{\pars{\pars{a, b} \in T \land \pars{b, c} \in R} \lor \pars{\pars{a, b} \in T \land \pars{b, c} \in S}}\\
+                                \iff& \pars{\exists_{b \in B} \ \pars{\pars{a, b} \in T \land \pars{b, c} \in R}}\\
+                                    &\lor \pars{\exists_{b \in B} \ \pars{\pars{a, b} \in T \land \pars{b, c} \in S}}\\
                                 \iff& \pars{a, c} \in \pars{R \composition T} \lor \pars{a, c} \in \pars{S \composition T}\\
                                 \iff& \pars{a, c} \in \pars{R \composition T} \cup \pars{S \composition T}
                         \end{split}
                     \end{equation*}
-                    Skorzystaliśmy tutaj z~rozdzielności konjunkcji względem alternatywy oraz rozbiliśmy kwantyfikator egzystencjonalny na alternatywie.
+                    Skorzystaliśmy tutaj z~rozdzielności koniunkcji względem alternatywy oraz rozbiliśmy kwantyfikator egzystencjonalny na alternatywie.
                 \end{proof}
             \item \(\pars{R \cap S} \composition T \subseteq \pars{R \composition T} \cap \pars{S \composition T}\)
                 \begin{proof}
                     \begin{equation*}
                         \begin{split}
                             \pars{a, c} \in \pars{R \cap S} \composition T
-                                \iff& \exists_{b \in B} \pars{\pars{a, b} \in T \land \pars{b, c} \in R \cap S}\\
-                                \iff& \exists_{b \in B} \pars{\pars{a, b} \in T \land \pars{\pars{b, c} \in R \land \pars{b, c} \in S}}\\
-                                \iff& \exists_{b \in B} \pars{\pars{\pars{a, b} \in T \land \pars{b, c} \in R} \land \pars{\pars{a, b} \in T \land \pars{b, c} \in S}}\\
-                                \implies& \pars{\exists_{b \in B} \pars{\pars{a, b} \in T \land \pars{b, c} \in R}}\\
-                                    &\land \pars{\exists_{b \in B}\pars{\pars{a, b} \in T \land \pars{b, c} \in S}}\\
+                                \iff& \exists_{b \in B} \ \pars{\pars{a, b} \in T \land \pars{b, c} \in R \cap S}\\
+                                \iff& \exists_{b \in B} \ \pars{\pars{a, b} \in T \land \pars{\pars{b, c} \in R \land \pars{b, c} \in S}}\\
+                                \iff& \exists_{b \in B} \ \pars{\pars{\pars{a, b} \in T \land \pars{b, c} \in R} \land \pars{\pars{a, b} \in T \land \pars{b, c} \in S}}\\
+                                \implies& \pars{\exists_{b \in B} \ \pars{\pars{a, b} \in T \land \pars{b, c} \in R}}\\
+                                    &\land \pars{\exists_{b \in B} \ \pars{\pars{a, b} \in T \land \pars{b, c} \in S}}\\
                                 \iff& \pars{a, c} \in \pars{R \composition T} \land \pars{a, c} \in \pars{S \composition T}\\
                                 \iff& \pars{a, c} \in \pars{R \composition T} \cap \pars{S \composition T}
                         \end{split}
                     \end{equation*}
-                    Skorzystaliśmy tutaj z~rozdzielności konjunkcji względem niej samej oraz rozbiliśmy kwantyfikator egzystencjonalny --- tym razem na konjunkcji, więc przejście działa tylko w~jedną stronę.
+                    Skorzystaliśmy tutaj z~rozdzielności koijunkcji względem niej samej oraz rozbiliśmy kwantyfikator egzystencjonalny --- tym razem na koniunkcji, więc przejście działa tylko w~jedną stronę.
                 \end{proof}
         \end{itemize}
 \end{description}

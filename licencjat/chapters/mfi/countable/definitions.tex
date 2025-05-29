@@ -1,0 +1,32 @@
+Krótkie przypomnienie, czym są zbiory skończone.
+\begin{definition}[Zbiór skończony]
+    Zbiór \( X \) nazywamy skończonym, gdy \( X \sim_{m} n \) dla pewnej liczby naturalnej \( n \). \\
+    Zbiór \( X \) nazywamy nieskończonym, gdy \( X \) nie jest skończony.
+\end{definition}
+Wynikają z tego, że jeśli zbiór \( A \) jest skończony i \( B \subset A \), to \( B \) też jest skończony.
+
+\begin{definition}[Zbiór przeliczalny]
+    Zbiór \( X \) jest przeliczalny, gdy \( X \sim_{m} N_0 \) dla pewnego \( N_0 \subset \natural \).
+\end{definition}
+\begin{theorem}
+    Zbiór \( X \) jest przeliczalny wtedy i tylko wtedy, gdy \( X \) jest skończony lub równoliczny z \( \natural \).
+\end{theorem}
+\begin{proof}
+    Jeśli zbiór \( X \) jest skończony, czyli \( X \sim_{m} n \in \natural \) lub jest równoliczny z \( \natural \), to niewątpliwie jest równoliczny z jakimś podzbiorem \( \natural \), co z definicji oznacza, że jest przeliczalny.
+    
+    Załóżmy, że \( X \sim_{m} N_0 \subset \natural \). Jeśli zbiór \( N_0 \) jest skończony, to \( X \) też jest skończony z przechodniości relacji równoliczności (patrz: Podrozdział \ref{mfi:equinumerosity}).
+    Jeśli \( N_0 \) jest nieskończony, to jest on równoliczny z \( \natural \), więc ponownie z przechodniości relacji równoliczności, \( X \) jest równoliczny z \( \natural \).
+\end{proof}
+
+\begin{lemma}
+    \label{lemma:countable-properties}
+    Własności zbiorów przeliczalnych:
+    \begin{enumerate}
+        \item Podzbiór zbioru przeliczalnego jest przeliczalny.
+        \item Suma zbiorów przeliczalnych jest przeliczalna.
+        \item Iloczyn kartezjański zbiorów przeliczalnych jest przeliczalny.
+        \item Zbiór \( \natural^k \) dla \( k \geq 1 \) jest przeliczalny.
+        \item Dla skończonej rodziny zbiorów przeliczalnych \( x \in \powerset(\powerset(X)) \) zbiór \( \prod x \) jest przeliczalny.
+        \item Dla zbioru przeliczalnego \( X \) jego rozkład \( r \in \powerset(\powerset(X)) \) jest przeliczalny.
+    \end{enumerate}
+\end{lemma}

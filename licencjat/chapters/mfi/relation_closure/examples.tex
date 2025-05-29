@@ -1,0 +1,20 @@
+\subsection{Domykanie relacji ze względu własności}
+Z definicji domknięcia łatwo wyprowadzić poniższe fakty dla relacji \( R \subset X^2 \):
+\begin{itemize}
+    \item Domknięciem zwrotnym relacji \( R \) jest \( R \cup 1_X \).
+    \item Domknięciem symetrycznym relacji \( R \) jest \( R \cup R^{-1} \).
+    \item Domknięciem przechodnim relacji \( R \) jest \( R^{*} = \bigcup\set{R^i \colon i > 0} \).
+\end{itemize}
+Zwrotność, symetryczność i przechodniość są więc przykładami własności, na które istnieją domknięcia.
+
+Przykładem takiej, na które nie istnieją może być asymetryczność:
+\[
+    (a, b) \in R \implies (b, a) \notin R
+\]
+Jeśli relacja \( R \) nie jest asymetryczna, to istnieją pewne \( a, b \) takie, że \( (a, b), (b, a) \in R \).
+Przywrócenie asymetryczności wymagałoby usunięcia jednej z par z \( S \), a wtedy \( R \not\subset S \), co jest niezgodne z definicją domknięcia.
+Podobnie działa to w przypadku antysymetryczności:
+\[
+    (a, b) \in R \land (b, a) \in R \implies a = b,
+\]
+antyzwrotności i acykliczności.

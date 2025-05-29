@@ -1,0 +1,56 @@
+W konstrukcji liczb rzeczywistych pojawia się pojęcie ciągów Cauchy'ego, znane dobrze z analizy matematycznej.
+\begin{definition}[Ciąg Cauchy'ego]
+    Ciagiem Cauchy'ego zbioru A nazywamy każdy taki ciag (czyli funkcję) \( a : \natural \rightarrow A \), który spełnia warunek (Cauchy'ego):
+    \[
+        \forall_{A \ni \eps > 0} \ \exists_{n_0 \in \natural} \ \forall_{p,k \in \natural} \ p,k > n_0 \implies \abs{a_p - a_k} < \eps
+    \]
+\end{definition}
+Dodatkowo każdy ciąg Cauchy'ego jest ograniczony, czyli
+\[
+    \exists_{M > 0} \ \forall_{n \in \natural} \ \abs{a_n} < M
+\]
+
+\begin{definition}
+    Na zbiorze ciągów Cauchy'ego \( X = \set{a : \natural \rightarrow \rational \mid a \text{ jest ciągiem Cauchy'ego }} \) określamy relację, w której \( a \simeq b \), gdy:
+    \[
+        \forall_{\eps > 0} \ \exists_{n_0 \in \natural} \ \forall_{n \in \natural} \ n > n_0 \implies \abs{a_n - b_n} < \eps
+    \]
+\end{definition}
+\begin{lemma}
+    Relacja \( \simeq \) jest relacją równoważności.
+\end{lemma}
+\begin{proof}
+
+    Zwrotność i symetryczność relacji są oczywiste, pozostaje wykazać przechodniość. 
+    
+    Jeśli \( a \simeq b \) oraz \( b \simeq c \), to:
+    \[
+        \forall_{\eps > 0} \ \exists_{n_1 \in \natural} \ \forall_{n \in \natural} \ (n > n_1 \implies \abs{a_n - b_n} < \eps)
+    \]
+    \[
+        \forall_{\eps > 0} \ \exists_{n_2 \in \natural} \ \forall_{n \in \natural} \ (n > n_2 \implies \abs{b_n - c_n} < \eps)
+    \]
+    Dla ustalonego \( \eps > 0 \) dobieramy liczby \( n_1, n_2 \leq \frac{\eps}{2} \). Dla \( n_1, n_2 < n \) otrzymujemy nierówności \( |a_n - b_n| < \eps / 2 \) i \( |b_n - c_n| < \eps / 2 \).
+    Zatem dla \( n > \max(n_1, n_2) \) zachodzi \( |a_n - b_n| < \eps / 2 \) i \( |b_n - c_n| < \eps / 2 \). Korzystając z nierówności trójkąta, mamy:
+    \[
+        \forall_{\natural \ni n > n_1} \ \abs{a_n - b_n} < \frac{\eps}{2}
+    \]
+    \[
+        \forall_{\natural \ni n > n_2} \ \abs{b_n - c_n} < \frac{\eps}{2}
+    \]
+    Połączenie tych nierówności daje
+    \[
+        \abs{a_n - c_n} \leq \abs{a_n - b_n} + \abs{b_n - c_n} < \frac{\eps}{2} + \frac{\eps}{2} = \eps,
+    \]
+    co dowodzi przechodniości relacji \( \simeq \).
+\end{proof}
+                        
+Czas na definicję liczb rzeczywistych według George'a Cantora:
+\begin{definition}[Zbiór liczb rzeczywistych]
+    Zbiór liczb rzeczywistych \( \real \) definiujemy jako zbiór \( X/\simeq \).    
+\end{definition}
+Działania na tym zbiorze są określone następująco:
+\begin{itemize}
+    \item dodawanie: \( [a]_{\simeq} + [b]_{\simeq} = [a + b]_{\simeq} \)
+    \item mnożenie: \( [a]_{\simeq} \cdot [b]_{\simeq} = [a \cdot b]_{\simeq} \)
+\end{itemize}

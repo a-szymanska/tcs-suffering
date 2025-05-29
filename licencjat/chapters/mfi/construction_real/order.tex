@@ -1,0 +1,37 @@
+\begin{definition}[Porządek na \( \real \)]
+    Relacja \( [a]_{\simeq} < [b]_{\simeq} \) na zbiorze liczb rzeczywistych \( \real \) jest zdefiniowana jako:
+    \[
+        \exists_{\eps \in \rational^{+}} \ \exists_{n_0 \in \natural} \ \forall_{n > n_0} \ a_n + \eps < b_n
+    \]
+\end{definition}
+Tak zdefiniowaną relację można łatwo uogólnić na słaby porządek \( [a]_{\simeq} \leq [b]_{\simeq} \), gdy \( [a]_{\simeq} < [b]_{\simeq} \) lub \( [a]_{\simeq} = [b]_{\simeq} \).
+
+\begin{theorem}
+    Relacja \( < \) określona na \( \real \) nie zależy od wyboru reprezentantów klasy i~jest relacją porządku liniowego.
+\end{theorem}
+\begin{proof}
+    Pierwsza część wypowiedzi wynika z tego, że \( \simeq \) jest relacją równoważności.
+
+    Dla udowodnienia, że tak określony porządek jest liniowy, pokażemy dla dowolne dwa ciągi Cauchy'ego \( a \) i \( b \) są porównywalne, czyli
+    \( [a]_{\sim} = [b]_{\sim} \), \( [a]_{\sim} < [b]_{\sim} \) albo \( [a]_{\sim} > [b]_{\sim} \).
+    Załóżmy, że \( [a]_{\sim} \ne [b]_{\sim} \). Oznacza to, że:
+    \[
+        \exists_{\eps > 0} \ \forall_{n \in \natural} \ \exists_{p \in \natural} \ p > n \land \abs{a_p - b_p} \geq \eps
+    \]
+    Dla tego istniejącego \( \eps > 0 \) dobieramy takie \( n_a, n_b \) dla ciągów \( a, b \), żeby spełnione było:
+    \[
+        \forall_{p, k > \max(n_a, n_b)} \ \abs{a_p - a_k} < \frac{\eps}{3} \land \abs{b_p - b_k} < \frac{\eps}{3}
+    \]
+    Wynika z tego, że istnieje \( n > \max(n_a, n_b) \) takie, że \( \abs{a_n - b_n} \geq \eps \). Bez straty ogólności możemy założyć, że \( a_n < b_n \).
+    Dla ustalonego \( \eps \) oraz dowolnego \( k > n \) możemy dopasować takie liczby \( n_a \) i \( n_b \), dla których zachodzi:
+    \begin{align}
+        a_n + \eps \leq b_n \\
+        a_k - \frac{\eps}{3} < a_n + \frac{\eps}{3} \\
+        b_k - \frac{\eps}{3} < b_n + \frac{\eps}{3}.
+    \end{align}
+\end{proof}
+Zatem od \( n \)-tego wyrazu liczba \( \frac{\eps}{3} \in \rational \) rozdziela ciągi \( a \) i  \( b \):
+\[
+    a_k + \frac{\eps}{3} < a_n + \frac{2\eps}{3} \leq b_n - \frac{\eps}{3} < b_k,
+\]
+czyli są one porównywalne.

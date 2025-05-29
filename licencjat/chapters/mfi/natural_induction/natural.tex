@@ -1,0 +1,51 @@
+\begin{definition}[Następnik]
+    Następnikiem zbioru \( x \) nazywamy \( x \cup \set{x} \) oznaczany przez \( x' \).
+\end{definition}
+
+\begin{definition}[Zbiór induktywny]
+    Każdy zbiór \( x \) spełniający aksjomat nieskończoności:
+    \[
+        \exists_x \ (\emptyset \in x \lor \forall_y (y \in x \implies y' \in x))
+    \]
+    nazywamy zbiorem induktywnym.
+\end{definition}
+
+Powyższe definicje prowadzą nas do konstrukcji von Neumanna liczb naturalnych.
+\begin{definition}[Liczby naturalne]
+    Istnieje najmniejszy zbiór induktywny i jest on jedyny. Oznaczamy go przez \( \natural \), a jego elementy nazywamy liczbami naturalnymi.
+\end{definition}
+
+Liczby naturalne mają bardzo ładne własności.
+\begin{lemma}
+    Dla dowolnych liczb naturalnych \( n, m \in \natural \) zachodzi:
+    \begin{enumerate}
+        \item jeżeli \( m \in n \), to \( m \subset n \)
+        \item \( n \notin n \)
+        \item jeżeli \( m' = n' \), to \( m = n \)
+        \item jeżeli \( m \subset n \) oraz \( m \ne n \), to \( m \in n \)
+        \item \( m \subset n \) lub \( n \subset m \)
+        \item \( m = n \) albo \( m \in n \) albo \( n \in m \)
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \textit{\\Punkt 3}\\
+    Załóżmy nie wprost, że \( m' = n' \) i \( m \ne n \). Z równości następników wiemy, że \( m \in m' \) oraz~\( m \in n \cup \set{n} \).
+    Skoro \( m \ne n \), to zachodzi \( m \in n \), czyli \( m \subset n \) (punkt 4, udowodniony tuż poniżej). Z symetrii również \( n \subset m \), co prowadzi do sprzeczności z tym, że \( n \ne m \).
+
+    \textit{Punkt 4}\\
+    Dowodzimy indukcją po \( n \). Definiujemy zbiór: \( X = \set{n \in \natural : \forall_{m \in \natural} \ m \subset n \land m \ne n \implies m \in n} \). Ponieważ \( \emptyset \in X \), pozostaje wykazać, że jeśli \( n \in X \), to \( n' \in X \).
+    Dla dowolnego \( m \in \natural \), które spełnia \( m \subset n' \land m \ne n' \), z założenia indukcyjnego wiemy, że \( msubset n \cup \set{n} \).
+    Rozważamy osobno dwa przypadki. Jeśli \( m \subset n \), to albo \( m = n \), więc \( m = n \in n' \), co dowodzi kroku indukcyjnego, albo \( m \ne n \). Wtedy na mocy założenia zachodzi \( m \in n \), zatem  \( m \in n' \).
+    Jeżeli \( m \not\subset n \), z punktu 5 wynika, że \( n \subset m \subset n \cup \set{n} = n' \). Jednak wtedy \( m \ne n \) i \( m \ne n' \), co daje sprzeczność, więc \( m \subset n \).
+
+    \textit{Punkt 5}\\
+    Dowodzimy indukcją po \( n \). Definiujemy zbiór \( X = \set{n \in \natural : \forall_{m \in \natural} \ n \subset m \lor m \susbet n} \).
+    Niewątpliwie \( \emptyset \in X \), ponieważ \( \emptyset \subset m \) dla dowolnego \( m \in \natural \). Zakładając, że \( n \in X \), dowodzimy, dla następnik \( n \) również jest w \( X \).
+    Dla dowolnego \( m \in \natural \) na mocy założenia indukcyjnego zachodzi \( m \subset n \lor n \susbet m \). Jeśli \( m \subset n \), to \( m \subset n \), czyli \( n' \in X \).
+    Jeśli \( n \subset m \), to albo \( m = n \subset n' \), albo \( m \ne n \), czyli \( n \in m \) na mocy punktu 4. Wtedy musi zachodzić \( n \cup \set{n} \subset m \), więc również \( n' \in X \).
+
+    \textit{Punkt 6}\\
+    Ustalmy liczby \( m, n \in \natural \). Z punktu 5 wiemy, że \( n \subset m \) lub \( m \susbet n \). Jeśli \( n \ne m \) to \( n \in m \) oraz \( m \in n \), co wynika z inkluzji.
+    Z punktu 5 wynika \( m \in n \subset m \), zatem \( m \in m \), co daje sprzeczność. Te dwa przypadki nie mogą więc wystąpić naraz. Z aksjomatu regularności jasno wynika, że \( n = m \) również jest niemożliwe w parze z którymś z tych warunków, ponieważ żaden zbiór nie jest swoim elementem.
+    Dowodzi to, że dla dowolnych liczb naturalnych spełniony jest dokładnie jeden z trzech warunków.
+\end{proof}
