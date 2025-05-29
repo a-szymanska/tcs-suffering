@@ -1,0 +1,26 @@
+\begin{definition}[Domknięcie relacji]
+    Relacja \( S \subset X^2 \) jest domknięciem relacji \( R \subset X^2 \) w~klasie relacji \( \alpha \), gdy:
+    \begin{enumerate}
+        \item \( R \subset S \)
+        \item \( S \in \alpha \)
+        \item jeśli \( R \subset T \) oraz \( T \in \alpha \), to \( S \subset T \)
+    \end{enumerate}
+\end{definition}
+Powyższa definicja mówi, że domknięcie relacji \( R \) ze względu na pewną własność to relacja powstała przez dodanie minimalnej
+liczby elementów do \( R \), tak żeby ta własność była spełniona.
+
+Domknięcie relacji (w dowolnej klasie \( \alpha \)), jeśli tylko istnieje, to jest jedyne.
+
+\begin{definition}[Zamkniętość na przecięcia]
+    Rodzina relacji \( \alpha \in \powerset\pars{\powerset\pars{X^2}} \) jest zamknięta na przecięcia, gdy:
+    \begin{enumerate}
+        \item \( X^2 \in \alpha \)
+        \item jeśli \( \alpha' \neq \emptyset \) i \( \alpha' \subset \alpha \), to \( \bigcap \alpha' \in \alpha \)
+    \end{enumerate}
+\end{definition}
+
+Poniższe stwierdzenia są równoważne:
+\begin{enumerate}
+    \item Klasa relacji \( \alpha \) jest domknięta na przecięcia.
+    \item Każda relacja \( R \) ma domknięcie w klasie \( \alpha \).
+\end{enumerate}

@@ -1,0 +1,61 @@
+Na podstawie przedstawionej konstrukcji liczb rzeczywistych, możemy zdefiniować metodę rozwijania dowolnej liczby \( 0 \leq x < 1 \) w ciąg zero-jedynkowy, który nazywamy po prostu rozwinięciem \( x \) przy podstawie 2. Formalnie:
+\begin{theorem}
+    Dla każdej liczby rzeczywistej \( 0 \leq x < 1 \) istnieje ciąg \( a \in 2^{\natural} \), którego ciąg sum częściowych \( b : \natural \rightarrow \rational \) zdefiniowany jako \( b_k = \sum_{i=0}^{k} \frac{a_i}{2^{i+1}} \) spełnia warunki:
+    \begin{enumerate}
+        \item \( b \) jest ciągiem Cauchy'ego
+        \item \( [b]_{\simeq} = x \) (czyli \( b \in x \))
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \textit{Ciąg \( b \) jest Cauchy'ego.} \\
+    Konstruujemy ciąg \( a \) (rozwinięcie dwójkowe \( x \)) oraz równolegle ciąg \( b \) zadany następującym wzorem:
+    \[
+        b_k = \sum_{i=0}^{k} \frac{a_i}{2^{i+1}}
+    \]
+    Zaczynamy od \( a_0 = \lfloor x \rceil \). Załóżmy, że znamy już ciąg aż do \( (k-1) \)-szego wyrazu. Wtedy definiujemy wyraz \( k \) jako:
+    \begin{align}
+        a_k = 1, \text{ jeśli } b_{k-1} + \frac{1}{2^{k+1}} \leq x \\
+        a_k = 0, \text{ jeśli } b_{k-1} + \frac{1}{2^{k+1}} > x
+    \end{align}
+    W każdym kroku sprawdzamy, czy \( x \) znajduje się w lewej czy w prawej połowie przedziału i w zależności od tego ustalamy wartość \( a_k \).
+    Analogiczna konstrukcja zadziała przy dowolnej innej podstawie \( p \geq 2 \). Wtedy dzielimy przedział na \( p \) części i przypisujemy wartość \( a_k \in \set{0, \dots, p-1} \).
+
+    Z naszej indukcyjnej konstrukcji wynika, że dla każdego \( k \) zachodzi:
+    \[
+        b_k \leq x \leq b_k + \frac{1}{2^{k+1}}
+    \]
+    Zatem \( b \) jest ciągiem Cauchy'ego.
+
+    \textit{\( [b]_{\simeq} = x \)} \\
+    Niech \( c \) będzie dowolnym ciągiem Cauchy'ego, który wyznacza liczbę \( x \), czyli \( [c]_{\simeq} = x \).
+    Ustalamy \( \eps > 0 \) i dobieramy tak duże \( k \), żeby \( \frac{1}{2^{k+1}} < \eps \). Stąd ciągi \( b, \ c \) są równoważne.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    Ciąg \( a \) będący rozwinięciem liczby \( 0 \leq x < 1, \ x \in \real \) zawsze spełnia
+    \[ \forall_{k} \ \exists_{n > k} \ a_n = 0 \]
+\end{theorem}
+\begin{proof}
+    Dla dowodu nie wprost załóżmy, że 
+    \[ \exists_{k} \ \forall_{n > k} \ a_n = 1 \]
+    Wybieramy najmniejsze takie \( k \), oznaczmy je przez \( k_0 \). Mamy więc rozwinięcie \( a_0 \dots a_{k_0-1}0111\dots \). Ponieważ \( x \) spełnia
+    \[
+    b_k \leq x \leq b_k + \frac{1}{2^{k+1}},
+    \]
+    to zachodzi
+    \[
+    b_{k_0 - 1} + \frac{1}{2^{k_0 + 2}} + \ldots + \frac{1}{2^{k_0 + n + 1}} \leq x \leq b_{k_0 - 1} + \frac{1}{2^{k_0 + 2}} + \ldots + \frac{1}{2^{k_0 + n + 1}} + \frac{1}{2^{k_0n + 1}}
+    \]
+    dla \( x = b_{k_0 - 1} + \frac{1}{2^{k_0+1}} \). Jednak to rozwinięcie jest postaci \( a_0 \dots a_{k_0-1}1000\dots \) i nasza procedura znajdzie właśnie takie.
+\end{proof}
+
+To prowadzi do fundamentalnego twierdzenia, z którego wynika, że \( \real \sim 2^{\natural} \).
+\begin{theorem}
+    Istnieje bijekcja pomiędzy odcinkiem \([0; 1) \subset \real \) a zbiorem \linebreak \( \set{a \in 2^{\natural} : \forall_{k} \ \exists_{n > k} \ a_n = 0} \).
+\end{theorem}
+\begin{proof}
+    Skorzystamy z istnienia funkcji \( f : [0, 1) \rightarrow 2^{\natural} \) opisanej powyżej. Niech \( x, y \in [0, 1) \) oraz \( x < y \).
+    Mamy \( f(x) = a, \ f(y) = a' \) o ciągach sum częściowych odpowiednio \( b, \ b' \). Wtedy \( [b]_{\simeq} = x, \ [b']_{\simeq} = y \).
+    Ciągi \( b, \ b' \) muszą być różne, ponieważ \( x \neq y \). Zatem ciągi rozwinięć \( a, \ a' \) też muszą być różne.
+\end{proof}

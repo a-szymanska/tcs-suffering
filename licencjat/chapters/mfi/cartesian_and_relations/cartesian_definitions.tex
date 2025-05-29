@@ -3,14 +3,14 @@ Aby zdefiniować iloczyn kartezjański, będziemy musieli skorzystać z~paru aks
     \item aksjomat pary nieuporządkowanej
     \item aksjomat zbioru potęgowego
 \end{itemize}
-Potrzebujemy też następującej definicji.
+Potrzebujemy też następującej definicji:
 \begin{definition}[Para uporządkowana]
-\label{mfi:cartesian_and_relations:cartesian_definitions:def:ordered_pair}
-\textbf{Parą uporządkowaną} \(\pars{a, b}\) nazywamy zbiór
-\begin{equation*}
-    \set{\set{a}, \set{a, b}}
-\end{equation*}
-Intuicyjnie, doubleton podaje elementy pary bez porządku, natomiast singleton ustala, który element jest pierwszy.
+    \label{mfi:cartesian_and_relations:cartesian_definitions:def:ordered_pair}
+    \textbf{Parą uporządkowaną} \(\pars{a, b}\) nazywamy zbiór
+    \begin{equation*}
+        \set{\set{a}, \set{a, b}}
+    \end{equation*}
+    Intuicyjnie, doubleton podaje elementy pary bez porządku, natomiast singleton ustala, który element jest pierwszy.
 \end{definition}
 Warto przy tej okazji zastanowić się, gdzie żyją pary uporządkowane, których pierwszy element pochodzi z~\(x\), a~drugi z~\(y\).
 \begin{align*}
@@ -21,9 +21,9 @@ Warto przy tej okazji zastanowić się, gdzie żyją pary uporządkowane, który
 \end{align*}
 To wystarcza nam, aby zdefiniować iloczyn kartezjański.
 \begin{definition}[Iloczyn kartezjański]
-\textbf{Iloczynem kartezjańskim} zbiorów \(x\), \(y\)~nazywamy zbiór
-\begin{equation*}
-    x \times y = \set{z \in \powerset\pars{\powerset\pars{x \cup y}} : \exists_{a \in x}\exists_{b \in y} \pars{a, b} = z}
-\end{equation*}
-Intuicyjnie, ze świata, w~którym żyją pary uporządkowane, wybieramy te elementy, które faktycznie są parami uporządkowanymi (bo mogą tam też być inne ,,śmieci'') oraz na pierwszej pozycji mają coś ze zbioru~\(x\), a~na drugiej coś ze zbioru~\(y\).
+    \textbf{Iloczynem kartezjańskim} zbiorów \(x\), \(y\)~nazywamy zbiór
+    \begin{equation*}
+        x \times y = \set{z \in \powerset\pars{\powerset\pars{x \cup y}} : \exists_{a \in x} \ \exists_{b \in y} \ \pars{a, b} = z}
+    \end{equation*}
+    Intuicyjnie, ze świata, w~którym żyją pary uporządkowane, wybieramy te elementy, które faktycznie są parami uporządkowanymi (bo mogą tam też być inne ,,śmieci'') oraz na pierwszej pozycji mają coś ze zbioru~\(x\), a~na drugiej coś ze zbioru~\(y\).
 \end{definition}
