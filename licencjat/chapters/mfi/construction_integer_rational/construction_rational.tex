@@ -1,0 +1,27 @@
+\begin{definition}[Liczby wymierne]
+    Niech relacja \( \sim \) będzie określona na \( \integer \times \integer^{*} \) następująco:
+    \[
+        (a, b) \approx (c, d) \iff a \cdot d = c \cdot b
+    \]
+    Zbiorem liczb wymiernych nazywamy \( \rational = \integer \times \integer^{*} /\!\sim \).
+\end{definition}
+Parę \( (a, b) \) można rozumieć jako liczbę \( \frac{a}{b} \).
+
+Operacje na liczba wymiernych:
+\begin{itemize}
+    \item element przeciwny: \( -[(a, b)]\!\sim = [(-a, b)]\!\sim \)
+    \item dodawanie: \( [(a, b)]\!\sim + [(c, d)]\!\sim = [(ad + bc, bd)]\!\sim \)
+    \item odejmowanie: \( [(a, b)]\!\sim - [(c, d)]\!\sim = [(ad - bc, bd)]\!\sim \)
+    \item mnożenie: \( [(a, b)]\!\sim \cdot\: [(c, d)]\!\sim = [(ac, bd)]\!\sim \)
+    \item dzielenie: \( [(a, b)]\!\sim \:: [(c, d)]\!\sim = [(ad, bc)]\!\sim \), gdy \( [(c, d)]\!\sim \:\ne [(0, d)]\!\sim \)
+\end{itemize}
+
+
+Podobnie jak poprzednio możemy włożyć \( \integer \) w \( \rational \). Określamy funkcję \( j : \integer \rightarrow \rational \) zdefiniowaną przez \( j(a) = [(a, 1)]\!\sim \).
+Funkcja jest iniektywna i zachowuje własności działań:
+\begin{itemize}
+    \item \( j(a + b) = j(a) + j(b) \)
+    \item \( j(a - b) = j(a) - j(b) \)
+    \item \( j(a \cdot b) = j(a) \cdot j(b) \)
+\end{itemize}
+W ten sposób utożsamiamy liczbę całkowitą \( x \) z odpowiadającą jej liczbą wymierną \( j(x) \).

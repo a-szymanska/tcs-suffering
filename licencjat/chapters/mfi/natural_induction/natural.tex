@@ -5,7 +5,7 @@
 \begin{definition}[Zbiór induktywny]
     Każdy zbiór \( x \) spełniający aksjomat nieskończoności:
     \[
-        \exists_x \ (\emptyset \in x \lor \forall_y (y \in x \implies y' \in x))
+        \exists_x \ (\emptyset \in x \land \forall_y (y \in x \implies y' \in x))
     \]
     nazywamy zbiorem induktywnym.
 \end{definition}
@@ -28,21 +28,29 @@ Liczby naturalne mają bardzo ładne własności.
     \end{enumerate}
 \end{lemma}
 \begin{proof}
-    \textit{\\Punkt 3}\\
+    \textit{\\Punkt 1}\\
+    Dowodzimy indukcją po \( n \). Definiujemy zbiór: \( P = \set{m \in \natural : \forall_{m \in \natural} \ m \in n \implies m \subset n} \). Niewątpliwie \( \emptyset \in P \). Niech \( n \in P \), chcemy pokazać, że \( n' \in P \).
+    Dla \( m \in n' \) rozważamy dwa przypadki. Jeśli \( m \in n \), to \( m \in n \cup n' \), czyli \( m \subset n' \). Jeśli \( m \in \set{n} \), to \( m = n \), więc \( m \subset n' \).
+    
+    \textit{Punkt 2}\\
+    Dowodzimy indukcją po \( n \). Definiujemy zbiór: \( P = \set{n \in \natural : n \notin n} \). Oczywiście \( \emptyset \in P \). Załóżmy nie wprost, że \( n \in P \) oraz \( n' \in n \cup \set{n} \).
+    Jeśli \( n' \in n \), to \( n' = n \cup \set{n} \subset n \), czyli \( n \in n \), co jest sprzeczne z aksjomatem regularności. Pozostaje drugi przypadek, czyli \( n' \in \set{n} \). Oznacza to, że \( n' = n \), więc \( n \cup \set{n}  = n \), co ponownie prowadzi do sprzeczności \( n \in n \).
+
+    \textit{Punkt 3}\\
     Załóżmy nie wprost, że \( m' = n' \) i \( m \ne n \). Z równości następników wiemy, że \( m \in m' \) oraz~\( m \in n \cup \set{n} \).
     Skoro \( m \ne n \), to zachodzi \( m \in n \), czyli \( m \subset n \) (punkt 4, udowodniony tuż poniżej). Z symetrii również \( n \subset m \), co prowadzi do sprzeczności z tym, że \( n \ne m \).
 
     \textit{Punkt 4}\\
-    Dowodzimy indukcją po \( n \). Definiujemy zbiór: \( X = \set{n \in \natural : \forall_{m \in \natural} \ m \subset n \land m \ne n \implies m \in n} \). Ponieważ \( \emptyset \in X \), pozostaje wykazać, że jeśli \( n \in X \), to \( n' \in X \).
-    Dla dowolnego \( m \in \natural \), które spełnia \( m \subset n' \land m \ne n' \), z założenia indukcyjnego wiemy, że \( msubset n \cup \set{n} \).
-    Rozważamy osobno dwa przypadki. Jeśli \( m \subset n \), to albo \( m = n \), więc \( m = n \in n' \), co dowodzi kroku indukcyjnego, albo \( m \ne n \). Wtedy na mocy założenia zachodzi \( m \in n \), zatem  \( m \in n' \).
+    Dowodzimy indukcją po \( n \). Definiujemy zbiór: \( P = \set{n \in \natural : \forall_{m \in \natural} \ m \subset n \land m \ne n \implies m \in n} \). Ponieważ \( \emptyset \in P \), pozostaje wykazać, że jeśli \( n \in P \), to \( n' \in P \).
+    Dla dowolnego \( m \in \natural \), które spełnia \( m \subset n' \land m \ne n' \), z założenia indukcyjnego wiemy, że \( m \subset n \cup \set{n} \).
+    Rozważamy osobno dwa przypadki. Jeśli \( m \subset n \), to albo \( m = n \in n' \), co dowodzi kroku indukcyjnego, albo \( m \ne n \). Wtedy na mocy założenia zachodzi \( m \in n \), więc  \( m \in n' \).
     Jeżeli \( m \not\subset n \), z punktu 5 wynika, że \( n \subset m \subset n \cup \set{n} = n' \). Jednak wtedy \( m \ne n \) i \( m \ne n' \), co daje sprzeczność, więc \( m \subset n \).
 
     \textit{Punkt 5}\\
-    Dowodzimy indukcją po \( n \). Definiujemy zbiór \( X = \set{n \in \natural : \forall_{m \in \natural} \ n \subset m \lor m \susbet n} \).
-    Niewątpliwie \( \emptyset \in X \), ponieważ \( \emptyset \subset m \) dla dowolnego \( m \in \natural \). Zakładając, że \( n \in X \), dowodzimy, dla następnik \( n \) również jest w \( X \).
-    Dla dowolnego \( m \in \natural \) na mocy założenia indukcyjnego zachodzi \( m \subset n \lor n \susbet m \). Jeśli \( m \subset n \), to \( m \subset n \), czyli \( n' \in X \).
-    Jeśli \( n \subset m \), to albo \( m = n \subset n' \), albo \( m \ne n \), czyli \( n \in m \) na mocy punktu 4. Wtedy musi zachodzić \( n \cup \set{n} \subset m \), więc również \( n' \in X \).
+    Dowodzimy indukcją po \( n \). Definiujemy zbiór \( P = \set{n \in \natural : \forall_{m \in \natural} \ n \subset m \lor m \subset n} \).
+    Niewątpliwie \( \emptyset \in P \), ponieważ \( \emptyset \subset m \) dla dowolnego \( m \in \natural \). Zakładając, że \( n \in P \), dowodzimy, dla następnik \( n \) również jest w \( P \).
+    Dla dowolnego \( m \in \natural \) na mocy założenia indukcyjnego zachodzi \( m \subset n \lor n \susbet m \). Jeśli \( m \subset n \), to \( m \subset n \), czyli \( n' \in P \).
+    Jeśli \( n \subset m \), to albo \( m = n \subset n' \), albo \( m \ne n \), czyli \( n \in m \) na mocy punktu 4. Wtedy musi zachodzić \( n \cup \set{n} \subset m \), więc również \( n' \in P \).
 
     \textit{Punkt 6}\\
     Ustalmy liczby \( m, n \in \natural \). Z punktu 5 wiemy, że \( n \subset m \) lub \( m \susbet n \). Jeśli \( n \ne m \) to \( n \in m \) oraz \( m \in n \), co wynika z inkluzji.

@@ -1,0 +1,35 @@
+\begin{theorem}[Definiowanie przez schemat rekursji prostej]
+    Niech \( A, Z \) będą zbiorami. Niech \( g : A \rightarrow B \) oraz niech \( h : B \times \natural \times A \rightarrow B \).
+    Wtedy istnieje dokładnie jedna funkcja \( f : \natural \times A \rightarrow B \) taka, że: \\
+    \( f(0, a) = g(a) \) \\
+    \( f(n', a) = h(f(n, a), n, a) \)
+\end{theorem}
+\begin{proof}
+    Definiujemy zbiór:
+    \[
+        P = \set{n \in \natural : \exists_{\tilde{f_n}} \ \tilde{f_n} : n' \times A \rightarrow B \land (\ast)},
+    \]
+    gdzie \( (\ast) \) oznacza własności: \\
+    \( \forall_{a \in A} \ \tilde{f_n}(0, a) = g(a) \), \\
+    \( \forall_{k < n} \ \forall_{a \in A} \ \tilde{f_n}(k', a) = h(\tilde{f_n}(k, a), k, a) \). \\
+    Przypadek bazowy \( 0 \in P \) działa, pownieważ \( \tilde{f_0}(0, a) = g(a) \). Zakładając, że \( n \in P \), chcemy znaleźć funkcję \( \tilde{f_{n'}} : n'' \times A \rightarrow B \).
+    Z faktu, że \( n'' = n' \cup \set{n} \), wynika że \( \tilde{f_{n'}}(0, a) = g(a) \). Drugi warunek jest spełniony w następujący sposób:
+    \[
+        \tilde{f_{n'}} = \tilde{f_n} \cup \set{\pars{(n', a), h((\tilde{f_n}(n, a), n, a))}}
+    \]
+    Skoro dla dowolnego \( n \in \natural \) można znaleźć funkcję \( \tilde{f_n} \), która spełnia warunki, to~\( P =  \natural \). Dowodzi to, że funkcja \( f = \bigcup \tilde{f_n} \) istnieje i jest jedyna.
+\end{proof}
+
+Przykłady definiowania operacji przez indukcję:
+\begin{itemize}
+    \item Dodawanie: \\
+    \( A = B = \natural \) \\
+    \( g = 1_{\natural} \) \\
+    \( h : \natural^3 \rightarrow \natural \), \( h(p, n, a) = p' \) \\
+    \( f : \natural^2 \rightarrow \natural \) (ze schematu rekursji prostej)
+    \item Mnożenie: \\
+    \( A = B = \natural \) \\
+    \( g = 0 \) \\
+    \( h : \natural^3 \rightarrow \natural \), \( h(p, n, a) = p + a \) \\
+    \( f : \natural^2 \rightarrow \natural \) (ze schematu rekursji prostej)
+\end{itemize}

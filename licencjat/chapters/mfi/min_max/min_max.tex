@@ -1,0 +1,38 @@
+Z mnogościowego rozumienia liczb naturalnych można wyprowdzić relację \( \leq \):
+\begin{definition}[Porządek na \( \natural \)]
+    Dla dowolnych liczb \(n, m \in \natural \) przyjmujemy \\
+    \( n < m \), gdy \( n \in m \) \\
+    \( n \leq m \), gdy \( n \subset m \)
+\end{definition}
+
+Z własności tego porządku wynikają poniższe twierdzenia:
+\begin{theorem}[Zasada minimum]
+    Każdy niepusty zbiór liczb naturalnych posiada element najmniejszy.
+\end{theorem}
+\begin{proof}
+    Dowodzimy indukcją po \( n \). Definiujemy zbiór \( P = \set{n \in \natural : \forall_x \ (x \subset \natural \land x \cap n \ne \emptyset) \implies \bigcap x \in x} \).
+    Chcemy wykazazać, że \( P = \natural \), czyli dla dowolnej liczby \( n \in P \) jej następnik również jest w \( P \). Przypadek bazowy działa, ponieważ \( \emptyset \in P \).
+    Zakładając, że \( n \in P \) ustalamy zbiór \( x \subset \natural \) taki, że \( x \cap n' \ne \emptyset \).
+    Rozważamy dwa przypadki:
+    \begin{enumerate}
+        \item Jeśli \( x \cap n \ne \emptyset \), to z założenia indukcyjnego \( \bigcap x \in x \).
+        \item Jeśli \( x \cap n = \emptyset \), to \( x \cap n'=\set{n} \), czyli \( n \in x \). Wtedy dla dowolnego \( y \in x \) musi zachodzić \( n \in y \) lub \( n = y \), ponieważ \( y \in n \) jest niemożliwe naraz z \( x \cap n = \emptyset \).
+        Zatem \( n \subset y \) dla każdego \( y \in \natural \), co z własności przecięcia daje \( n \subset \bigcap x \subset n \), bo \( n \in x \). To daje \( \bigcap x = n \), co było do pokazania.
+    Aby zamknąć dowód twierdzenia, ustalmy niepusty zbiór \( x \susbet \natural \) oraz \( n \in x \). 
+    Wtedy \( n' \cap x \ne \emptyset \), ponieważ \( n \in n' \cap x \). Dowiedliśmy, że \( \bigcup x \in x \subset \natural \), czyli \( \bigcap x \) jest najmniejszą liczbą naturalną w zbiorze \( x \).
+\end{proof}
+
+\begin{theorem}[Zasada maksimum]
+    Każdy niepusty zbiór liczb naturalnych ograniczony od góry posiada element największy.
+\end{theorem}
+Ogracznienie zbioru \( x \) od góry to \( m \) takie, że \( \forall_{n \in x} \ n < m \).
+\begin{proof}
+    Dowodzimy indukcją po \( n \). Definiujemy zbiór ograniczeń górnych \( P = \set{n \in \natural : \forall_x \ (x \ne \emptyset \land x \subset n) \implies \bigcup x \in x} \).
+    Przypadek bazowy \( \emptyset \in P \) działa, ponieważ \( \emptyset \) nie posiada niepustego podzbioru. Zakładając, że \( n \in P \), ustalmy pewien niepusty zbiór \( x \subset n' \). Rozważamy dwa przypadki:
+    \begin{enumerate}
+        \item Jeśli \( n \in x \), to \( \bigcup x = \bigcup n' = n \in x \).
+        \item Jeśli \( n \notin x \), to \( x \subset n \) i \( \bigcup x \in x \) na mocy założenia indukcyjnego.
+    \end{enumerate}
+    Wybierzmy pewien niepusty podzbiór liczb naturalnych \( x \) z ograniczeniem górnym \( m \). Wiemy, że \( x \subset m' \), ponieważ udowodniliśmy wcześniej, że \( \bigcup x \in x \subset \natural \).
+    Dla dowolnego \( n \in x \) zachodzi \( n \subset \bigcup x \), co dowodzi, że \( \bigcup x \) jest elementem maksymalnym \( x \).
+\end{proof}
