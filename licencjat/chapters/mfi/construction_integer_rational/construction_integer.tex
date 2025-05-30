@@ -1,0 +1,34 @@
+\begin{definition}[Liczby całkowite]
+    Niech relacja \( \approx \) będzie określona na \( \natural \times \natural \) następująco:
+    \[
+        (a, b) \approx (c, d) \iff a + d = b + c
+    \]
+    Zbiorem liczb całkowitych nazywamy \( \integer = \natural \times \natural /\!\approx \).
+\end{definition}
+Parę \( (a, b) \) można rozumieć jako liczbę \( a - b \).
+
+Operacje na liczba całkowitych:
+\begin{itemize}
+    \item zero całkowite: \( [(0, 0)]\!\approx \)
+    \item element przeciwny: \( x = [(a, b)]\!\approx, \ -x = [(b, a)]\!\approx \)
+    \item dodawanie: \( [(a, b)]\!\approx + [(c, d)]\!\approx = [(a + c, b + d)]\!\approx \)
+    \item odejmowanie: \( x - y = x + (-y) \)
+    \item mnożenie: \( [(a, b)]\!\approx \cdot\: [(c, d)]\!\approx = [(ac + bd, ad + bc)]\!\approx \)
+\end{itemize}
+
+Można dość naturalnie włożyć \( \natural \) w \( \integer \). Określamy funkcję \( i : \natural \rightarrow \integer \) zdefiniowaną przez \( i(n) = [(n, 0)]\!\approx \).
+Funkcja jest iniektywna i zachowuje własności działań:
+\begin{itemize}
+    \item \( i(0) = 0 \)
+    \item \( i(n + m) = i(n) + i(m) \)
+    \item \( i(n \cdot m) = i(n) \cdot i(m) \)
+\end{itemize}
+W ten sposób możemy utożsamiać liczbę naturalną \( n \) z liczbą całkowitą \( i(n) \).
+
+Własności działań na liczba całkowitych:
+\begin{itemize}
+    \item \( x + y = y + x \)
+    \item \( x \cdot y = y \cdot x \)
+    \item \( x \cdot y = z \cdot y \) i \( y \ne 0 \), to \( x = z \)
+    \item \( x \cdot (y + z) = x \cdot y + x \cdot z \)
+\end{itemize}
