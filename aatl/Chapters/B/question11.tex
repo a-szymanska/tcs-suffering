@@ -1,4 +1,4 @@
-Algorytm Tonellego-Shanksa służy do obliczania w czasie wielomianowym randomizowanym pierwiastka dyskretnego.
+Algorytm Tonellego-Shanksa służy do obliczania pierwiastka dyskretnego w czasie wielomianowym randomizowanym.
 
 \begin{lemma}\label{A11:lemma1}
     Grupa cykliczna \( G \) o liczbie elementów \(n = 2m \), zawiera dokładnie \( m \) kwadratów, a każdy kwadrat ma dokładnie dwa pierwiastki.
@@ -25,6 +25,7 @@ Algorytm Tonellego-Shanksa służy do obliczania w czasie wielomianowym randomiz
     Zatem tylko parzyste potęgi generatora są kwadratami.
 \end{proof}
 
+\newpage
 \begin{lemma}\label{A11:lemma2}
     Niech \( G \) będzie grupą cykliczną o \( n = 2m \) elementach. Element \( a \) jest kwadratem w \( G \) wtedy i tylko wtedy, gdy \( a^m = 1 \).
 \end{lemma}
@@ -59,14 +60,14 @@ Tak przygotowani możemy przejść do algorytmu: Mając grupę \( G \) o liczno�
 Algorytm zachowuje niezmienniki:
 \begin{itemize}
     \item \( a^q \cdot z^t = 1 \)
-    \item Jeśli \( 2^r \mid q \), to \( 2^{r+1} \mid t \).
+    \item Jeśli \( 2^k \mid q \), to \( 2^{k+1} \mid t \).
 \end{itemize}
 Początkowo \(a^q = z^t = 1 \) oraz \( t = 2q \).
 Z pierwszego niezmiennika wiadomo, że \( a^{\frac{q}{2}} \cdot z^{\frac{t}{2}} = \pm 1 \), ponieważ kwadrat tej liczby jest jedynką.
 Jeśli \( a^{\frac{q}{2}} \cdot z^{\frac{t}{2}} = 1 \), to możemy podzielić \( q, \ t \) przez 2 i~niezmiennik pozostaje zachowany.
-Jeśli \( a^{\frac{q}{2} + m} \cdot z^{\frac{t}{2}} = \xi \), to
+Jeśli \( a^{\frac{q}{2}} \cdot z^{\frac{t}{2}} = \xi \), to
 \[
-    a^{\frac{q}{2}} \cdot z^{\frac{t}{2}} = (a^{\frac{q}{2}} \cdot z^{\frac{t}{2}}) \cdot z^m = \xi \cdot \xi = 1
+    a^{\frac{q}{2}} \cdot z^{\frac{t}{2} + m} = (a^{\frac{q}{2}} \cdot z^{\frac{t}{2}}) \cdot z^m = \xi \cdot \xi = 1
 \]
 Korzystamy z tego, że \( m \) niezmiennie jest wielokrotnością \( 2q \).
 

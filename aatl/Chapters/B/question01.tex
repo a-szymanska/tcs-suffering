@@ -1,4 +1,4 @@
-Algorytm mnożenia Karatsuby opiera się o technikę, dziel i zwyciężaj.
+Algorytm mnożenia Karatsuby opiera się o technikę ,,dziel i zwyciężaj''.
 Chcemy pomnożyć \(n\)-cyfrowe liczby A oraz B zapisane w systemie binarnym. Zakładamy, że $n$ jest potęgą dwójki (zawsze można dodać zera wiodące). \\
 Zapisujemy liczby w postaci:
 \[
@@ -15,4 +15,4 @@ Mnożenie przez \( K \) to po prostu przesunięcie bitowe, więc możemy wykona�
 \[
     A_0 B_1 + A_1 B_0 = (A_0 + A_1) \cdot (B_0 + B_1) - A_0 B_0 - A_1 B_1
 \]
-pozostają nam do wykonania 3 rekurencyjne mnożenia: \( A_0 B_0 \), \( A_1 B_1 \) i \( (A_0 + A_1) \cdot (B_0 + B_1) \). W ten sposób otrzymujemy \( T(n) = 3 \cdot T(n / 2) + \bigO(n) \), więc z Uniwersalnego Twierdzenia o~Rekurencji złożoność algorytmu Karatsuby wynosi \( \bigO(n^{\log_2 3}) \approx \bigO(n^{1.59}) \).
+pozostają nam do wykonania 3 rekurencyjne mnożenia: \( A_0 B_0 \), \( A_1 B_1 \) i \( (A_0 + A_1) \cdot (B_0 + B_1) \). W ten sposób otrzymujemy \( T(n) = 3 \cdot T(\frac{n}{2}) + \bigO(n) \), więc z Uniwersalnego Twierdzenia o~Rekurencji złożoność algorytmu Karatsuby wynosi \( \bigO(n^{\log_2 3}) \approx \bigO(n^{1.59}) \).

@@ -28,7 +28,7 @@ To wystarcza, żeby skonstruować algorytm.
         \item Jeśli \( x = y \) lub \( x = -y \), powtórz losowanie.
     \end{enumerate}
 \end{greyframe}
-{\small (Funkcja \( \textcolor{Blue}{\text{sqrt}(x, n)} \) to czarna skrzynka, które oblicza lub zgaduje w czasie wielomianowym pierwiastek z liczby \( x \) modulo \( n \).)}
+{\small (Funkcja \( \textcolor{Blue}{\text{sqrt}(x, n)} \) to czarna skrzynka, która oblicza lub zgaduje w czasie wielomianowym pierwiastek z liczby \( x \) modulo \( n \).)}
 
 Algorytm działa poprawnie, bo skoro \( x^2 = y^2 \pmod{n} \), to \( n \mid (x + y)(x - y) \). W każdej iteracji szansa na znalezienie nietrywialnego dzielnika jest równa \( \frac{1}{2} \), ponieważ tyle wynosi prawdopodobieństwo, że wylosowaliśmy \( x \neq \pm y \), przy losowym wyborze \( x \), czyli każde z 4 rozwiązań \( y^2 = s \pmod{n} \) było równie prawdopodobne.
 

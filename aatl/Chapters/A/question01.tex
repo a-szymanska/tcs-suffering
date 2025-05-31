@@ -31,7 +31,7 @@ Dla danych \( a, b > 0 \) algorytm zwraca \( d = \gcd(a,b) \) oraz liczby całko
     \[
         \forall_{a, b \not= 0 } \ \exists_{s, t} \ a \cdot s + b \cdot t = \gcd(a, b)
     \]
-    Jako krok bazowy sprawdzamy przypadek \( b = 0 \), rzeczywiście \( a \cdot 1 + 0 = \gcd(a, 0) \). \\
+    Jako krok bazowy indukcji po \( a, b \) sprawdzamy przypadek \( b = 0 \), rzeczywiście \( a \cdot 1 + 0 = \gcd(a, 0) \). \\
     Niech \( a = q \cdot b + r \). Korzystając z tego, że \( \gcd(a, b) = \gcd(b, r) = d \), otrzymujemy:
     \[
         b \cdot s' + r \cdot t' = d
