@@ -3,8 +3,8 @@ Wybieramy pewną łatwo obliczalną funkcję (wielomian niskiego stopnia), niech
 Zakładamy, że wartości będą się rozkładały równomiernie modulo \( n \). Ciąg powinien się zapętlić po około \( \sqrt{n} \) krokach. Przypuszczamy jednak, że uda się to zaobserwować już wcześniej, po około \( \sqrt{p} \) krokach.
 
 Jeśli uda się znaleźć \( x_i = x_j \pmod{p} \), to \( \gcd(x_i - x_j, n) \) powinno być nietrywialnym dzielnikiem \( n \), ponieważ wykonaliśmy zbyt mało kroków, żeby \( n \mid (x_i - x_j) \).
-Jeśli powstanie cykl modulo \( p \) o długości \( s \), to taka sytuacja będzie się powtarzać dla wszystkich \( x_i,\; x_{i+s} \). Nie można jednak co krok sprawdzać dla wszystkich \( x_i \) przystawania do \( x_{j > i} \).
-Zamiast tego, żeby wykryć długość \( s \) cyklu, wykorzystamy metodę Floyda lub Brenta.
+Jeśli powstanie cykl modulo \( p \) o długości \( s \), to taka sytuacja będzie się powtarzać dla wszystkich \( x_i,\; x_{i+s} \). Nie można jednak co krok sprawdzać dla wszystkich \( x_{i<j} \) przystawania do \( x_j \).
+Zamiast tego, żeby wykryć długość \( s \) cyklu, wykorzystujemy metodę Floyda lub Brenta.
 
 Podsumowując, algorytm poszukiwania nietrywialnego dzielnika dla zadanej liczby złożonej \( n \) wygląda tak:
 \begin{greyframe}

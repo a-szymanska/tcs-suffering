@@ -4,10 +4,10 @@ Dla ciała skończonego \( \mathbb{F}_q \) istnieje taki generator \( g \), że 
 \begin{proof}
     Oznaczmy \( n = \abs{\mathbb{F}^{*}_q} = q-1 \). Definiujemy zbiory:
     \[
-        A_d = \set{a \in \mathbb{F}_q \mid a^d = 1}
+        A_d = \set{a \in \mathbb{F}_q : a^d = 1}
     \]
     \[
-        B_d = \set{a \in \mathbb{F}_q \mid a^d = 1, a^{d'} \neq 1 \text{ dla } d' < d}
+        B_d = \set{a \in \mathbb{F}_q : a^d = 1, a^{d'} \neq 1 \text{ dla } d' < d}
     \]
     czyli \( B_d \) zawiera elementy, których rząd jest równy \( d \). Widać, że \( B_d \subseteq A_d \).
 
@@ -27,7 +27,7 @@ Dla ciała skończonego \( \mathbb{F}_q \) istnieje taki generator \( g \), że 
     przy czym jeśli chociaż jedno \( d \) ma \( B_d = \emptyset \), to nierówność jest ostra.
     
     Wiemy jednak, że \( \sum_{d \mid n} \varphi(d) = n \), ponieważ możemy rozważyć wszystkie \( n \) ułamków właściwych postaci \( \frac{k}{n} \) dla \( 1 \leq k \leq n \).
-    Po skróceniu mają postać \( \frac{k'}{d} \), gdzie \( d \mid n \) oraz \( k' \) jest względnie pierwsze z \( d \), więc dokładnie \( \phi(d) \) ułamków ma taki mianownik. To dowodzi równości.
+    Po skróceniu mają postać \( \frac{k'}{d} \), gdzie \( d \mid n \) oraz \( k' \) jest względnie pierwsze z \( d \), więc dokładnie \( \varphi(d) \) ułamków ma taki mianownik. To dowodzi równości.
 
     Zatem nierówność nie może być ostra i zachodzi \( B_d \neq \emptyset \) dla każdego \( d \mid n \), w szczególności istnieje element rzędu \( n \).
 \end{proof}
