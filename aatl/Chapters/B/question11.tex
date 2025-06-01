@@ -16,7 +16,7 @@ Algorytm Tonellego-Shanksa służy do obliczania pierwiastka dyskretnego w czasi
         \]
         Element \( a \) nie ma też żadnego innego pierwiastka.
         \item \( a \) jest nieparzystą potęgą generatora: \\
-        Dla dowodu nie wprost, załóżmy że istnieje \( b = g^j \), ktore jest pierwiastkiem \( a = g^{2k+1} \). Wtedy
+        Dla dowodu nie wprost, załóżmy że istnieje \( b = g^j \), które jest pierwiastkiem \( a = g^{2k+1} \). Wtedy
         \[
             b^2 = g^{2j} = g^{2k + 1},
         \]
@@ -40,7 +40,7 @@ Algorytm Tonellego-Shanksa służy do obliczania pierwiastka dyskretnego w czasi
     \[
         g^{(2k+1)m} = g^{2m \cdot k} \cdot g^m = g^m = \xi = -1,
     \]
-    ponieważ rząd \( g \) jest równy \( 2m \) oraz \( g^{2m} = 1 \).
+    ponieważ rząd \( g \) jest równy \( 2m \).
 \end{proof}
 
 Tak przygotowani możemy przejść do algorytmu: Mając grupę \( G \) o liczności \( \abs{G} = n = 2m \) oraz dane na wejściu \( a \in G \), celem jest znaleźć \( x \) takie, że \( x^2 = a \) w grupie \( G \).

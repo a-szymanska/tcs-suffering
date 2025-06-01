@@ -1,4 +1,4 @@
-Rachunek indeksów to obecnie (stan na 30.04.2025) najlepszy znany algorytm na logarytm dyskretny w \( \integer_p \).
+Rachunek indeksów to obecnie najlepszy znany algorytm na logarytm dyskretny w \( \integer_p \).
 
 Działając w grupie \( \integer_p \) o znanym generatorze \( g \) modulo \( p \), dla zadanej liczby \( b \), chcemy rozwiązać równanie: \( g^x = b \).
 Zapisujemy \( x = \log b \) i taki logarytm zachowuje własności zwykłego logarytmu
@@ -30,7 +30,7 @@ Znając wszystkie \( \beta_i \) oraz \( k \), chcemy rozwiązać układ równań
 \[
     k^{(r)} = \beta_1^{(r)} \cdot \log q_1 + \ldots + \beta_r^{(r)} \cdot \log q_r,
 \]
-gdzie niewiadomymi są \( \log q_i \). Możemy wykorzystać do tego metody algebry liniowej z dokładnością do jednej trudności - operacje są modulo \( p-1 \), które nie jest pierwsze, więc niekoniecznie da się policzyć odwrotność względem mnożenia.
+gdzie niewiadomymi są \( \log q_i \). Możemy wykorzystać do tego metody algebry liniowej z dokładnością do jednej trudności -- operacje są modulo \( p-1 \), które nie jest pierwsze, więc niekoniecznie da się policzyć odwrotność względem mnożenia.
 Jako wynik otrzymujemy logarytmy dyskretny liczb \( q_1, \dots, q_r \).
 
 \textbf{Faza III:} \\

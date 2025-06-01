@@ -1,6 +1,6 @@
 \subsection{Teoretyczna Transformata Numeryczna (NTT)}
 Transformata NTT (\textit{Number Theoretic Transform}) jest wersją algorytmu FFT, która w przeciwieństwie do algorytmu Cooleya-Tukeya nie używa liczb rzeczywistych. Zamiast nad \( \real \), obliczenia są wykonywane nad \( \integer_p \).
-Procedura wyznaczania splotu dwóch ciągów o wyrazach całkowitych modulo \( p \) jest praktycznie taka sama -- wzory rekurencyjne oraz własność wzajemnej odwrotności DFT i IDFT przenoszą się na pierścień \( \integer_p \). Jedynym warunkiem jest, żeby \( \omega \in \integer_p \) spełniało \( \omega^n = 1 \) oraz  \( \omega^{\frac{n}{2}} = -1 \), czyli rząd \( \omega \) wynosi \( n \).
+Procedura wyznaczania splotu dwóch ciągów o wyrazach całkowitych modulo \( p \) jest praktycznie taka sama -- wzory rekurencyjne oraz własność wzajemnej odwrotności DFT i IDFT przenoszą się na pierścień \( \integer_p \). Jedynym warunkiem jest, żeby \( \omega \in \integer_p \) spełniało \( \omega^n = 1 \) oraz  \( \omega^{\frac{n}{2}} = -1 \), czyli żeby \( \omega \) było rzędu \( n \).
 Z twierdzenia Lagrange'a oraz faktu, że \( \integer_p \) jest cykliczna wiemy, że taki element istnieje, jeśli \( n \mid (p - 1) \). Algorytm FFT modulo \( p \) (czyli właśnie NTT) działa dla pewnych konkretnych \( p \) postaci \( q \cdot n + 1 \).
 
 Algorytm na splot ciągów \( A = (a_0, a_1, \ldots, a_n) \) i \( B = (b_0, b_1, \ldots, b_n) \) wygląda następująco:
@@ -19,14 +19,14 @@ Algorytm służy do mnożenia dużych liczb w zapisie binarnym. Ponieważ daje o
 
 Pierwszym z wyzwań jest wybór pierścienia do obliczeń -- jeśli liczba \( p \) jest duża, to operacje w \( \integer_p \) nie są jednostkowe.
 
-Liczba \( p \) nie musi być pierwsza, a jedynie względnie pierwsza z \( n \), (potrzebne jest dzielenie przez \( n \)) oraz musi istnieć element \( \omega \) rzędu \( n \) modulo \( p \). Te warunki spełnia \( p \) postaci \( 2^m + 1 \) oraz \( \omega = 2^{\alpha} \) takie, żeby \( \omega^n = 1 \pmod{p} \). Taki dobór liczb upraszcza obliczenia:
+Liczba \( p \) nie musi być pierwsza, wystarczy nam względna pierwszość z \( n \), (potrzebne jest dzielenie przez \( n \)) i musi istnieć element \( \omega \) rzędu \( n \) modulo \( p \). Te warunki spełniają \( p \) postaci \( 2^m + 1 \) i \( \omega = 2^{\alpha} \) takie, żeby \( \omega^n = 1 \pmod{p} \). Ten sprytny dobór liczb upraszcza obliczenia:
 \begin{itemize}
     \item branie reszty modulo \( p \) -- zauważamy, że \( 2^m = p - 1 = -1 \pmod{p} \), więc możemy podzielić liczbę na \( m \)-cyfrowe fragmenty i dodać je z naprzemiennymi znakami:
     \[
         101001110 \pmod{2^3 + 1} = 101 - 001 + 110 \pmod{2^3 + 1} 
     \]
     \item mnożenie przez \( \omega \) -- to mnożenie przez potęgę 2, czyli dopisanie zer na końcu liczby binarnej i wyciągnięcie reszty modulo \( p \)
-    \item mnożenie dwóch liczb w \( \integer_p \) -- nadal trudne, ale wykonywane niewiele razy i można je  sobie z nim poradzić rekurencją na liczbach o długości \( m \)
+    \item mnożenie dwóch liczb w \( \integer_p \) -- nadal trudne, ale wykonywane niewiele razy i można sobie z nim poradzić rekurencją na liczbach o długości \( m \)
     \item dzielenie przez \( \omega = 2^{\alpha} \) -- to mnożenie przez \( \omega^{-1} = -2^{m-\alpha} \), czyli też potęgę 2
 \end{itemize}
 

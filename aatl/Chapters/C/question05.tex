@@ -4,10 +4,10 @@ Główny pomysł polega na tym, żeby generować pary postaci \( a^{\alpha_i} \c
 
 Krótkie uzasadnienie: Jeśli \( a^{\alpha_i} \cdot b^{\beta_i} = a^{\alpha_j} \cdot b^{\beta_j} \), to \( a^{\alpha_i - \alpha_j} = b^{\beta_j - \beta_i} \). Wystarczy więc znaleźć \( \beta^{*} = (\beta_j - \beta_i)^{-1} \) modulo \( \abs{G} \) i otrzymamy \( a^{\beta^{*} (\alpha_i - \alpha_j)} = b \).
 
-Ciąg \( (\alpha_i, \beta_i) \) definiujemy, losując wartości początkowe \( (\alpha_0, \beta_0) \), a następne obliczając za pomocą pewnej deterministycznej funkcji \( f \), która zapewni pseudolosowść wyników.
-Jeśli w jakimś momencie \( (\alpha_i, \beta_i) = (\alpha_j, \beta_j) \), to tak już zostanie, czyli ciąg wpada w pętlę literki ,,ro''. Analogicznie jak w algorytmie faktoryzacji (patrz: pytanie~\ref{C:question03}) drugi ciąg można zdefiniować za pomocą metody Floyda:
+Ciąg \( (\alpha_i, \beta_i) \) definiujemy, losując wartości początkowe \( (\alpha_0, \beta_0) \), a kolejne obliczając za pomocą pewnej deterministycznej funkcji \( f \), która zapewni pseudolosowść wyników.
+Jeśli w jakimś momencie \( (\alpha_i, \beta_i) = (\alpha_j, \beta_j) \), to tak już zostanie, czyli ciąg wpada w pętlę literki ,,ro''. Drugi ciąg można zdefiniować za pomocą metody Floyda (patrz: pytanie~\ref{C:question03}):
 \[ (\alpha'_{i+1}, \beta'_{i+1}) = f(f(\alpha'_i, \beta'_i)) \]
-W każdym kroku sprawdzamy, czy \( (\alpha_i, \beta_i) = (\alpha'_i, \beta'_i) \). Jeśli ciągi są losowe, to kolizja powinna wystąpić w oczekiwaniu po \( \sqrt{G} \) krokach.
+W każdym kroku sprawdzamy, czy \( (\alpha_i, \beta_i) = (\alpha'_i, \beta'_i) \). Jeśli ciągi są losowe, to kolizja wystąpi w oczekiwaniu po \( \sqrt{G} \) krokach.
 
 Pozostaje uszczegółowić wybór funkcji \( f \). Powinna ona rozrzucać wartości ciągu możliwie przypadkowo wśród elementów \( G \). Technika stosowana w praktyce jest następująca:
 \begin{itemize}
@@ -18,4 +18,4 @@ Pozostaje uszczegółowić wybór funkcji \( f \). Powinna ona rozrzucać warto�
     \item Definiujemy \( f(\alpha, \beta) = (\alpha + x_s, \beta + y_s) \), gdzie \( s = h(\alpha, \beta) \).
 \end{itemize}
 
-Algorytm ,,ro'' działa w oczekiwanym czasie \( \bigO(\sqrt{\abs{G}}) \) oraz stałej pamięci.
+Algorytm ,,ro'' działa w oczekiwanym czasie \( \bigO(\sqrt{\abs{G}}) \) i stałej pamięci.

@@ -31,12 +31,16 @@ Jeśli algorytm zwraca ZŁOŻONA, na pewno jest to poprawna odpowiedź. W~przeci
         \textit{Podobno będzie opublikowane.}
         \item \( n \) nie jest potęgą liczby pierwszej \\
         Zapisujemy \( n = pq \), gdzie liczby \( p, \ q > 1 \) są względnie pierwsze.    
-        Dla grupy \linebreak \( \integer_n^* = \set{a : 1 \le a \le n, \gcd(a,n) = 1} \) dobieramy takie \( m = \frac{n-1}{2^t} \) dla pewnego \( t \), żeby nie wszystkie \( a \in \integer_n^* \) spełniały \( a^m = 1 \).
-        Sprawdzając \( m = n-1, \frac{n-1}{2}, \dots, \frac{n-1}{2^t} \), w końcu uda się znaleźć takie, że dla pewnego \( a \in \integer_n^* \) zachodzi \( a^m \neq 1 \). Oznaczmy któreś z tych \( a \) przez \( \alpha \). Gdyby takie \( m \) nie istniało, oznaczałoby to, że \( n-1 \) jest nieparzyste, a wtedy dla \( a = -1\)  na pewno \( a^{\frac{n-1}{2}} = -1 \ne 1 \).
+        Dla grupy
+        \[
+            \integer_n^* = \set{a : 1 \le a < n, \gcd(a,n) = 1}
+        \]    
+        dobieramy takie \( m = \frac{n-1}{2^t} \) dla pewnego \( t \), żeby jakieś \( a \in \integer_n^* \) nie spełniało \( a^m = 1 \).
+        Sprawdzając \( m = n-1, \frac{n-1}{2}, \dots, \frac{n-1}{2^t} \), w końcu znajdziemy odpowiednie \( m \). Oznaczmy któreś z \( a \) takich, że \( a^m \neq 1 \) przez \( \alpha \). Gdyby takie \( m \) nie istniało, oznaczałoby to, że \( n-1 \) jest nieparzyste, a wtedy dla \( a = -1\)  na pewno \( a^{\frac{n-1}{2}} = -1 \ne 1 \).
     
-        Wybieramy największe takie \( m \), czyli albo \( m = n - 1 \), albo \( a^{2m} = 1 \) dla każdego \( a \in \integer_n^* \).
+        Wybieramy największe takie \( m \) -- albo \( m = n - 1 \), albo \( a^{2m} = 1 \) dla każdego \( a \in \integer_n^* \).
     
-        Wykażemy, że istnieje \( \beta \) takie, że \( \beta^m \neq \pm 1 \). Jeśli również \( \alpha^m \neq -1 \), to mamy \( \beta = \alpha \). W~przeciwnym przypadku rozwiązujemy układ równań:
+        Wykażemy, że istnieje \( \beta \) takie, że \( \beta^m \neq \pm 1 \). Jeśli \( \alpha^m \neq -1 \), to mamy \( \beta = \alpha \). W~przeciwnym przypadku rozwiązujemy układ równań:
         \[
             \beta = 1 \pmod{p}
         \]
