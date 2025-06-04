@@ -17,7 +17,7 @@ Celem jest rozłożyć \( N \) na czynniki pierwsze. Ustalamy pewne \( a_1, \dot
     \[
         v_i = (\alpha_{1, i}, \dots, \alpha_{s, i}) \mod 2
     \]
-    Jeśli dla \( \set{x_1, \dots, x_k} \) każdy czynnik \( p_i \) występuję parzyście wiele razy, czyli \( v_1 \oplus \ldots \oplus v_k = 0 \), jest to poszukiwany pozdbiór \( b_i \).
+    Jeśli dla \( \set{x_1, \dots, x_k} \) każdy czynnik \( p_i \) występuję parzyście wiele razy, czyli \( v_1 \oplus \ldots \oplus v_k = 0 \), jest to poszukiwany podzbiór.
     Skoro \( k > s \), to wektory \( v_1, \dots, v_k \) są liniowo zależne w \( \integer_2^{s} \), więc taki podzbiór musi istnieć i można go znaleźć za pomocą eliminacji Gaussa w \( \bigO(s^3) \).
 \end{proof}
 Powyższą teorię można przekształcić na praktyczną metodę faktoryzacji liczby \( N \).
@@ -39,7 +39,7 @@ Poszukiwane liczby \( a_i \) muszą być większe od \( \sqrt{N} \), więc spraw
 Dla pewnej ustalonej stałej \( K \) oraz \( i \in \set{0, \dots, K-1} \) definiujemy:
 \[ X[i] = \ceil{\sqrt{N}} + i \]
 \[ Y[i] = X[i]^2 \mod N = \pars{\ceil{\sqrt{N}} + i}^2 - N \]
-Trzeba rozłożyć liczby \( Y[i] \) na czynniki - najlepiej wszystkie na raz, poniższym algorytmem.
+Trzeba rozłożyć liczby \( Y[i] \) na czynniki -- najlepiej wszystkie na raz, poniższym algorytmem.
 \begin{greyframe}
     Algorytm sita kwadratowego:
     \begin{enumerate}
@@ -53,7 +53,7 @@ Trzeba rozłożyć liczby \( Y[i] \) na czynniki - najlepiej wszystkie na raz, p
     \end{enumerate}
 \end{greyframe}
 W ramach dodatkowego usprawnienie algorytmu, możemy uniknąć dzielenia dużych liczb. Zamiast wartości \( Y[i] \) przechowujemy \( Z[i] = \log Y[i] \).
-Wtedy operację \( \frac{Y[i]}{p} \) zastępujemy działaniem \( \Z[i] - \log p \). Warunkiem \( B \)-gładkości jest (prawie) wyzerowanie się \( Z[i] \).
+Wtedy operację \( \frac{Y[i]}{p} \) zastępujemy działaniem \( Z[i] - \log p \). Warunkiem \( B \)-gładkości jest (prawie) wyzerowanie się \( Z[i] \).
 Problemem może być występowanie czynników \( Y[i] \) z potęgą \( \alpha > 1 \). Należy wykryć od razu liczby \( Y[i] \) podzielne przez \( p^{\alpha} \) dla każdego możliwego \( \alpha \), stosując tę samą metodę.
 
 \textbf{Złożoność:} \\

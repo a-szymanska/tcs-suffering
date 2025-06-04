@@ -44,11 +44,11 @@ Dla danych \( a, b > 0 \) algorytm zwraca \( d = \gcd(a,b) \) oraz liczby całko
 
 Własności algorytmu:
 \begin{enumerate}
-    \item Liczba iteracji: co najwyżej \( \log_{\varphi} a \), gdzie \( \varphi = \frac{1 + \sqrt{5}}{2} \)
+    \item Liczba iteracji: co najwyżej \( \log_{\phi} a \), gdzie \( \phi = \frac{1 + \sqrt{5}}{2} \)
     \item Złożoność: \( \bigO(\log^2 a) \)
     \item \( \abs{s} \leq b \), \( \abs{t} \leq a \)
 \end{enumerate}
-Ad 1. Dowiedzione na ćwiczeniach w pierwszym zestawie zadań. \\
+Ad 1. Żeby obliczenie \( \gcd(a, b) \) wymagało \( k \) kroków, liczby \( a \), \( b \) muszą być równe co najmniej \( F_{k+2} \) i \( F_{k+1} \), co można udowodnić indukcją po \( k \).
 Ad 2. Zauważmy, że przy każdym wywołaniu rekurencyjnym przynajmniej jeden z argumentów zmniejsza się o połowę: \\
 Jeśli \( b \leq \frac{a}{2} \), to \( r < b < \frac{a}{2} \). \\
 Jeśli \( b > \frac{a}{2} \), to \( r = a - b < \frac{a}{2} \). \\

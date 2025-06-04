@@ -29,12 +29,12 @@ Algorytm ten jest heurystyką, korzystającą z faktu, że rząd grupy często j
             \[
                 g^{u_1n + r_1q_2} = b^{q_2}
             \]
-            Przy \( g^n = 1 \) daje to \( g^{r_1 \cdot q_2} = b^{q_2} \), czyli \( h^{r_1} = b^{q_2} \), gdzie \( h = g^{q_2} \) ma rząd \( q_1 \).
+            Przy \( g^n = 1 \) daje to \( g^{r_1 q_2} = b^{q_2} \), czyli \( h = g^{q_2} \) ma rząd \( q_1 \).
             \item Oblicz \( r_1 \) takie, że \( x = r_1 \pmod{q_1} \), wywołując się rekurencyjnie na grupie \( H = \langle h \rangle \).
             \item Analogicznie, oblicz \( r_2 \), dla którego \( x = r_2 \pmod{q_2} \).
             \item Z Chińskiego Twierdzenia o Resztach wyznacz rozwiązanie \( x \) układu powyższych dwóch kongruencji.
         \end{enumerate}
-        Jeżeli \( n = p_1^{\alpha_1} \cdot \ldots \cdot p_s^{\alpha^s} \), to rekurencyjnie wywołaj przypadek 2 dla każdego \( p_i^{\alpha_i} \) \( \rightarrow \bigO(\sum_i \alpha_i \sqrt{p_i}) \leq \bigO(\log n \cdot \sqrt{\max{p_i}}) \), bo \( \alpha_i \leq \log n \)
+        Jeżeli \( n = p_1^{\alpha_1} \cdot \ldots \cdot p_s^{\alpha^s} \), to rekurencyjnie wywołaj przypadek 2 dla każdego \( p_i^{\alpha_i} \) \( \rightarrow \bigO(\sum_i \alpha_i \sqrt{p_i}) \leq \bigO(\log n \cdot \sqrt{\max{p_i}}) \), bo \( \alpha_i \leq \log n \).
     \end{enumerate}
 \end{greyframe}
 

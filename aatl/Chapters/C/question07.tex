@@ -1,7 +1,7 @@
 Rachunek indeksów to obecnie najlepszy znany algorytm na logarytm dyskretny w \( \integer_p \).
 
 Działając w grupie \( \integer_p \) o znanym generatorze \( g \) modulo \( p \), dla zadanej liczby \( b \), chcemy rozwiązać równanie: \( g^x = b \).
-Zapisujemy \( x = \log b \) i taki logarytm zachowuje własności zwykłego logarytmu
+Zapisujemy \( x = \log b \), taki logarytm zachowuje własności zwykłego logarytmu:
 \[
     \log(u \cdot v) = \log(u) + \log(v) \pmod{p-1},
 \]
@@ -34,8 +34,8 @@ gdzie niewiadomymi są \( \log q_i \). Możemy wykorzystać do tego metody algeb
 Jako wynik otrzymujemy logarytmy dyskretny liczb \( q_1, \dots, q_r \).
 
 \textbf{Faza III:} \\
-Żeby znaleźć \( \log b \), próbujemy wygenerować jakąkolwiek liczbę postaci \( b^u \cdot a^v \), która jest gładka modulo \( p \). Wystarczy przyjąć \( u = 1 \) i losować \( v \) do skutku. Z równości
-\[ b^u \cdot a^v = q_1^{\gamma_1} \cdot \ldots \cdot q_r^{\gamma_r} \]
+Żeby znaleźć \( \log b \), próbujemy wygenerować jakąkolwiek liczbę postaci \( b^u \cdot g^v \), która jest gładka modulo \( p \). Wystarczy przyjąć \( u = 1 \) i losować \( v \) do skutku. Z równości
+\[ b^u \cdot g^v = q_1^{\gamma_1} \cdot \ldots \cdot q_r^{\gamma_r} \]
 ostatecznie wynika:
 \[ x = \log b = u^{-1} \cdot (\gamma_1 \cdot \log q_1 + \ldots + \gamma_r \cdot \log q_r - v) \]
 

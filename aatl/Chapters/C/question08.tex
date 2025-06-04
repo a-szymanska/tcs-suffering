@@ -6,10 +6,10 @@ Z twierdzenia Lagrange'a oraz faktu, że \( \integer_p \) jest cykliczna wiemy, 
 Algorytm na splot ciągów \( A = (a_0, a_1, \ldots, a_n) \) i \( B = (b_0, b_1, \ldots, b_n) \) wygląda następująco:
 \begin{greyframe}
     \begin{enumerate}
-        \item Znajdź \( p \) postaci \( q \cdot n + 1 \), gdzie \( q \) jest niedużą liczbą pierwszą -- można ją wylosować i sprawdzić pierwszość albo szukać po kolei.
-        \item Znajdź generator \( \gamma \) grupy \( \integer^{*}_p \) -- ponieważ generatorów jest \( \phi(q \cdot n) = (q - 1) \cdot \frac{n}{2} \), to losując, ma się dużą szansę trafić.
-        Generator musi spełniać \( \gamma^{\frac{p-1}{2}} \neq 1 \pmod{p} \) oraz \( \gamma^{\frac{p-1}{q}} \neq 1 \pmod{p} \).
-        \item Ustal \( \omega = \gamma^q \) rzędu \( n \) i oblicz splot za pomocą NTT.
+        \item Znajdź \( p \) postaci \( q \cdot n + 1 \), gdzie \( q \) jest niedużą liczbą pierwszą -- można ją wylosować i sprawdzić pierwszość lub szukać po kolei.
+        \item Znajdź generator \( g \) grupy \( \integer^{*}_p \) -- ponieważ generatorów jest \( \varphi(q \cdot n) = (q - 1) \cdot \frac{n}{2} \), to losując, ma się dużą szansę trafić.
+        Generator musi spełniać \( g^{\frac{p-1}{2}} \neq 1 \pmod{p} \) oraz \( g^{\frac{p-1}{q}} \neq 1 \pmod{p} \).
+        \item Ustal \( \omega = g^q \) rzędu \( n \) i oblicz splot za pomocą NTT.
     \end{enumerate}
 \end{greyframe}
 Można wybrać na tyle duże \( p \), żeby modulo nie miało wpływu na wynik. Przy mnożeniu liczb binarnych wystarczy \( p > n \).
@@ -36,7 +36,7 @@ Jeśli chce się otrzymać wynik pełny (nie modulo), wystarczy przyjąć \( N \
 \begin{greyframe}
     Algorytm fastmul(\( U, V, N \)):
     \begin{enumerate}
-        \item Rozbijamy liczby \( U \) i \( V \) na fragmenty o długości około \( \sqrt{N} \), czyli na \( t \) binarnych liczb \( b \)-cyfrowych. Liczby \( t, \ b \) powinny być potęgami dwójki wielkości mniej więcej \( \sqrt{N} \):
+        \item Rozbijamy liczby \( U \) i \( V \) na fragmenty o długości około \( \sqrt{N} \), czyli na \( t \) binarnych liczb \( b \)-cyfrowych. Liczby \( t, \ b \) powinny być potęgami dwójki wielkości mniej więcej \( \sqrt{N} \).
         \[
             U = u_0 + u_1 \cdot 2^b + u_2 \cdot 2^{2b} + \ldots + u_{t-1} \cdot  2^{(t-1)b}
         \]
@@ -45,11 +45,11 @@ Jeśli chce się otrzymać wynik pełny (nie modulo), wystarczy przyjąć \( N \
         \]
         Zadanie sprowadza się do pomnożenia dwóch liczb \( t \)-cyfrowych w systemie o podstawie \( 2^b \).
 
-        \item Wykonujemy algorytm NTT w pierścieniu \( \integer_p \). Wymaga to obliczenia \( 2t \) iloczynów modulo \( 2^{b'} + 1 \) rekurencyjnie.
+        \item Wykonujemy algorytm NTT w pierścieniu \( \integer_p \) dla \( p = 2^{b'} + 1 \). Wymaga to obliczenia \( 2t \) iloczynów modulo \( 2^{b'} + 1 \) rekurencyjnie.
     \end{enumerate}
 \end{greyframe}
 
-W punkcie 1 splatamy liczby w pierścieniu \( \integer_p \) dla \( p = 2^{b'} + 1 \), gdzie \( b' \approx 2b + \log t \) oraz \( t \mid b' \). Bierze się to stąd, że wynik splotu nie przekracza \( p \), czyli \( p > t \cdot \pars{2^b}^2 \), więc \( b′ \geq 2^b + \log t \).
+W punkcie 2 splatamy liczby w pierścieniu \( \integer_p \) dla \( p = 2^{b'} + 1 \), gdzie \( b' \approx 2b + \log t \) oraz \( t \mid b' \). Bierze się to stąd, że wynik splotu nie przekracza \( p \), czyli \( p > t \cdot \pars{2^b}^2 \), więc \( b' \geq 2b + \log t \).
 Podzielność \( t \mid b' \) jest ważna, żeby rząd \( \omega = 2^{\frac{2b}{t}} \) był równy \( t \), czyli \( \omega^{\frac{t}{2}} = 2^b' = -1 \pmod{p} \).
 
 Algorytm można opisać ogólnym równaniem
@@ -61,4 +61,4 @@ dla pewnego \( \alpha \in \integer^{+} \).
 Opisana procedura pozwala sprowadzić mnożenie dwóch liczb \( N \)-bitowych do około \( 2\sqrt{N} \) mnożeń liczb o długości \( 4\sqrt{N} \), co daje złożoność \( \bigO(N \log^2 N) \).
 Poprawienie jej do \( \bigO(N \log N \log \log N) \) wymaga zmniejszenia stałych \( (2, 4) \rightarrow (1, 2) \) poprzez zastosowanie technicznych sztuczek.
         
-W praktyce rekursja jest płytka, ponieważ dla \( N < 10^3 \) lepiej użyć prostszych algorytmów, Tooma-Cooka albo nawet kwadratowego mnożenia.
+W praktyce rekursja jest płytka, ponieważ dla \( N < 10^3 \) lepiej użyć prostszych algorytmów, na przykład Tooma-Cooka albo nawet kwadratowego mnożenia.

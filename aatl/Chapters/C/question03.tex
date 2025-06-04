@@ -1,8 +1,8 @@
 Celem jest rozłożyć na czynniki liczbę złożoną \( n \). Załóżmy, że \( p \) jest jakimś jej dzielnikiem pierwszym oraz \( p \leq \sqrt{n} \).
 Wybieramy pewną łatwo obliczalną funkcję (wielomian niskiego stopnia), niech to będzie \( f(x) = x^2 + 1 \). Chcemy zbadać ciąg \( x_0 = 2 \), \( x_k = f(x_{k-1}) \).
-Zakładamy, że wartości będą się rozkładały równomiernie modulo \( n \). Ciąg powinien się zapętlić po około \( \sqrt{n} \) krokach. Przypuszczamy jednak, że uda się to zaobserwować już wcześniej, po około \( \sqrt{p} \) krokach.
+Zakładamy, że wartości będą się rozkładały równomiernie modulo \( n \). Ciąg powinien się zapętlić po około \( \sqrt{n} \) krokach. Przypuszczamy jednak, że uda się to zaobserwować już wcześniej, po \( \sqrt{p} \) krokach.
 
-Jeśli uda się znaleźć \( x_i = x_j \pmod{p} \), to \( \gcd(x_i - x_j, n) \) powinno być nietrywialnym dzielnikiem \( n \), ponieważ wykonaliśmy zbyt mało kroków, żeby \( n \mid (x_i - x_j) \).
+Jeśli znajdzie się \( x_i = x_j \pmod{p} \), to \( \gcd(x_i - x_j, n) \) powinno być nietrywialnym dzielnikiem \( n \), ponieważ wykonaliśmy zbyt mało kroków, żeby \( n \mid (x_i - x_j) \).
 Jeśli powstanie cykl modulo \( p \) o długości \( s \), to taka sytuacja będzie się powtarzać dla dowolnych \( x_i,\; x_{i+s} \). Nie można jednak co krok sprawdzać dla wszystkich \( x_{i<j} \) przystawania do \( x_j \).
 Zamiast tego, żeby wykryć długość \( s \) cyklu, wykorzystujemy metodę Floyda lub Brenta.
 
@@ -28,7 +28,7 @@ Są jednak dwa scenariusze niepowodzenia:
 \begin{itemize}
     \item Wyrazy ciągu mogą nie powtórzyć się wystarczająco szybko \\
     -- przerywamy procedurę po \( 5\sqrt[4]{n} \) krokach.
-    \item Ciąg zapętlił się modulo \( p \) oraz modulo \( n \), czyli \( \gcd(x_i - x_j, n) = n \) \\
+    \item Ciąg zapętli się modulo \( p \) oraz modulo \( n \), czyli \( \gcd(x_i - x_j, n) = n \) \\
     -- od razu przerywamy procedurę.
 \end{itemize}
 
