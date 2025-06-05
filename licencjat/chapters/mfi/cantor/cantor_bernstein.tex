@@ -7,7 +7,7 @@ Dla dowolnych zbiorów \( A, B \) zachodzi implikacja:
 \begin{proof}
     Z założeń mamy dane dwie iniekcje -- \( f: A \rightarrow B \) oraz \( g: B \rightarrow A \).
     
-    Korzystając z lematu Banacha (\ref{mfi:banach_lemma}) możemy podzielić zbiory \(A\) i \(B\):
+    Korzystając z lematu Banacha (\ref{mfi:banach_lemma}), możemy podzielić zbiory \(A\) i \(B\):
     \[
         A = A_1 \cup A_2, A_1 \cap A_2 = \varnothing
     \]
@@ -22,14 +22,14 @@ Dla dowolnych zbiorów \( A, B \) zachodzi implikacja:
     Ostatnia własność mówi nam, że zawężenia \( f_{\mid A_1} : A_1 \rightarrow B_1 \) i  \( g_{\mid B_2} : B_2 \rightarrow A_2 \) są suriekcjami.
     Ponieważ jednak z założeń \( f, g \) są iniekcjami, to ich zawężenia są eleganckimi bijekcjami.
     
-    Dzięki nim możemy zdefiniować \( h: A \rightarrow B \)
+    Dzięki temu możemy zdefiniować funkcję \( h: A \rightarrow B \) jako:
     \[
         h(x) = \begin{cases}
         f_{\mid A_1}(x) & \text{ gdy } x \in A_1 \\
         (g_{\mid B_2})^{-1}(x) & \text{ gdy } x \in A_2
         \end{cases}
     \]
-    które jest bijekcją, o czym świadczy odwrotność
+    która jest bijekcją, o czym świadczy jej odwrotność:
     \[
         h^{-1}(x) = \begin{cases}
         (f_{\mid A_1})^{-1}(x) & \text{ gdy } x \in B_1 \\
@@ -37,7 +37,7 @@ Dla dowolnych zbiorów \( A, B \) zachodzi implikacja:
         \end{cases}
     \]
     
-    Mamy zatem bijekcję między \( A \) i \( B \), a zatem \( A \eqnum B \)
+    Mamy więc bijekcję między \( A \) i \( B \), a zatem \( A \eqnum B \).
     
     
 \end{proof}

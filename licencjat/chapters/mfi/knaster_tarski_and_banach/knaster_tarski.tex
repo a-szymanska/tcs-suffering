@@ -12,15 +12,15 @@ Każde monotoniczne odwzorowanie \(f\colon \powerset\pars{X} \function \powerset
             
             Weźmy \(x_0 = \bigcap \alpha\). Z~własności przecięcia mamy
             \begin{equation*}
-                \forall_{z \in \alpha} x_0 \subseteq z
+                \forall_{z \in \alpha} \ x_0 \subseteq z
             \end{equation*}
             i~dalej z~monotoniczności
             \begin{equation*}
-                \forall_{z \in \alpha} f\pars{x_0} \subseteq f\pars{z}
+                \forall_{z \in \alpha} \ f\pars{x_0} \subseteq f\pars{z}
             \end{equation*}
             Skoro jednak rozważamy \(z \in \alpha\), to z~definicji zbioru \(\alpha\)~mamy \(f\pars{z} \subseteq z\). Czyli tak naprawdę otrzymujemy
             \begin{equation*}
-                \forall_{z \in \alpha} f\pars{x_0} \subseteq z
+                \forall_{z \in \alpha} \ f\pars{x_0} \subseteq z
             \end{equation*}
             Skoro \(f\pars{x_0}\) zawiera się w~każdym elemencie zbioru \(\alpha\), to mamy też \(f\pars{x_0} \subseteq \bigcap \alpha = x_0\).
             
@@ -37,22 +37,22 @@ Każde monotoniczne odwzorowanie \(f\colon \powerset\pars{X} \function \powerset
             \begin{equation*}
                 x_0 = \bigcap \alpha \subseteq z
             \end{equation*}
-            Czyli rzeczywiście \(x_0\)~zawiera się w~każdym innym punkcie stałym. Sprytne, nie? Aż chce się stworzyć sequel tego dowodu!
+            Czyli rzeczywiście \(x_0\)~zawiera się w~każdym innym punkcie stałym. Sprytne, nie? \\ Aż chce się stworzyć sequel tego dowodu!
         \item[Największy punkt stały.] Zdefiniujmy
             \begin{equation*}
                 \beta = \set{z \in \powerset\pars{X} : z \subseteq f\pars{z}}
             \end{equation*}
             Oczywiście \(\emptyset \in \beta\), więc \(\beta \neq \emptyset\). Widać już, dokąd z~tym zmierzamy, prawda? Tak jest, bierzemy \(y_0 = \bigcup \beta\). Z~własności sumy zachodzi
             \begin{equation*}
-                \forall_{z \in \beta} z \subseteq y_0
+                \forall_{z \in \beta} \ z \subseteq y_0
             \end{equation*}
             i~dalej z~monotoniczności
             \begin{equation*}
-                \forall_{z \in \beta} f\pars{z} \subseteq f\pars{y_0}
+                \forall_{z \in \beta} \ f\pars{z} \subseteq f\pars{y_0}
             \end{equation*}
-            Przytaczając definicję zbioru \(\beta\), możemy z~tego wyciągnąć po prostu
+            Z definicji zbioru \(\beta\) wprost wynika, że
             \begin{equation*}
-                \forall_{z \in \beta} z \subseteq f\pars{y_0}
+                \forall_{z \in \beta} \ z \subseteq f\pars{y_0}
             \end{equation*}
             Innymi słowy, wszystkie elementy zbioru \(\beta\)~mieszczą się pod \(f\pars{y_0}\). Czyli mieści się tam również ich suma:
             \begin{equation*}
@@ -62,8 +62,8 @@ Każde monotoniczne odwzorowanie \(f\colon \powerset\pars{X} \function \powerset
             \begin{equation*}
                 f\pars{y_0} \subseteq \bigcup \beta = y_0
             \end{equation*}
-            Skoro mamy obydwie inkluzje --- \(y_0 \subseteq f\pars{y_0}\) i~\(f\pars{y_0} \subseteq y_0\) --- to \(y_0\)~jest punktem stałym.
+            Połączenie obydwu inkluzji: \(y_0 \subseteq f\pars{y_0}\) i~\(f\pars{y_0} \subseteq y_0\) pokazuje, że \(y_0\)~jest punktem stałym.
             
-            Czy największym? Tak! Jeśli \(f\pars{z} = z\), to w~szczególności \(z \subseteq f\pars{z}\), czyli \(z \in \beta\), czyli \(z \subseteq \bigcup \beta = y_0\).
+            Czy największym? Tak! Jeśli \(f\pars{z} = z\), to w~szczególności \(z \subseteq f\pars{z}\), czyli \(z \in \beta\), a więc \(z \subseteq \bigcup \beta = y_0\).
     \end{description}
 \end{proof}

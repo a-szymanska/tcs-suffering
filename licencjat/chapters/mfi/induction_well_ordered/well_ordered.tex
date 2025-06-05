@@ -1,0 +1,33 @@
+\subsection{Dobre porządki}
+Na początek parę potrzebnych faktów, dzięki którym indukcja (pozaskończona) jest możliwa -- uogólniają to, co intuicyjnie działa na liczbach naturalnych.
+
+\begin{definition}[Dobry porządek]
+    Porządek \( (X, \leq) \) nazywamy dobrym, gdy w każdym niepustym podzbiórze \( X \) jest element najmniejszy.
+\end{definition}
+
+\begin{theorem}
+    W dobrym porządku \( X \) każdy element \( x \) za wyjątkiem największego posiada następnik, czyli
+    \[
+        \exists_{y \in X} \ x < y \land \forall_{z \in X} \ \pars{x < z \implies y \leq z}
+    \]
+\end{theorem}
+\begin{proof}
+    Niech \( (X, \leq) \) będzie zbiorem dobrze uporządkowanym. Wybieramy \( x \in X \), który nie jest elementem największym.
+    Definiujemy zbiór \( A = \set{y \in X : x < y} \), który jest niepusty, ponieważ \( x \) nie jest największy. Skoro \( X \) jest dobrze uporządkowany, to w \( A \) musi istnieć element najmniejszy, oznaczmy go przez \( y \).
+    I to jest następnik \( x \). Przyjrzyjmy się potencjalnemu następnikowi \( z > x, \ z \in X \). Musi być tak, że \( z \in A \) oraz \( y \leq z \), bo \( y \) jest najmniejszy w \( A \).
+    Więc \( y \) rzeczywiście jest następnikiem \( x \).
+\end{proof}
+Nie jest to oczywista własność -- na przykład w zbiorze liczb wymiernych żaden element nie ma następnika.
+
+\begin{theorem}
+    W dobrym porządku każdy przedział początkowy właściwy jest postaci \( \set{x \in X : x < x_0} \) dla pewnego \( x_0 \in X \).
+\end{theorem}
+\begin{proof}
+    Niech \( A \) będzie właściwym przedziałem początkowym \( X \). Zbiór \( X \setminus A \) jest niepusty, więc możemy wziąć jego element najmniejszy \( x_0 \).
+
+    Dla dowodu nie wprost załóżmy, że istnieje taki \( y \in A \), że \( x_0 \leq y \). Ponieważ \( A \) jest przedziałem początkowym, to \( x_0 \) również musiałby być elementem \( A \), co daje sprzeczność z tym, że \( x_0 \in X \setminus A \).
+
+    Również nie wprost załóżmy, że istnieje \( y \in X \setminus A \) taki, że \( y < x_0 \). To jednak daje sprzeczność z tym, że \( x_0 \) jest elementem najmniejszym w \( X \setminus A \).
+
+    To dowodzi, że \( A = \set{x \in X : x < x_0} \).
+\end{proof}

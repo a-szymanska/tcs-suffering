@@ -1,0 +1,49 @@
+\subsection{Indukcja pozaskończona}
+\begin{definition}[Zasada indukcji]
+    W liniowym porządku \( (X, \leq) \) obowiązuje Zasada Indukcji, jeśli dla dowolnego zbioru \( Z \) takiego że:
+    \begin{enumerate}
+        \item \( Z \subset X \),
+        \item \( Z \neq \empty \),
+        \item jeżeli \( \set{y \in X : y < x} \subset Z \), to \( x \in Z \),
+    \end{enumerate}
+    zachodzi \( Z = X \).
+\end{definition}
+
+\begin{theorem}
+    W dobrym porządku obowiązuje zasada indukcji.
+\end{theorem}
+\begin{proof}
+    Niech \( (X, \leq) \) będzie dobrym porządkiem. Niech \( Z \subset X \) będzie dowolnym zbiorem takim, że element najmniejszy \( X \) do niego należy
+    i dla dowolnego \( x \in Z \) zachodzi:
+    \[
+        \set{y \in X : y < x} \subset Z \implies x \in Z
+    \]
+    Chcemy pokazać, że \( Z = X \). Niech \( A = X \setminus X \). Załóżmy nie wprost, że \( A \neq \emtpyset \) oraz że \( a \) jest najmniejszym elementem \( A \).
+    W takim razie jeśli \( X \ni b < a \), to \( b \in X \setminus A = Z \). Wtedy \( \set{b \in X : b < a} \subset Z \), czyli również \( a \in Z \), co daje sprzeczność z tym, że \( a \in A = X \setminus Z \).
+\end{proof}
+
+Mamy też zależność w drugą stronę:
+\begin{theorem}
+    Każdy liniowy porządek, w którym istnieje element najmniejszy i obowiązuje zasada indukcji jest dobry.
+\end{theorem}
+\begin{proof}
+    Niech \( (X, \leq) \) będzie dobrym porządkiem o elemencie najmniejszym \( x_0 \). Niech \( A \subset X \) będzie zbiorem bez elementu najmniejszego.
+    Definiujemy zbiór \( Z = \set{z \in X : \forall_{a \in A} \ z < a} \), który jest niepusty, ponieważ \( x_0 \in Z \).
+    Chcemy pokazać, że dla dowolnego \( x \in X \), jeśli przedział początkowy \( \set{y \in X : y < x} \subset Z \), to \( x \in Z \).
+    Załóżmy nie wprost, że istnieje \( x \in X \setminus Z \), dla którego \( \set{y \in X : y < x} \subset Z \). Wtedy jest takie \( a \in A \),
+    że \( a \leq x \). Ponieważ \( A \) nie ma elementów mniejszych od \( x \), to \( a = x \). W takim razie z liniowości porządku wynika, że \( x \) jest najmniejszy w \( A \),
+    co daje sprzeczność z założeniem, że \( A \) nie ma elementu najmniejszego. Musi więc być \( x \in Z \), czyli \( X = Z \).
+    Zatem \( A = \emptyset \), a każdy niepusty podzbiór \( X \) ma element najmniejszy, czyli z definicji \( (X, \leq) \) jest dobrym porządkiem.
+\end{proof}
+
+\begin{theorem}[o definiowaniu przez indukcję pozaskończoną]
+    Niech \( (X, \leq) \) będzie dobrym porządkiem. Oznaczmy przez \( F(P, Q) \) zbiór wszystkich funkcji częściowych z \( P \) do \( Q \).
+    Dla każdej funkcji
+    \[
+        g : F(X \times B,C) \times X \times B \rightarrow C
+    \]
+    istnieje dokładnie jedna funkcja \( h : X \tiems B \rightarrow C \), dla której:
+    \[
+        h(x, b) = g(h \cap (O(x) \times B \times C), x, b)
+    \]
+\end{theorem}
