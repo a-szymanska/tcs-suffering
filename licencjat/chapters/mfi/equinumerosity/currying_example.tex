@@ -21,9 +21,9 @@ Nadużywając trochę notacji, możemy to bardziej intuicyjnie zapisać jako
 \begin{equation*}
     \pars{\alpha\pars{f}}\pars{b, c} \coloneqq \pars{f\pars{c}}\pars{b}
 \end{equation*}
-Musimy pokazać, że \(\alpha\)~bijekcją.
+Musimy pokazać, że \(\alpha\) jest bijekcją.
 \begin{description}
-    \item[Injektywność.] Weźmy różne \(f_1, f_2 \in \pars{A^B}^C\) i~pokażmy, że \(\alpha\pars{f_1} \neq \alpha\pars{f_2}\).
+    \item[Iniektywność.] Weźmy różne \(f_1, f_2 \in \pars{A^B}^C\) i~pokażmy, że \(\alpha\pars{f_1} \neq \alpha\pars{f_2}\).
 
         Co to znaczy, że \(f_1, f_2\) są różne? To są funkcje \(C \function A^B\), więc gdy są różne, to na jakimś argumencie \(c_0 \in C\) przyjmują różne wartości:
         \begin{equation*}
@@ -38,10 +38,8 @@ Musimy pokazać, że \(\alpha\)~bijekcją.
             \pars{\alpha\pars{f_1}}\pars{b_0, c_0} \neq \pars{\alpha\pars{f_2}}\pars{b_0, c_0}
         \end{equation*}
         Oznacza to, że funkcje \(\alpha\pars{f_1}, \alpha\pars{f_2}\colon B \times C \function \alpha\) przyjmują różne wartości na argumencie \(\pars{b_0, c_0} \in B \times C\). A~zatem są to różne funkcje \(\alpha\pars{f_1} \neq \alpha\pars{f_2}\), co właśnie chcieliśmy udowodnić.
-    \item[Surjektywność.] Weźmy \(g \in A^{B \times C}\). Musimy pokazać, że istnieje \(f \in \pars{A^B}^C\) takie, że
-        \begin{equation*}
-            \alpha\pars{f} = g
-        \end{equation*}
+    \item[Surjektywność.] Weźmy \(g \in A^{B \times C}\). Pokażemy, że istnieje \(f \in \pars{A^B}^C\) takie, że \( \alpha\pars{f} = g \).
+    
         Niewątpliwie, w~dziedzinie funkcji \(\alpha\)~znajduje się w~szczególności \(f_0\colon C \function A^B\)~zdefiniowane następująco
         \begin{equation*}
             \begin{split}
@@ -50,7 +48,7 @@ Musimy pokazać, że \(\alpha\)~bijekcją.
                     &\coloneqq \set{\pars{b, g\pars{b, c}} : b \in B}
             \end{split}
         \end{equation*}
-        co można, ponownie z~drobnym nadużyciem notacji można zapisać jako
+        co można -- ponownie z~drobnym nadużyciem notacji -- zapisać jako
         \begin{equation*}
             \pars{f_0\pars{c}}\pars{b} \coloneqq g\pars{b, c}
         \end{equation*}
