@@ -1,0 +1,49 @@
+Zbiory nieprzeliczalne to takie, które nie są przeliczalne... (patrz: pytanie \ref{mfi:countable})
+
+\begin{lemma}\label{mfi:uncountable:zero_one}
+    Zbiór \( \set{0, 1}^{\natural} \) nie jest przeliczalny.
+\end{lemma}
+\begin{proof}
+    Załóżmy, że wszystkich ciągów zerojedynkowych jest tyle co liczb naturalnych. Możemy je zatem ponumerować i wypisać:
+    \[
+        a_0^{(0)} \ a_1^{(0)} \ a_2^{(0)} \ \dots
+    \]
+    \[
+        a_0^{(1)} \ a_1^{(1)} \ a_2^{(1)} \ \dots
+    \]
+    \[
+        \dots
+    \]
+    Konstruujemy nowy ciąg zdefiniowany jako
+    \[
+        a'_i = \lnot a_i^{(i)}
+    \]
+    Jest on różny od wszystkich poprzednich, co daje sprzeczność z tym, że udało się ponumerować liczbami z \( \natural \) wszystkie.
+\end{proof}
+
+\begin{lemma}
+    Zbiór \( \powerset(\natural) \) nie jest przeliczalny.
+\end{lemma}
+\begin{proof}
+    O tym właśnie mówi twierdzenie Cantora (patrz: pytanie \ref{mfi:cantor}).
+
+    Inaczej można skorzystać z lematu \ref{mfi:uncountable:zero_one}, ponieważ łatwo wskazać bijekcję, pomiędzy \( \powerset(\natural) \) a \( \set{0, 1}^{\natural} \)
+    -- każdy podzbiór reprezentujemy jako ciąg zero-jedynkowy, gdzie 1 oznacza wybór danego elementu.
+\end{proof}
+
+\begin{theorem}
+    Zbiór liczb rzeczywistych \( \real \) jest nieprzeliczalny.
+\end{theorem}
+\begin{proof}
+    Dla dowodu niewprost załóżmy, że istnieje bijekcja z \( \natural \) w \( (0,1) \subset \real \). Korzystamy z lematu \ref{mfi:uncountable:zero_one}. 
+    Definiujemy funkcję \( f: \set{0, 1}^{\natural} \rightarrow (0, 1) \) w następujący sposób:
+
+    Dla dowolnego ciągu \( (a_n)_{n \in \natural} \in \set{0, 1}^\natural \) definiujemy
+    \[
+        f((a_n)) = \sum_{n = 1}^{\infty} \frac{a_{n-1}}{2^n} = 0.a_0 a_1 a_2 a_3 \ldots,
+    \]
+    czyli rozwinięcie binarne. Dla jednoznaczności reprezentacji ograniczamy się tylko do ciągów, które nie kończą się nieskończoną liczbą jedynek (żeby nie było np. \(0.0111\ldots = 0.1000\ldots\)).
+    Funkcja \( f \) jest iniekcją na podzbiór \( (0,1) \), który jest nieprzeliczalny, ponieważ dziedzina \( f \) jest zbiorem nieprzeliczalnym.
+
+    Zatem również \( \real \) jest nieprzeliczalny.
+\end{proof}

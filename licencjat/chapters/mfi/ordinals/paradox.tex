@@ -1,0 +1,11 @@
+\subsection{Paradoks liczb porządkowych}
+\begin{theorem}[Antynomia Burali-Forti]
+    Nie istnieje zbiór wszystkich liczb porządkowych.
+\end{theorem}
+\begin{proof}
+    Dla dowodu nie wprost załóżmy, że \( X \) jest zbiorem wszystkich liczb porządkowych.
+    Z~własności liczb porządkowych wiemy, że \( X \) jest dobrze uporządkowany przez inkluzję.
+    Niech \( x, y \in X \) oraz \( x \neq y \). Wtedy \( x \subsetneq y \), czyli \( x \in y \) lub \( y \subsetneq x \), więc \( y \in x \), zatem \( X \) spełnia pierwszy z warunków bycia liczbą porządkową.
+
+    Skoro \( x \in X \) jest liczbą porządkową, to \( x \subset X \), więc zbiór \( X \) spełnia oba warunki i jest liczbą porządkową. Musi więc być \( X \in X \) -- taki zbiór nie może istnieć, co daje sprzeczność z~założeniem.
+\end{proof}
