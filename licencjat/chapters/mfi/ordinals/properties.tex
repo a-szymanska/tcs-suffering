@@ -1,0 +1,35 @@
+\begin{theorem}
+    Każdy zbiór będący liczba porządkowa jest dobrze uporządkowany relacją inkluzji.
+\end{theorem}
+\begin{proof}
+    Niech \( X \) będzie liczbą porządkową. Dla dowolnych \( x,y \in X \) takich, że \( x \neq y \) zachodzi \( x \in y \) lub \( y \in x \),
+    więc \( x \subset y \) lub \( y \subset x \). Zatem relacja inkluzji wyznacza porządek liniowy na  \( X \).
+
+    Pozostaje pokazać, że każdy podzbiór \( X \) ma element najmniejszy. Dla dowolnego \( A \subset X \) na mocy aksjomatu regularności mamy \( a \in A \) takie, że \( a \cap A = \emptyset \).
+    Niech \( b \in A \) będzie dowolnym elementem różnym od \( a \). Z właśności liczb porządkowych, skoro \( a \neq b \), to \( a \in b \) lub \( b \in a \).
+    Załózmy, że \( b \in a \). Wtedy \( b \in (a \cap A) \), co daje sprzeczność. W takim razie \( a \in b \), czyli \( a \) należy do każdego różnego od siebie elementu \( A \). Oznacza to, że \( a \) jest najmniejsze w \( A \).
+\end{proof}
+
+\begin{lemma}
+    Liczby porządkowe \( \omega, a, b, c \) spełniają:
+    \begin{enumerate}
+        \item \( 1 + \omega = \omega \)
+        \item \( \omega + \omega = 2 \cdot \omega \)
+        \item \( a + b = a + c \implies b = c \)
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \textit{Ad 1.} Posługując się definicją dodawania, \( 1 + \omega \) odpowiada liczbie porządkowej \( \natural \) z dodanym elementem najmniejszym. Oznaczmy go przez \( n_0 \).
+    Możemy zdefiniować funkcję \( f : \natural \cup \set{n_0} \rightarrow \natural \) przez:
+    \[
+        f(n_0) = 0, f(n + 1) = n + 1, \quad n \in \natural,
+    \]
+    która jest monotoniczną bijekcją. Zatem częściowe porządki \( \omega \) i \( 1 + \omega \) odpowiadają jednej liczbie porządkowej (są podobne).
+
+    \textit{Ad 3.} Ponieważ porządki \( (\omega, \leq) \oplus (\omega, \leq) \) i \( (\set{0, 1}, \leq) \times (\omega, \leq) \) są identyczne, to odpowiadają tej samej liczbie porządkowej.
+
+    \textit{Ad 6.} Niech \( a, b, c \) będą liczbami porządkowymi takimi, że \( a + b = a + c \). Definiujemy porządki \( (A, \leq_A), (B, \leq_B), (C, \leq_C) \), które odpowiadają porządkom \(a, b, c \) z relacją inkluzji.
+    Można zauważyć, że porządek \( (A, \leq_A) \oplus (B, \leq_B) \) jest podobny do \( (A, \leq_A) \oplus (C, \leq_C) \). Określamy monotoniczną bijekcję \( f : A \cup B \rightarrow A \cup C \).
+    Dobry porządek nie może być podobny do swojego właściwego przedziału początkowego, więc \( f\fIm(A) = A \) i \( f\fIm(B) = C \).
+    Wynika z tego, że \( f \cap B \times C \) wskazuje podobieństwo porządków \( (B, \leq_B) \) i \( (C, \leq_C) \), czyli \( b = c \).
+\end{proof}

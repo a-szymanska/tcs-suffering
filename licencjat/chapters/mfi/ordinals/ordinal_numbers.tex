@@ -1,0 +1,42 @@
+\begin{definition}[Liczba porządkowa]
+    Liczbą porządkową nazywamy zbiór \( X \), który spełnia własności:
+    \begin{enumerate}
+        \item \( \forall_{x, y \in X} \ x \in y \lor y \in x \lor x = y \)
+        \item \( \forall_{x \in X} \ x \subset X \)
+    \end{enumerate}
+\end{definition}
+Zbiór pusty jest liczbą porządkową, a kolejne można łatwo skonstruować.
+
+\begin{theorem}
+    Jeśli zbiór \( X \) jest liczbą porządkową, to \( X \cup \set{X} \) również.
+\end{theorem}
+\begin{proof}
+    Niech \( x \neq y \) będą elementami \( X \cup \set{X} \). Jeśli \( x, y \in X \), to \( x \in y \) lub \( y \in x \), ponieważ \( X \) jest liczbą porządkową.
+    Jeśli (bez straty ogólności) \( x \notin X \), to \( x = X \) albo \( y = X \). Wtedy \( y \in X \), czyli \( y \in x \), więc pierwszy warunek spełniony.
+
+    Dla \( x \in X \cup \set{X} \) roważamy dwa przypadki. Jeśli \( x \in X \), to \( x \subset X \subset X \cup \set{X} \), ponieważ \( X \) jest liczbą porządkową.
+    Jeśli \( x \in \set{X} \), to \( x = X \), więc \( x \subset X \), co kończy dowód dla drugiego warunku.
+\end{proof}
+Wobec tego cały \( \natural \) jest liczbą porządkową, \( \natural \cup \set{\natural} \) też, a nawet \( \natural \cup \set{\natural} \cup \set{\natural \cup \set{\natural}} \), itd.
+
+\begin{theorem}
+    Każdy element liczby porządkowej jest liczbą porządkową.
+\end{theorem}
+\begin{proof}
+    Niech \( X \) będzie liczbą porządkową i niech \( x \in X \). Ustalmy \( a, b \in x \) takie, że \( a \neq b \). Skoro \( x \subset X \) z własności liczby porządkowej \( X \), to \( a, b \in X \),
+    czyli zachodzi \( a \in b \) lub \( b \in a \) -- pierwszy warunek spełniony.
+
+    Jeśli \( a \in x \), to \( a \subset X \). Załóżmy nie wprost, że \( a \not\subset x \). Wybieramy \( b \in a \setminus x \neq \emptyset \). Ponieważ \( a \subset X \), to \( b \in X \),
+    więc z drugiej własności liczby porządkowej \( X \) wynika, że \( x \in b \) lub \( x = b\), co w~obu przypadkach prowadzi do sprzeczności \( x \in x \). Zatem \( a \subset x \), a to kończy dowód.
+\end{proof}
+
+\begin{theorem}
+    Każdy przedział początkowy liczby porządkowej jest liczbą porządkową.
+\end{theorem}
+\begin{proof}
+    Przedział pusty niewątpliwie jest liczbą porządkową. Niech \( X \) będzie liczbą porządkową, \( A \subset X \) jej niepustym przedziałem początkowym.
+    Zbiór \( A \) spełnia pierwszy warunek, ponieważ jest podzbiorem \( X \).
+
+    Dla dowolnego \( a \in A \) i \( b \in a \), zachodzi \( a \subset X \), ponieważ \( X \) jest liczbą porządkową. Jako że \( b \subset a \), to \( b \in A \), ponieważ \( A \) jest przedziałem początkowym,
+    więc \( A \) spełnia też drugi warunek.
+\end{proof}

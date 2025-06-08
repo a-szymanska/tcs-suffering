@@ -3,7 +3,7 @@
     W liniowym porządku \( (X, \leq) \) obowiązuje Zasada Indukcji, jeśli dla dowolnego zbioru \( Z \) takiego że:
     \begin{enumerate}
         \item \( Z \subset X \),
-        \item \( Z \neq \empty \),
+        \item \( Z \neq \emptyset \),
         \item jeżeli \( \set{y \in X : y < x} \subset Z \), to \( x \in Z \),
     \end{enumerate}
     zachodzi \( Z = X \).
@@ -18,7 +18,7 @@
     \[
         \set{y \in X : y < x} \subset Z \implies x \in Z
     \]
-    Chcemy pokazać, że \( Z = X \). Niech \( A = X \setminus X \). Załóżmy nie wprost, że \( A \neq \emtpyset \) oraz że \( a \) jest najmniejszym elementem \( A \).
+    Chcemy pokazać, że \( Z = X \). Niech \( A = X \setminus Z \). Załóżmy nie wprost, że \( A \neq \emptyset \) oraz że \( a \) jest najmniejszym elementem \( A \).
     W takim razie jeśli \( X \ni b < a \), to \( b \in X \setminus A = Z \). Wtedy \( \set{b \in X : b < a} \subset Z \), czyli również \( a \in Z \), co daje sprzeczność z tym, że \( a \in A = X \setminus Z \).
 \end{proof}
 
@@ -36,7 +36,7 @@ Mamy też zależność w drugą stronę:
     Zatem \( A = \emptyset \), a każdy niepusty podzbiór \( X \) ma element najmniejszy, czyli z definicji \( (X, \leq) \) jest dobrym porządkiem.
 \end{proof}
 
-\begin{theorem}[o definiowaniu przez indukcję pozaskończoną]
+\begin{theorem}[O definiowaniu przez indukcję pozaskończoną]
     Niech \( (X, \leq) \) będzie dobrym porządkiem. Oznaczmy przez \( F(P, Q) \) zbiór wszystkich funkcji częściowych z \( P \) do \( Q \).
     Dla każdej funkcji
     \[
