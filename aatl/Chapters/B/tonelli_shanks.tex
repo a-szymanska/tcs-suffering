@@ -6,8 +6,8 @@ Algorytm Tonellego-Shanksa służy do obliczania pierwiastka dyskretnego w czasi
 \begin{proof}
     Zauważmy, że każdy element grupy \( G \) należy do zbioru \( \{g^0, g^1, \dots, g^{2m-1}\} \), czyli traktujemy potęgi generatora modulo \( 2m \). Do rozważenia są dwa przypadki:
     \begin{enumerate}
-        \item \( a \) jest parzystą potęgą generatora: \\
-        Wtedy piewiastkami \( a = g^{2k} \) są \( g^k \) oraz \( g^{k+m} \), ponieważ
+        \item \( a = g^{2k} \) dla pewnego całkowitego \( k \): \\
+        Wtedy piewiastkami \( a \) są \( g^k \) i \( g^{k+m} \), ponieważ
         \[
             (g^k)^2 = g^{2k} = a
         \]
@@ -15,17 +15,16 @@ Algorytm Tonellego-Shanksa służy do obliczania pierwiastka dyskretnego w czasi
             (g^{k+m})^2 = g^{2k+2m} = g^{2k} = a
         \]
         Element \( a \) nie ma też żadnego innego pierwiastka.
-        \item \( a \) jest nieparzystą potęgą generatora: \\
-        Dla dowodu nie wprost, załóżmy że istnieje \( b = g^j \), które jest pierwiastkiem \( a = g^{2k+1} \). Wtedy
+        \item \( a = g^{2k+1} \) dla pewnego całkowitego \( k \): \\
+        Dla dowodu nie wprost, załóżmy że istnieje \( b = g^j \), które jest pierwiastkiem \( a \). Wtedy
         \[
             b^2 = g^{2j} = g^{2k + 1},
         \]
-        czyli \( 2j = 2k + 1 \pmod{2m} \), co prowadzi do sprzeczności.
+        czyli \( 2j = 2k + 1 \pmod{2m} \) -- sprzeczność.
     \end{enumerate}
-    Zatem tylko parzyste potęgi generatora są kwadratami.
+    Wniosek: tylko i dokładnie parzyste potęgi generatora są kwadratami.
 \end{proof}
 
-\newpage
 \begin{lemma}\label{A11:lemma2}
     Niech \( G \) będzie grupą cykliczną o \( n = 2m \) elementach. Element \( a \) jest kwadratem w \( G \) wtedy i tylko wtedy, gdy \( a^m = 1 \).
 \end{lemma}
@@ -43,7 +42,9 @@ Algorytm Tonellego-Shanksa służy do obliczania pierwiastka dyskretnego w czasi
     ponieważ rząd \( g \) jest równy \( 2m \).
 \end{proof}
 
-Tak przygotowani możemy przejść do algorytmu: Mając grupę \( G \) o liczności \( \abs{G} = n = 2m \) oraz dane na wejściu \( a \in G \), celem jest znaleźć \( x \) takie, że \( x^2 = a \) w grupie \( G \).
+\newpage
+Tak przygotowani możemy przejść do algorytmu: \\
+Mając grupę \( G \) o liczności \( \abs{G} = n = 2m \) oraz dane na wejściu \( a \in G \), celem jest znaleźć \( x \) takie, że \( x^2 = a \) w grupie \( G \).
 \begin{greyframe}
     Algorytm Tonellego-Shanksa:
     \begin{enumerate}
@@ -69,7 +70,7 @@ Jeśli \( a^{\frac{q}{2}} \cdot z^{\frac{t}{2}} = \xi \), to
 \[
     a^{\frac{q}{2}} \cdot z^{\frac{t}{2} + m} = (a^{\frac{q}{2}} \cdot z^{\frac{t}{2}}) \cdot z^m = \xi \cdot \xi = 1
 \]
-Korzystamy z tego, że \( m \) niezmiennie jest wielokrotnością \( 2q \).
+Korzystamy z tego, że \( m \) niezmiennie jest wielokrotnością \( 2q' \).
 
 Ostateczny wynik to:
 \[
