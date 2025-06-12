@@ -1,6 +1,6 @@
 Algorytm Tonellego-Shanksa służy do obliczania pierwiastka dyskretnego w czasie wielomianowym randomizowanym.
 
-\begin{lemma}\label{A11:lemma1}
+\begin{lemma}\label{ts:lemma1}
     Grupa cykliczna \( G \) o liczbie elementów \(n = 2m \), zawiera dokładnie \( m \) kwadratów, a każdy kwadrat ma dokładnie dwa pierwiastki.
 \end{lemma}
 \begin{proof}
@@ -31,12 +31,12 @@ Algorytm Tonellego-Shanksa służy do obliczania pierwiastka dyskretnego w czasi
 \end{lemma}
 \begin{proof}
     \textit{Jeśli \( a \) jest kwadratem, to \( a^m = 1\).} \\
-    Z lematu~\ref{A11:lemma1} wynika, że jeśli \( a \) jest kwadratem, to musi być postaci \( a = g^{2k} \). Zatem
+    Z lematu~\ref{ts:lemma1} wynika, że jeśli \( a \) jest kwadratem, to musi być postaci \( a = g^{2k} \). Zatem
     \[
         a^m = \pars{g^{2k}}^m = g^{2m \cdot k} = g^0 = 1
     \]
     \textit{Jeśli \( a \) nie jest kwadratem, to \( a^m \neq 1\).} \\
-    Z lematu~\ref{A11:lemma1} wynika, że \( a \) jest postaci \( a = g^{2k+1} \) dla pewnego nieparzystego \( k \). Zatem
+    Z lematu~\ref{ts:lemma1} wynika, że \( a \) jest postaci \( a = g^{2k+1} \) dla pewnego nieparzystego \( k \). Zatem
     \[
         g^{(2k+1)m} = g^{2m \cdot k} \cdot g^m = g^m = \xi = -1,
     \]
@@ -77,5 +77,5 @@ Ostateczny wynik to:
 \]
 
 Algorytm wykonuje \( \bigO(\log n) \) iteracji, bo po tylu dzieleniach \( q \) staje się nieparzyste, więc jest to algorytm wielomianowy.
-Z lematu~\ref{A11:lemma1} wynika, że przy losowaniu \( z \) znajdziemy niekwadrat z prawdopodobieństwem \( \frac{1}{2} \), czyli w oczekiwaniu po stałej liczbie kroków będzie można przejść do kroku 2.
+Z lematu~\ref{ts:lemma1} wynika, że przy losowaniu \( z \) znajdziemy niekwadrat z prawdopodobieństwem \( \frac{1}{2} \), czyli w oczekiwaniu po stałej liczbie kroków będzie można przejść do kroku 2.
 Nie potrafimy zdeterminizować tego kroku, ponieważ gdyby dało się znaleźć niekwadrat bez losowania, czyli policzyć pierwiastek dyskretny deterministycznie, to również można by deterministycznie rozłożyć liczbę na czynniki pierwsze (patrz: pytanie~\ref{A:question09}).

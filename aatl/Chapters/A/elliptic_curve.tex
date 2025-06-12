@@ -21,7 +21,8 @@ Chcemy, żeby krzywa była ,,gładka'' (nie jak Rys.~\ref{fig:elliptic_curves}d)
 \subsection{Działania na krzywej eliptycznej}
 Jeśli punkt \( P = (x, y) \) leży na krzywej eliptycznej, to \( -P = (x, -y) \) również.
 Jeśli \( P \) i \( Q \) są punktami na krzywej eliptycznej, to prosta \( PQ \) przecina krzywą jeszcze w jednym punkcie \( R \).
-Ustalamy, że \( P + Q + R = O \), gdzie \( O \) jest sztucznym punktem, który leży ,,w nieskończoności''.
+Ustalamy, że \( P + Q + R = O \), gdzie \( O \) jest sztucznym punktem w nieskończoności. \\
+\textit{(Niestety nie wiadomo, gdzie konkretnie jest \( O \) -- szczęśliwy znalazca proszony o kontakt.)}
 
 \begin{figure}[H]
 \centering
@@ -55,12 +56,7 @@ Najczęściej używa się krzywych:
 \begin{theorem}
     Niech \( \mathbb{F} \) będzie ciałem, \( \abs{\mathbb{F}} = q \) oraz niech \( E \) będzie grupą dla pewnej krzywej eliptycznej nad \( \mathbb{F} \). Grupa \( E \) jest albo grupą cykliczną, albo produktem dwóch grup cyklicznych.
 \end{theorem}
-Pozostawiamy to twierdzenie bez dowodu.
+Niech pozostanie bez dowodu.
 
 Rozmiar grupy \( \abs{E} \) może być rozumiany jako liczba rozwiązań równania opisującego krzywą.
-Dla każdego \( x \in \mathbb{F} \) wartość \( x^3 + ax + b \) jest resztą kwadratową z prawdopodobieństwem \( \frac{1}{2} \). Jeśli uda się trafić, to otrzymamy dwa możliwe \( y \), więc punktów powinno być blisko \( q \).
-
-Dokładnie, z twierdzenie Hassego: 
-\[
-    q - 2\sqrt{q} + 1 \leq \abs{E} \leq q + 2\sqrt{q} + 1
-\]
+Dla połowy \( x \in \mathbb{F} \) wartość \( x^3 + ax + b \) jest resztą kwadratową, a wtedy odpowiadają jej dwa możliwe \( y \), więc punktów powinno być blisko \( q \).

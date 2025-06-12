@@ -50,7 +50,7 @@ Jeśli chce się otrzymać wynik pełny (nie modulo), wystarczy przyjąć \( N \
 \end{greyframe}
 
 W punkcie 2 splatamy liczby w pierścieniu \( \integer_p \) dla \( p = 2^{b'} + 1 \), gdzie \( b' \approx 2b + \log t \) oraz \( t \mid b' \). Bierze się to stąd, że wynik splotu nie przekracza \( p \), czyli \( p > t \cdot \pars{2^b}^2 \), więc \( b' \geq 2b + \log t \).
-Podzielność \( t \mid b' \) jest ważna, żeby rząd \( \omega = 2^{\frac{2b}{t}} \) był równy \( t \), czyli \( \omega^{\frac{t}{2}} = 2^b' = -1 \pmod{p} \).
+Podzielność \( t \mid b' \) jest ważna, żeby rząd \( \omega = 2^{\frac{2b}{t}} \) był równy \( t \), czyli \( \omega^{\frac{t}{2}} = 2^{b'} = -1 \pmod{p} \).
 
 Algorytm można opisać ogólnym równaniem
 \[

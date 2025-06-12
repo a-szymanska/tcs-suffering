@@ -3,11 +3,11 @@ Dla danych \( a, b > 0 \) algorytm zwraca \( d = \gcd(a,b) \) oraz liczby całko
 \begin{greyframe}
     Algorytm:
     \begin{enumerate}
-        \item Jeśli \( a < b \), zamień \( a \) i \( b \).
-        \item Jeśli \( b = 0 \), zwróć \( d = a \) oraz parę \( (1,0) \).
-        \item Podziel z resztą \( a \) przez \( b \), otrzymując \( a = q \cdot b + r \).
-        \item Wywołaj \( \gcd(b,r) \), otrzymując \( d \) oraz parę \( (s', t') \) taką, że \( s'\cdot b + t' \cdot r = d \).
-        \item Zwróć \( d \) oraz parę \( (t', s' - q \cdot t') \).
+        \item Jeśli \( a < b \), zamień \( a \) z \( b \).
+        \item Jeśli \( b = 0 \), zwróć \( d = a \) i parę \( (1,0) \).
+        \item Oblicz \( a = q \cdot b + r \).
+        \item Wywołaj \( \gcd(b,r) \), otrzymując \( d \) i parę \( (s', t') \) taką, że \( s'\cdot b + t' \cdot r = d \).
+        \item Zwróć \( d \) i parę \( (t', s' - q \cdot t') \).
     \end{enumerate}
 \end{greyframe}
 
@@ -34,12 +34,12 @@ Dla danych \( a, b > 0 \) algorytm zwraca \( d = \gcd(a,b) \) oraz liczby całko
     Jako krok bazowy indukcji po \( a, b \) sprawdzamy przypadek \( b = 0 \), rzeczywiście \( a \cdot 1 + 0 = \gcd(a, 0) \). \\
     Niech \( a = q \cdot b + r \). Korzystając z tego, że \( \gcd(a, b) = \gcd(b, r) = d \), otrzymujemy:
     \[
-        b \cdot s' + r \cdot t' = d
+        b \cdot s' + r \cdot t' = d,
     \]
     \[
-        b \cdot s' + (a - q \cdot b) \cdot t' = d
+        b \cdot s' + (a - q \cdot b) \cdot t' = d,
     \]
-    Przyrównując równania, otrzymujemy \( s = t', \ t = s' - q \cdot t' \), co było do pokazania.
+    czyli \( s = t', \ t = s' - q \cdot t' \), co było do pokazania.
 \end{proof}
 
 Własności algorytmu:
@@ -48,8 +48,8 @@ Własności algorytmu:
     \item Złożoność: \( \bigO(\log^2 a) \)
     \item \( \abs{s} \leq b \), \( \abs{t} \leq a \)
 \end{enumerate}
-Ad 1. Żeby obliczenie \( \gcd(a, b) \) wymagało \( k \) kroków, liczby \( a \), \( b \) muszą być równe co najmniej \( F_{k+2} \) i \( F_{k+1} \), co można udowodnić indukcją po \( k \).
-Ad 2. Zauważmy, że przy każdym wywołaniu rekurencyjnym przynajmniej jeden z argumentów zmniejsza się o połowę: \\
+Ad 1. Żeby obliczenie \( \gcd(a, b) \) wymagało \( k \) kroków, potrzeba \( a \geq F_{k+2} \), \( b \geq F_{k+1} \) -- dowód przez indukcję po \( k \). \\
+Ad 2. Przy każdym wywołaniu rekurencyjnym przynajmniej jeden z argumentów zmniejsza się o połowę: \\
 Jeśli \( b \leq \frac{a}{2} \), to \( r < b < \frac{a}{2} \). \\
 Jeśli \( b > \frac{a}{2} \), to \( r = a - b < \frac{a}{2} \). \\
 Złożoność operacji w kroku rekursji  to \( \bigO(\log a) \), więc cały algorytm ma złożoność \( \bigO(\log^2 a) \).

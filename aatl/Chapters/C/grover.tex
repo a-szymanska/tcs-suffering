@@ -62,9 +62,9 @@ Dysponując opisanym wyżej obwodem, możemy przejść do właściwego algorytmu
 \end{greyframe}
 
 Ad krok 2:
-\begin{proposition}
+\begin{lemma}
     Operacje \( D \) i \( O_f \) wystarczają, żeby zwiększyć współczynnik przy \( x^{*} \), a zmniejszyć przy pozostałych \( x \neq x^{*} \).
-\end{proposition}
+\end{lemma}
 \begin{proof}
     Stan układu kubitów to \( \sum_{x \in \set{0,1}^n} \delta'_x |x\rangle \). Początkowo \( \delta_x = \frac{1}{\sqrt{N}} \) dla każdego \( x \),
     a w każdym kroku jeden ze współczynników \( (\delta_{x^{*}}) \) jest zamieniany na przeciwny. Następnie odejmujemy wszystkie współczynniki od \( 2s \).
@@ -73,9 +73,9 @@ Ad krok 2:
     Można udowodnić indukcyjnie, że \( b_{k+1} - b_k > \frac{1}{\sqrt{N}} \) tak długo, jak \( b_k < \frac{1}{2} \).
     Stąd po co najwyżej \( \frac{1}{10} \sqrt{N} \) krokach, dostaniemy \( b_k > \frac{1}{10} \), co było do pokazania.
 \end{proof}
-\begin{proposition}
+\begin{lemma}
     Operację \( D \) można wyrazić jako kombinację \( \bigO(\log N) \) bramek \( H \) i \( T \).
-\end{proposition}
+\end{lemma}
 \begin{proof}
     Bramka \( D \) jest opisana macierzą:
     \[

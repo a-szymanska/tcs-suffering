@@ -1,7 +1,7 @@
 Algorytm ten jest heurystyką, korzystającą z faktu, że rząd grupy często jest liczbą złożoną. Mając daną grupę \( G = \langle g \rangle \) o \( n \) elementach oraz \( b \in G \), chcemy znaleźć \( x \), będącym rozwiązaniem równania \( g^x = b \).
 \begin{greyframe}
     Algorytm Pohliga-Hellmana:
-    \begin{enumerate}[I]
+    \begin{enumerate}
         \item Jeśli \( n \) jest liczbą pierwszą, to wyznacz \( x \) algorytmem Baby-Step-Giant-Step \\ \( \rightarrow \bigO(\sqrt{n}) \).
         \item Jeśli \( n = p^k \), gdzie \( p \) jest pierwsze oraz \( k > 1 \), to:
             \begin{enumerate}

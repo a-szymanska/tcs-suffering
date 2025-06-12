@@ -1,4 +1,4 @@
-Pomysł na wykorzystanie algorytmu wyznaczania pierwiastka dyskretnego opiera się na tym, że możemy sprowadzić faktoryzację \( n \) do szukania nietrywialnych rozwiązań \( x^2 = y^2 \mod n \).
+Pomysł opiera się na tym, że możemy sprowadzić faktoryzację \( n \) do szukania nietrywialnych rozwiązań równania \( x^2 = y^2 \mod n \).
 
 \begin{lemma}
 Niech \( n \) będzie nieparzystą liczbą złożoną, nie potęgą liczby pierwszej. Dla dowolnego \( s \) równanie:
@@ -15,9 +15,8 @@ jeśli ma jakiekolwiek rozwiązanie, to ma co najmniej 4 różne.
     \[
         x^2 = s \pmod{q}
     \]
-    Z Chińskiego Twierdzenia o Resztach wynika, że rozwiązań oryginalnego równania jest co najmniej tyle, ile wynosi iloczyn liczby rozwiązań poszczególnych równań w powyższym układzie, czyli \( 2 \cdot 2 = 4 \).
+    Z Chińskiego Twierdzenia o Resztach wynika, że rozwiązań oryginalnego równania jest co najmniej tyle, ile wynosi iloczyn liczby rozwiązań poszczególnych równań, czyli \( 2 \cdot 2 = 4 \).
 \end{proof}
-
 To wystarcza, żeby skonstruować algorytm.
 \begin{greyframe}
     Algorytm na faktoryzację:
@@ -30,6 +29,6 @@ To wystarcza, żeby skonstruować algorytm.
 \end{greyframe}
 {\small (Funkcja \( \textcolor{Blue}{\text{sqrt}(x, n)} \) to czarna skrzynka, która oblicza lub zgaduje w czasie wielomianowym pierwiastek z liczby \( x \) modulo \( n \).)}
 
-Algorytm działa poprawnie, bo skoro \( x^2 = y^2 \pmod{n} \), to \( n \mid (x + y)(x - y) \). W każdej iteracji szansa na znalezienie nietrywialnego dzielnika jest równa \( \frac{1}{2} \), ponieważ tyle wynosi prawdopodobieństwo, że trafiliśmy na \( x \neq \pm y \), przy losowym wyborze \( x \), czyli każde z 4 rozwiązań \( y^2 = s \pmod{n} \) było równie prawdopodobne.
+Algorytm działa poprawnie, bo skoro \( x^2 = y^2 \pmod{n} \), to \( n \mid (x + y)(x - y) \). W każdej iteracji szansa na znalezienie nietrywialnego dzielnika jest równa \( \frac{1}{2} \), ponieważ tyle wynosi prawdopodobieństwo, że trafiliśmy na \( x \neq \pm y \), przy losowym wyborze \( x \), czyli każde z 4 rozwiązań równania \( y^2 = s \pmod{n} \) jest równie prawdopodobne.
 
-Podsumowując, gdyby algorytm Tonellego-Shanksa działał na grupie \( \integer_n \) dla dowolnej liczby całkowitej \( n \), to dałoby się w czasie wielomianowym rozłożyć \( n \) na czynniki pierwsze.
+Gdyby algorytm Tonellego-Shanksa działał na grupie \( \integer_n \) dla dowolnej liczby całkowitej \( n \), to dałoby się w czasie wielomianowym rozłożyć \( n \) na czynniki pierwsze.

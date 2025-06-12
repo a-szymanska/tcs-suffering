@@ -8,11 +8,10 @@ Jeśli otrzymamy od wyroczni \( d \) potencjalny dzielnik \( p \), możemy w wie
 
 Primes \( \in \) NP: \\
 Korzystamy z tego, że \( \integer_p^* \) ma rząd równy \( p-1 \) wtedy i tylko wtedy, gdy \( p \) jest pierwsze. \\
-Jeśli otrzymamy od wyroczni \( g \), generator \( \integer_p^* \) oraz rozkład liczby \( p-1 \) na czynniki pierwsze \( p-1 = p_1^{\alpha_1} \cdots p_s^{\alpha_s} \), możemy:
+Jeśli otrzymamy od wyroczni \( g \), generator \( \integer_p^* \) i rozkład na czynniki pierwsze \( p-1 = p_1^{\alpha_1} \cdots p_s^{\alpha_s} \), możemy:
 \begin{itemize}
-    \item rekurencyjnie sprawdzić pierwszość \( p_i \). \\
-    (Nie trzeba uwzględniać potęg \( p_i \), ponieważ jeśli \( p_i \) nie przejdzie testu, to potęgi \( p_i \) tym bardziej.)
-    \item sprawdzić, czy \( g^{p-1} = 1 \pmod{p} \).
+    \item rekurencyjnie sprawdzić pierwszość \( p_i \) i poprawność rozkładu,
+    \item sprawdzić, czy \( g^{p-1} = 1 \pmod{p} \),
     \item sprawdzić, czy \( g^{\frac{p-1}{p_i}} \neq 1 \pmod{p} \).
 \end{itemize}
 Jeżeli wszystkie z powyższych warunków są spełnione, to odpowiedzią jest TAK.
@@ -33,6 +32,6 @@ Factoring \( \in \) NP: \\
 Jeśli otrzymamy od wyroczni \( 2 \leq d \leq k \) potencjalny dzielnik \( n \), możemy w wielomianowym czasie sprawdzić, czy \( d \) rzeczywiście jest dzielnikiem i odpowiedzieć TAK.
 
 Factoring \( \in \) coNP: \\
-Otrzymujemy od wyroczni rozkład liczby \( n \) na czynniki pierwsze \( n = p_1^{\alpha_1} \cdots p_s^{\alpha_s} \). Sprawdzamy, czy \( p_1^{\alpha_1} \cdots p_s^{\alpha_s} = n \) oraz czy każde \( p_i \) jest pierwsze albo algorytmem AKS, albo niedeterministycznie z pomocą wyroczni. Jeśli poprawność rozkładu się potwierdzi, to odpowiedzą jest \( (p_1 \leq k) \) ? TAK : NIE, gdzie \( p_1 \) to najmniejszy z dzielników.
+Otrzymujemy od wyroczni rozkład liczby \( n \) na czynniki pierwsze \( n = p_1^{\alpha_1} \cdots p_s^{\alpha_s} \). Po sprawdzeniu poprawności rozkładu odpowiadamy \( (p_1 \leq k) \) ? TAK : NIE, gdzie \( p_1 \) to najmniejszy z~dzielników.
 
-Na ten moment nie potrafimy powiedzieć więcej o tym problemie.
+Na ten moment nie wiadomo nic więcej.
