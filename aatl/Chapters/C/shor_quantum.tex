@@ -1,0 +1,29 @@
+Dla \( a < n \) względnie pierwszego z \( n \), algorytm znajduje z prawdopodobieństwem \( \frac{1}{10} \) rząd \( a \) w grupie \( \integer_n^* \). 
+Algorytm jest wielomianowy, czyli wykonać \( \bigO(\log^k(a)) \) klasycznych obliczeń i wykorzystuje \( \bigO(\log^k(a)) \) bramek kwantowych.
+
+Używamy do tego dwóch rejestrów kwantowych. Pierwszy przechowuje wartość \( a^x \mod n \), a drugi wykładnik \( x \). Długości rejestrów są potęgami 2 na potrzeby QFT (kwantowej transformaty Fouriera). Ustalmy \( m = \ceil{\log n} \).
+
+Inicjalizujemy pierwszy rejestr za pomocą \( m \) bramek Haadamarda, dzięki czemu rejestr znajduje się w superpozycji wszystkich możliwych wartości \( x \), co daje stan:
+\begin{align*}
+    \ket{\xi} = \frac{1}{\sqrt{m}}\sum_{x=0}^{m-1} \ket{x} \ket{1}
+\end{align*}
+
+Następnie obliczamy funkcję \( f(x)=a^x \mod n \) i zapisujemy wynik w drugim rejestrze, co daje:
+\begin{align*}
+    \ket{\xi'} = \frac{1}{\sqrt{m}}\sum_{x=0}^{m-1} \ket{x} \ket{a^x \mod n}
+\end{align*}
+
+Następnie dokonujemy pomiaru drugiego rejestru, uzyskując wartość \( y_0 \). Ponieważ wartość w drugim rejestrze jest znana, wartości w pierwszym rejestrze są ograniczone warunkiem \( a^x \mod n = y_0 \). Można je więc zapisać jako \( x_0 + lr \), gdzie \( x_0 \) jest najmniejszym \( x \) spełniającym ten warunek. Aktualny stan układu można wtedy zapisać jako:
+\begin{align*}
+  \ket{\xi''} = \frac{1}{\sqrt{\lceil m/r \rceil}} \sum_{l=0}^{\lceil m/r \rceil-1} \ket{x_0 + lr} \ket{y_0}
+\end{align*}
+
+Następnie stosujemy kwantową transformatę Fouriera (QFT) do pierwszego rejestru, uzyskując:
+\begin{align*}
+  \ket{\xi'''} = \frac{1}{\sqrt{m} \sqrt{\lceil m/r \rceil}} \sum_{x=0}^{m} \sum_{l=0}^{\lceil m/r \rceil-1} \left[ e^{2\pi i (x_0 + lr)x/m} \ket{x} \right] \ket{y_0}
+\end{align*}
+
+Prawdopodobieństwo uzyskania konkretnej wartości \( x \) po pomiarze jest proporcjonalne do wyrażenia \( e^{2\pi i (x_0 + lr)x/m} \). Stąd wynika, że prawdopodobieństwa będą największe dla wartości \( x \) bliskich \( \frac{m}{r} \). Możemy więc z wyniku pomiaru oddtworzyć \( r \).
+
+
+Dokonujemy pomiaru pierwszego rejestru, uzyskując wartość \( x \). Aby znaleźć \( r \), musimy klasycznie znaleźć najlepsze przybliżenie wymierne dla \( \frac{x}{m} \), tj. liczby \( a \) i \( b \) takie, że \( \frac{x}{m} = \frac{a}{b} \). Można to zrobić za pomocą algorytmu ułamków łańcuchowych (continued fractions algoritm). Prawdopodobieństwo, że \( x \) będzie bliskie \( \frac{m}{r} \), jest wysokie, ale nie 100\%. Dlatego musimy sprawdzić, czy \( a^b \equiv 1 \mod n \). Jeśli tak, zwracamy \( b \), w przeciwnym razie ponawiamy działanie algorytmu.

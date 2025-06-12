@@ -6,12 +6,12 @@
 Celem jest rozłożyć \( N \) na czynniki pierwsze. Ustalamy pewne \( a_1, \dots, a_k \), po czym obliczamy \( b_i = a_i^2 \pmod{N} \). Chcemy wybrać taki podzbiór \(b_i \), żeby iloczyn jego elementów był pełnym kwadratem.
 
 \begin{lemma}
-    Niech \( \set{p_1, \dots, p_{s}} \) będzie zbiorem wszystkich liczb pierwszych mniejszych od \( B \). W każdym zbiorze liczb \( B \)-gładkich o liczności większej od \( s \) istnieje podzbiór, którego iloczyn jest kwadratem.
+    Niech \( \set{p_1, \dots, p_{s}} \) będzie zbiorem liczb pierwszych mniejszych od \( B \). W każdym zbiorze liczb \( B \)-gładkich o liczności większej od \( s \) istnieje podzbiór, którego iloczyn jest kwadratem.
 \end{lemma}
 \begin{proof}
     Niech \( \set{x_1, \dots, x_k} \) dla \( k > s \) będą liczbami \( B \)-gładkimi. Rozkładamy każdą z nich na czynniki pierwsze:
     \[
-        x_i = p_1^{\alpha_{1, i}} \cdots p_s^{\alpha_{s, i}},
+        x_i = p_1^{\alpha_{1, i}} \cdots p_s^{\alpha_{s, i}}
     \]
     a następnie przypisujemy jej wektor:
     \[
@@ -36,9 +36,9 @@ Krok 1. jest na razie czarną skrzynką, ale można za nią podstawić algorytm 
 
 \subsection{Sito kwadratowe}
 Poszukiwane liczby \( a_i \) muszą być większe od \( \sqrt{N} \), więc sprawdzamy po kolei dla potencjalnych kandydatów, czy reszty są \( B \)-gładkie.
-Dla pewnej ustalonej stałej \( K \) oraz \( i \in \set{0, \dots, K-1} \) definiujemy:
+Dla ustalonego \( K \) oraz \( i \in \set{0, \dots, K-1} \) definiujemy:
 \[ X[i] = \ceil{\sqrt{N}} + i \]
-\[ Y[i] = X[i]^2 \mod N = \pars{\ceil{\sqrt{N}} + i}^2 - N \]
+\[ Y[i] = X[i]^2 \pmod{N} = \pars{\ceil{\sqrt{N}} + i}^2 - N \]
 Trzeba rozłożyć liczby \( Y[i] \) na czynniki -- najlepiej wszystkie na raz, poniższym algorytmem.
 \begin{greyframe}
     Algorytm sita kwadratowego:
@@ -56,7 +56,6 @@ W ramach dodatkowego usprawnienie algorytmu, możemy uniknąć dzielenia dużych
 Wtedy operację \( \frac{Y[i]}{p} \) zastępujemy działaniem \( Z[i] - \log p \). Warunkiem \( B \)-gładkości jest (prawie) wyzerowanie się \( Z[i] \).
 Problemem może być występowanie czynników \( Y[i] \) z potęgą \( \alpha > 1 \). Należy wykryć od razu liczby \( Y[i] \) podzielne przez \( p^{\alpha} \) dla każdego możliwego \( \alpha \), stosując tę samą metodę.
 
-\textbf{Złożoność:} \\
 Przy optymalnym wyborze parametrów, czyli \( B, \ K \) rzędu \( e^{\sqrt{\ln N \ln\ln N}} \), złożoność algorytmu wynosi \( \bigO(e^{(1 + {\scriptscriptstyle\mathcal{O}}(1))\sqrt{\ln N \ln\ln N}}) \), czyli jest podwykładnicza.
 
 \subsection{Metoda Multi Polynomial Quadratic Sieve (MPQS)}

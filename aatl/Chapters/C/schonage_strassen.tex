@@ -1,13 +1,13 @@
 \subsection{Teoretyczna Transformata Numeryczna (NTT)}
-Transformata NTT (\textit{Number Theoretic Transform}) jest wersją algorytmu FFT, która w przeciwieństwie do algorytmu Cooleya-Tukeya nie używa liczb rzeczywistych. Zamiast nad \( \real \), obliczenia są wykonywane nad \( \integer_p \).
-Procedura wyznaczania splotu dwóch ciągów o wyrazach całkowitych modulo \( p \) jest praktycznie taka sama -- wzory rekurencyjne oraz własność wzajemnej odwrotności DFT i IDFT przenoszą się na pierścień \( \integer_p \). Jedynym warunkiem jest, żeby \( \omega \in \integer_p \) spełniało \( \omega^n = 1 \) oraz  \( \omega^{\frac{n}{2}} = -1 \), czyli żeby \( \omega \) było rzędu \( n \).
-Z twierdzenia Lagrange'a oraz faktu, że \( \integer_p \) jest cykliczna wiemy, że taki element istnieje, jeśli \( n \mid (p - 1) \). Algorytm FFT modulo \( p \) (czyli właśnie NTT) działa dla pewnych konkretnych \( p \) postaci \( q \cdot n + 1 \).
+Transformata NTT (\textit{Number Theoretic Transform}) jest wersją FFT, która nie używa liczb rzeczywistych -- zamiast nad \( \real \), obliczenia są wykonywane nad \( \integer_p \).
+Wzory rekurencyjne i własność wzajemnej odwrotności DFT i IDFT przenoszą się na pierścień \( \integer_p \). Jedynym warunkiem jest, żeby \( \omega \in \integer_p \) spełniało \( \omega^n = 1 \) oraz  \( \omega^{\frac{n}{2}} = -1 \), czyli żeby \( \omega \) było rzędu \( n \).
+Z twierdzenia Lagrange'a oraz faktu, że \( \integer_p \) jest cykliczna wiemy, że taki element istnieje, jeśli \( n \mid (p - 1) \). Algorytm FFT modulo \( p \) (czyli właśnie NTT) działa dla \( p \) postaci \( q \cdot n + 1 \).
 
-Algorytm na splot ciągów \( A = (a_0, a_1, \ldots, a_n) \) i \( B = (b_0, b_1, \ldots, b_n) \) wygląda następująco:
 \begin{greyframe}
+    Splatanie ciągów \( A = (a_0, a_1, \ldots, a_n) \) i \( B = (b_0, b_1, \ldots, b_n) \):
     \begin{enumerate}
-        \item Znajdź \( p \) postaci \( q \cdot n + 1 \), gdzie \( q \) jest niedużą liczbą pierwszą -- można ją wylosować i sprawdzić pierwszość lub szukać po kolei.
-        \item Znajdź generator \( g \) grupy \( \integer^{*}_p \) -- ponieważ generatorów jest \( \varphi(q \cdot n) = (q - 1) \cdot \frac{n}{2} \), to losując, ma się dużą szansę trafić.
+        \item Znajdź \( p \) postaci \( q \cdot n + 1 \), gdzie \( q \) jest niedużą liczbą pierwszą -- można wylosować i sprawdzić pierwszość lub szukać po kolei.
+        \item Znajdź generator \( g \) grupy \( \integer^{*}_p \) -- generatorów jest \( \varphi(q \cdot n) = (q - 1) \cdot \frac{n}{2} \), więc losowanie zadziała.
         Generator musi spełniać \( g^{\frac{p-1}{2}} \neq 1 \pmod{p} \) oraz \( g^{\frac{p-1}{q}} \neq 1 \pmod{p} \).
         \item Ustal \( \omega = g^q \) rzędu \( n \) i oblicz splot za pomocą NTT.
     \end{enumerate}
@@ -15,33 +15,34 @@ Algorytm na splot ciągów \( A = (a_0, a_1, \ldots, a_n) \) i \( B = (b_0, b_1,
 Można wybrać na tyle duże \( p \), żeby modulo nie miało wpływu na wynik. Przy mnożeniu liczb binarnych wystarczy \( p > n \).
 
 \subsection{Algorytm Sch{\"o}nhage-Strassena}
-Algorytm służy do mnożenia dużych liczb w zapisie binarnym. Ponieważ daje on zysk praktyczny dopiero w przypadku naprawdę dużych liczb, musi radzić sobie z problemami wynikającymi z długości ich zapisu.
+Algorytm służy do mnożenia dużych liczb w zapisie binarnym. Ponieważ daje on zysk praktyczny dopiero w przypadku \emph{naprawdę} dużych liczb, musi radzić sobie z problemami wynikającymi z długości ich zapisu.
 
-Pierwszym z wyzwań jest wybór pierścienia do obliczeń -- jeśli liczba \( p \) jest duża, to operacje w \( \integer_p \) nie są jednostkowe.
+Pierwszym z wyzwań jest wybór pierścienia do obliczeń -- jeśli liczba \( p \) jest duże, to operacje w \( \integer_p \) nie są jednostkowe.
 
-Liczba \( p \) nie musi być pierwsza, wystarczy nam względna pierwszość z \( n \), (potrzebne jest dzielenie przez \( n \)) i musi istnieć element \( \omega \) rzędu \( n \) modulo \( p \). Te warunki spełniają \( p \) postaci \( 2^m + 1 \) i \( \omega = 2^{\alpha} \) takie, żeby \( \omega^n = 1 \pmod{p} \). Ten sprytny dobór liczb upraszcza obliczenia:
+Liczba \( p \) nie musi być pierwsza, wystarczy nam względna pierwszość z \( n \), (potrzebne jest dzielenie przez \( n \)) i musi istnieć element \( \omega \) rzędu \( n \) modulo \( p \).
+Te warunki spełniają \( p = 2^m + 1 \), \\ \( \omega = 2^{\alpha} \) takie, żeby \( \omega^n = 1 \pmod{p} \). Sprytny dobór liczb upraszcza obliczenia:
 \begin{itemize}
     \item branie reszty modulo \( p \) -- zauważamy, że \( 2^m = p - 1 = -1 \pmod{p} \), więc możemy podzielić liczbę na \( m \)-cyfrowe fragmenty i dodać je z naprzemiennymi znakami:
     \[
-        101001110 \pmod{2^3 + 1} = 101 - 001 + 110 \pmod{2^3 + 1} 
+        101001110 \pmod{2^3 + 1} = 101 - 001 + 110 \pmod{2^3 + 1},
     \]
-    \item mnożenie przez \( \omega \) -- to mnożenie przez potęgę 2, czyli dopisanie zer na końcu liczby binarnej i wyciągnięcie reszty modulo \( p \)
-    \item mnożenie dwóch liczb w \( \integer_p \) -- nadal trudne, ale wykonywane niewiele razy i można sobie z nim poradzić rekurencją na liczbach o długości \( m \)
-    \item dzielenie przez \( \omega = 2^{\alpha} \) -- to mnożenie przez \( \omega^{-1} = -2^{m-\alpha} \), czyli też potęgę 2
+    \item mnożenie przez \( \omega \) -- to mnożenie przez potęgę 2, czyli dopisanie zer na końcu liczby binarnej i wyciągnięcie reszty modulo \( p \),
+    \item mnożenie dwóch liczb w \( \integer_p \) -- nadal trudne, ale wykonywane niewiele razy i można sobie z nim poradzić rekurencją na liczbach o długości \( m \),
+    \item dzielenie przez \( \omega = 2^{\alpha} \) -- to mnożenie przez \( \omega^{-1} = -2^{m-\alpha} \), czyli też potęgę 2.
 \end{itemize}
 
-Algorytm Sch{\"o}nhage-Strassena służy do obliczania iloczynu \( N \)-bitowych liczb \( U \), \( V \) modulo \( p = 2^N + 1 \).
-Jeśli chce się otrzymać wynik pełny (nie modulo), wystarczy przyjąć \( N \) większe od sumy długości liczb na wejściu. Zakładamy, że \( N \) jest potęgą 2. Algorym działa rekurencyjnie, sprowadzając iloczyn \( U \) i \( V \) do splotu wielomianów w mniejszym pierścieniu.
+Algorytm Sch{\"o}nhage-Strassena służy do obliczania iloczynu \( N \)-bitowych liczb \( A \), \( B \) modulo \( p = 2^N + 1 \).
+Jeśli chce się otrzymać wynik pełny (nie modulo), wystarczy przyjąć \( N \) większe od sumy długości liczb na wejściu. Zakładamy, że \( N \) jest potęgą 2. Algorym działa rekurencyjnie, sprowadzając iloczyn \( A \) i \( B \) do splotu wielomianów w mniejszym pierścieniu.
 
 \begin{greyframe}
-    Algorytm fastmul(\( U, V, N \)):
+    Algorytm fastmul(\( A, B, N \)):
     \begin{enumerate}
-        \item Rozbijamy liczby \( U \) i \( V \) na fragmenty o długości około \( \sqrt{N} \), czyli na \( t \) binarnych liczb \( b \)-cyfrowych. Liczby \( t, \ b \) powinny być potęgami dwójki wielkości mniej więcej \( \sqrt{N} \).
+        \item Rozbijamy liczby \( A \) i \( B \) na fragmenty o długości około \( \sqrt{N} \), czyli na \( t \) binarnych liczb \( b \)-cyfrowych. Liczby \( t, \ b \) powinny być potęgami dwójki wielkości mniej więcej \( \sqrt{N} \).
         \[
-            U = u_0 + u_1 \cdot 2^b + u_2 \cdot 2^{2b} + \ldots + u_{t-1} \cdot  2^{(t-1)b}
+            A = u_0 + u_1 \cdot 2^b + u_2 \cdot 2^{2b} + \ldots + u_{t-1} \cdot  2^{(t-1)b}
         \]
         \[
-            V = v_0 + v_1 \cdot 2^b + v_2 \cdot 2^{2b} + \ldots + v_{t-1} \cdot 2^{(t-1)b}
+            B = v_0 + v_1 \cdot 2^b + v_2 \cdot 2^{2b} + \ldots + v_{t-1} \cdot 2^{(t-1)b}
         \]
         Zadanie sprowadza się do pomnożenia dwóch liczb \( t \)-cyfrowych w systemie o podstawie \( 2^b \).
 
@@ -56,9 +57,9 @@ Algorytm można opisać ogólnym równaniem
 \[
     T(n) = 2 \sqrt{n} \cdot T(\alpha \sqrt{n}) + \Theta(n log n)
 \]
-dla pewnego \( \alpha \in \integer^{+} \).
+dla pewnego całkowitego \( \alpha \).
 
-Opisana procedura pozwala sprowadzić mnożenie dwóch liczb \( N \)-bitowych do około \( 2\sqrt{N} \) mnożeń liczb o długości \( 4\sqrt{N} \), co daje złożoność \( \bigO(N \log^2 N) \).
-Poprawienie jej do \( \bigO(N \log N \log \log N) \) wymaga zmniejszenia stałych \( (2, 4) \rightarrow (1, 2) \) poprzez zastosowanie technicznych sztuczek.
+Sprowadzamy mnożenie dwóch liczb \( N \)-bitowych do około \( 2\sqrt{N} \) mnożeń liczb o długości \( 4\sqrt{N} \), co daje złożoność \( \bigO(N \log^2 N) \).
+Poprawienie jej do \( \bigO(N \log N \log \log N) \) wymaga zmniejszenia stałych \( (2, 4) \rightarrow (1, 2) \) technicznymi sztuczkami.
         
 W praktyce rekursja jest płytka, ponieważ dla \( N < 10^3 \) lepiej użyć prostszych algorytmów, na przykład Tooma-Cooka albo nawet kwadratowego mnożenia.
