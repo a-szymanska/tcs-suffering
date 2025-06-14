@@ -28,4 +28,14 @@ Dane jest ciało \( \mathbb{F} \) charakterystyki \( p \) i liczba \( q = p^k \)
 \end{proof}
 
 \subsection{Generowanie ciała skończonego}
-Losujemy wielomian \( w \) stopnia \( k \) i sprawdzamy, czy jest nierozkładalny i mamy dużą szansę trafić. Wtedy \( \integer_p^*[X]/(w) \) jest ciałem. \\
+Ustalamy nierozkładalny wielomian \( w \) stopnia \( k \), wtedy \( \integer_p^*[X]/(w) \) jest ciałem.
+
+Losując wielomian \( w \) mamy dużą szansę trafić na nierozkładalny na mocy twierdzenia:
+\begin{theorem}
+    Nierozkładalnych wielomianów stopnia \( k \) nad \( \integer_p \) jest co najmniej \( \frac{p^k}{2k} \).
+\end{theorem}
+Przy losowaniu sprawdzamy nierozkładalność wielomianu, korzystając z tego, że:
+\begin{theorem}
+    Dla \( k \in \natural \), wielomian \( X^{p^k} - X \) nad \( \integer_p \) jest iloczynem wszystkich unormowanych wielomianów nierozkładalnych, których stopnie dzielą \( k \).
+\end{theorem}
+Wystarczy więc sprawdzić, czy potencjalny kandydat \( w \) jest względnie pierwszy z \( X^{p^d} - X \) dla każdego \( d < k \) -- jeśli tak, jest nierozkładalny.
