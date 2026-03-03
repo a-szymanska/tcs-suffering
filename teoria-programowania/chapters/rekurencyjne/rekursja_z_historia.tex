@@ -1,0 +1,58 @@
+\section{Rekursja z historią}
+\subsubsection*{Kodowanie G\"odla}
+Wprowadzamy oznaczenia:
+\begin{enumerate}
+    \item[] \( \cantor : \natural^2 \rightarrow \natural \) -- funkcja Cantora
+    \item[] \( \cantorl, \cantorr : \natural \rightarrow \natural \) -- lewa i prawa wartość w odwrotnej funkcji Cantora, \( \cantor(\cantorl(n), \cantorr(n)) = n \)
+    \item[] \( \rem(x, y) = x \pmod{y} \)
+\end{enumerate}
+
+Ciąg \( x_1, \ldots, x_n \) kodujemy jako 
+\[ \langle x_1, \ldots, x_n \rangle = p_0^n p_1^{x_1} \ldots p_n^{x_n}, \]
+gdzie \( p_0, \ldots, p_n \) to kolejne liczby pierwsze.
+
+Kodowanie, rozkodowywanie i poniższe operacje są pierwotnie rekurencyjne:
+\begin{enumerate}
+    \item[] \( \text{ln}(x) \) -- długość ciągu kodowanego przez \( x \)
+    \item[] \( \text{seg}(x) \) -- sprawdzenie, czy \( x \) jest poprawnym kodem
+    \item[] \( x \* y \) -- konkatenacja ciągów \( x \) i \( y \)
+    \item[] \( x \sqsubseteq y \) -- sprawdzenie, czy \( x \) jest podciągiem początkowym (?) \( y \)
+    \item[] \( (((x)_i)_j)_k = (x)_{i, j, k} \) -- dostęp do elementu \( x[i][j][k] \)
+    \item[] \( \langle x \rangle_i \) -- odkodowanie \( i \)-tego elementu ciągu
+\end{enumerate}
+    
+\subsubsection*{Funkcja \( \beta \) G\"odla}
+Definiujemy funkcję \( \beta : \natural^2 \rightarrow \natural \) jako
+\[ \beta(a, i) = a_i, \]
+\[ \beta(a, i) = \rem\big(\cantorl(a), 1 + (i + 1) \cdot \cantorr(a)\big), \]
+gdzie \( a \) jest kodem ciągu \( a_1, \ldots, a_n \) oraz \( i < n \).
+
+\subsubsection*{Kodowanie historii obliczeń}
+Dla \( f^{k+1} : \natural^{k+1} \rightarrow \natural \) oraz \( \vec{x} = (x_1, \ldots, x_k) \) definiujemy \( \hat{f}^{k+1} : \natural^{k+1} \rightarrow \natural \) jako:
+\[ \hat{f}^{k+1}(\vec{x}, y) = \langle f(\vec{x}, 0), \ldots, f(\vec{x}, y) \rangle \]
+Zapisujemy stan obliczeń funkcji \( f \) po \( n \) krokach:
+\[ s(\vec{x}, n) = \underbrace{\langle \vec{x}, n, f(\vec{x}, n) \rangle}_{k+1 \text{ wartości}} \]
+Potrzebna jest jeszcze funkcja \( t \), która, otrzymawszy stan po \( n \) krokach, oblicza stan po \( n+1 \) krokach:
+\[ t(s(\vec{x}, n)) = s(\vec{x}, n+1) \]
+\[ t(z) = \langle \underbrace{\langle z \rangle_0, \ldots, \langle z \rangle_k}_{\vec{x}}, \underbrace{\langle z \rangle_{k+1}}_{n}, \underbrace{h(\langle z \rangle_0, \ldots, \langle z \rangle_k, \langle z \rangle_{k+1}, \langle z \rangle_{k+2})}_{h(\vec{x}, n)} \rangle \]
+\begin{theorem}[O rekursji z historią, Thoralf Skolem]
+    Klasa \( PRec \) jest zamknięta na rekursję z historią.
+\end{theorem}
+\begin{proof}
+    Chcemy pokazać, że funkcja \( f \) zdefiniowana następująco:
+    \[\begin{cases*}
+        f(\vec{x}, 0) = g(\vec{x}) \\
+        f(\vec{x}, n+1) = h(\vec{x}, n, \hat{f}(\vec{x}, n))
+    \end{cases*}\]
+    jest pierwotnie rekurencyjna.
+    Korzystamy z tego, że funkcja \( \hat{f} \) może być wyrażona zgodnie ze schematem rekursji prostej:
+    \[\begin{cases*}
+        \hat{f}(\vec{x}, 0) = \langle g(\vec{x}) \rangle \\
+        \hat{f}(\vec{x}, n+1) = \hat{f}(\vec{x}, n) \* \langle \hat{f}(\vec{x}, n) \rangle,
+    \end{cases*}\]
+    więc jest w klasie \( PRec \).
+    Korzystając z tego, zapisujemy
+    \( f(\vec{x}, n) = \langle \hat{f}(\vec{x}, n) \rangle_{n+1}, \)
+    zatem \( f \in PRec \).
+\end{proof}
+

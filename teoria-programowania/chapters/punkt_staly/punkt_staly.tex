@@ -1,0 +1,30 @@
+\newpage
+\begin{theorem}[O punkcie stałym rekursji]
+    Dla totalnej funkcji rekurencyjnej \(\sigma: \natural \to \natural\) istnieje konstruktywnie \(x_0 \in \natural\) takie, że 
+    \[ f_{x_0}(x) = f_{\sigma(x_0)}(x), \]
+    czyli obie zatrzymają się i wyniki będą równe.
+\end{theorem}
+Oznacza to, że dla każdej transformacji \(\sigma\) istnieje maszyna, która nie podlega transformacji i możemy ją skonstruować.
+\begin{proof}
+    Definiujemy \(G\), konstruktora maszyn:
+    \begin{enumerate}
+    \singlespacing
+        \item Wczytaj \(i\).
+        \item Skonstruuj maszynę \(M^{(i)}\) (opis poniżej).
+        \item Oblicz indeks \(M^{(i)}\).
+    \end{enumerate}
+    Maszyna \(M^{(i)}\):
+    \begin{enumerate}
+    \singlespacing
+        \item Wczytaj \(x\).
+        \item Skonstruuj \(i\)-tą maszynę \(M_i\).
+        \item Oblicz \(k = f_i(i)\), symulując \(M_i\) na wejściu \(i\) (może się zapętlić).
+        \item Skonstruuj \(k\)-tą maszynę \(M_k\).
+        \item Oblicz i wypisz \(f_k(x)\) (może się zapętlić).
+    \end{enumerate}
+    
+    Jeśli maszyna \(G\) opisuje pewną funkcję totalną \(g: \natural \to \natural\), to
+    \[ f_{g(i)}(x) = f_{f_i(i)}(x) \]
+    Ustalając \(j\) równego indeksowi funkcji \(\sigma \circ g \) oraz \(x_0 = g(j)\), otrzymujemy:
+    \[ f_{x_0}(x) = f_{g(j)}(x) = f_{\sigma(g(j))}(x) = f_{\sigma(x_0)}(x) \]
+\end{proof}

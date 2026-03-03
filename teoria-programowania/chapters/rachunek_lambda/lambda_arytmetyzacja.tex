@@ -1,0 +1,33 @@
+\begin{theorem}[Church, 1936]
+    Każda funkcja rekurencyjna ma \(\lambda\)-reprezentację.
+\end{theorem}
+
+\begin{theorem}
+    Każda funkcja \(\lambda\)-reprezentowalna jest rekurencyjna.
+\end{theorem}
+\section{Arytmetyzacja rachunku lambda}
+Enumerujemy symbole:
+\begin{center}
+\begin{tabular}{ r | c c c c c c c }
+ znak \(x_i\) & \(\cdot\) & ( & ) & \(\lambda\) & \(x_1\) & \(x_2\) & \dots \\ 
+kod \(\alpha_i\) & 2 & 3 & 5 & 7 & 11 & 13 & \dots
+\end{tabular}
+\end{center}
+
+Kodujemy skończone typy: \\
+Ciąg \( x_1 \ldots x_n \) kodujemy jako \( p_1^{\alpha_1} \ldots p_n^{\alpha_n} \). \\
+
+Definiujemy \(q, r \in PRec\) dla termów \(S, T\) w postaci normalnej kodowanych przez \(n, k\): \\
+\(q(n,k)\) -- numer redukcji \(T \to_{\alpha\beta} S\) \\
+\(r(n,k)\) -- numer równości \(T =_{\alpha\beta} S\) \\
+Definicje są poprawne i \(q,r\) rzeczywiście są rozstrzygalne, ponieważ możemy ponumerować wszystkie postaci normalne. \\
+
+Konstruujemy rodzinę predykatów \( \tau^n \subseteq \natural^{n+2} \):
+\[ \tau^n(e, x_1, \ldots, x_n, y), \]
+oznacza, że \(y\) jest numerem redukcji termu o numerze \(e\) do termu \(x_1, \ldots, x_n\). \\
+
+Konstruujemy funkcję \(U: \natural \to \natural\):
+\begin{align*}
+    & U(y) = n, \text{ gdy } y \text{ to numer redukcji do } n \\
+    & f(x_1, \ldots, x_n) = U(n, y, \tau^n(e, x_1, \ldots, x_n), y)
+\end{align*}

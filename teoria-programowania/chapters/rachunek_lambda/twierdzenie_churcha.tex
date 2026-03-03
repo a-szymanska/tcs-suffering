@@ -1,0 +1,46 @@
+\section{\(\lambda\)-definiowalność}
+Funkcja \(f:\natural^k \to \natural\) jest \(\lambda\)-definiowalna przez term domknięty \(F\) jeśli dla dowolnych liczb \(n_1, \dots, n_k\)
+\[ Fn_1n_2 \dots n_k =_\beta f(n_1,\dots,n_k) \]
+
+\begin{theorem}[Church]
+    Funkcje rekurencyjne są \(\lambda\)-definiowalne.
+\end{theorem}
+\begin{proof}
+    Dowodzimy indukcją strukturalną po funkcjach rekurencyjnych:
+    \begin{itemize}
+        \item Funkcje inicjujące
+        \begin{itemize}
+        \singlespacing
+            \item \(\lambda x_1\dots x_k.0\) -- zero
+            \item \(\lambda nsz.s(nsz)\) -- następnik
+            \item \(\lambda x_1 \dots x_k.x_i, \ i \leq k\) -- rzutowania
+        \end{itemize}
+
+        \item Domknięcie na złożenia
+        \[ g \equiv \lambda x_1 \dots x_k.G(F_1x_1 \dots x_k) \dots(F_nx_1 \dots x_k) \]
+    
+        \item Domknięcie na rekursję prostą
+        \begin{align*}
+            M = \lambda F n x_1 \dots x_k.&\text{IF (iszero } n \text{) THEN } G x_1 \dots x_k \\
+            &\text{ELSE } H \: (\text{pred } n) \: x_1\dots x_k \: (F (\text{pred } n) x_1 \dots x_k), \\
+            f \equiv YM
+        \end{align*}
+        Dowód indukcyjny: \\
+        \( YM \: 0 \: x_1 \dots x_k =_\beta M(YM) \: 0 \: x_1 \dots x_k =_\beta G x_1 \dots x_k =_\beta g(x_1, \dots, x_k) =_\beta f(0, x_1,\dots, x_k) \)
+        \begin{align*}
+            YM \: (n+1) \: x_1 \dots x_k &=_\beta M(YM) \: (n+1) \: x_1 \dots x_k \\
+            &=_\beta H n x_1 \dots x_k ((YM) n x_1 \dots x_k) \\
+            &=_\beta Hn x_1 \dots x_k (f(n, x_1, \dots, x_k)) \text{ (z zał. ind.)} \\
+            &=_\beta h(n, x_1, \dots, x_k, f(n, x_1, \dots, x_k)) \\
+            &=_\beta f(n, x_1, \dots, x_k)
+        \end{align*}
+
+        \item Domknięcie na \(\mu\)-rekursję
+        \[
+        \begin{aligned}
+            M & = \lambda G y.\text{IF }(G y) \text{ THEN } y \text{ ELSE } G (y+1) \\[0.5em]
+            f & \equiv YM
+        \end{aligned}
+    \]
+    \end{itemize}
+\end{proof}

@@ -1,0 +1,63 @@
+\section{Eliminacja rekursji prostej}
+\begin{theorem}[O eliminacji rekursji prostej]
+    Klasa funkcji rekurencyjnych (Rec) jest najmniejszą klasą zawierającą sumę, produkt, rzutowanie \(I_k^n\), funkcje charakterystyczną równości \(\sigma\) i zamkniętą na złożenia i \(\mu\)-rekursję
+\end{theorem}
+\begin{proof}
+Oznaczmy przez \(C\) klasę spełniającą założenia z twierdzenia. Z definicji \(C \subseteq Rec\). Dowodzimy, że \(Rec \subseteq C\).
+
+Musimy poczynić pewne założenia, które później udowodnimy.
+\begin{itemize}
+    \item Funkcja \(\beta\)-G\"odla jest w \(C\)
+    \item \(\land\) jest w \(C\)
+    \item ograniczony duży kwantyfikator \(\forall_{y<z} R(\vec{x},y)\) gdy \(R \in C\) jest w \(C\)
+\end{itemize}
+Każdą funkcję z \(Rec\) możemy zdefiniować w \(C\)
+\begin{enumerate}
+    \item Funkcji inicjujące
+    \begin{itemize}
+        \item \(O^n(\vec{x}) = \mu y [I_{n+1}^{n+1}(\vec{x},y) = 0]\)
+        \item \(1^n(\vec{x}) = \mu y [(y\neq 0) = 0]\)
+        \item \(S(X) = I_1^1(x)+1^1(x)\)
+    \end{itemize}
+    \item Funkcje zdefiniowane za pomocą rekursji prostej
+    Weźmy funkcję
+    \begin{align*}
+        f(\vec{x},0)& = g(\vec{x})\\
+        f(\vec{x},y+1)& = h(\vec{x},y,f(\vec{x},y)) \text{. gdy \(g,h \in C\)}
+    \end{align*}
+    Jest to oczywiście funkcja zdefiniowana indukcją prostą. Pokażemy, że ta funkcja należy do \(C\).
+
+    Zbudujemy \(t(\vec{x},y) = z\), historię obliczenia \(f\) od \(0\) do \(y\). Posiłkując się \(\mu\)-rekursją przeglądamy liczby, aż do znalezienia takiej, która koduje historię:
+    \[ z = \langle f(\vec{x},0), \dots, f(\vec{x},y) \rangle \]
+    \[ t(\vec{x},y) = \mu z [\beta(z,0) = g(x) \land \forall_{i<y} \ \beta(z,i+1) = h(\vec{x}, i,\beta({z,i}))]
+    \]
+    \[ f(\vec{x},y) = \beta(t(\vec{x},y),y) \]
+\end{enumerate}
+Pozostało udowodnić założenia:
+\begin{enumerate}
+    \item \(C\) jest zamknięta na operacje logiczne.
+    \begin{itemize}
+        \item \(\neg x \coloneq (x=0)\)
+        \item \(x \land y \coloneq x\cdot y\)
+    \end{itemize}
+    \item \(C\) jest zamknięta na \(\mu\)-operację na predykatach.
+    \[ \mu y [R(\vec{x},y)] = \mu y[f_R(\vec{x},y) = 1] = \mu y [f_{\neg R} (\vec{x},y) = 0] \]
+    \item \(C\) jest zamknięta na ograniczony duży kwantyfikator.
+    Zdefiniujmy operację:
+    \[ \mu^*_{y<z} [R(\vec{x},y)] = \begin{cases}
+        \mu y [R(\vec{x},y)] \text{ gdy \(\exists_y \ y<z \land R(\vec{x},y)\)}\\
+        z \quad \text{ w.p.p}
+    \end{cases} \]
+    \(\mu^*\) jest w \(C\) bo możemy je zdefiniować jako
+    \[ \mu^*_{y<z} R(\vec{x},y) = \mu y[R(\vec{x},y) \lor y = z] \]
+    Przy pomocy tej funkcji możemy zdefiniować ograniczone kwantyfikatory
+    \[ \exists_{y<z} \ R(\vec{x},y) \coloneq [\mu^*_{y<z} R(\vec{x},y)]\neq z \]
+    \[ \forall_{y<z} \ R(\vec{x},y) \coloneq \neg  \exists_{y<z} \ \neg R(\vec{x},y) \]
+    \item \(C\) zawiera funkcję \(\beta\) G\"odla.
+    \[ J(x,y) = \frac{(x+y)^2+3xy}{2} \]
+    \[ \mathcal{P}(z) = \mu y \: [\exists_{x<z+1} \ J(x,y) = z] \] 
+    \[ \mathcal{L}(z) = \mu x \: [\exists_{y<z+1} \ J(x,y) = z] \] 
+    \[ R_n(x,y) = \mu z \: [\exists_{p<y} \ xp+z = y] \]
+    \[ \beta(a,i) = R_n\big(\mathcal{L}(a), 1+(i+1) \cdot \mathcal{P}(a)\big) \]
+\end{enumerate}
+\end{proof}

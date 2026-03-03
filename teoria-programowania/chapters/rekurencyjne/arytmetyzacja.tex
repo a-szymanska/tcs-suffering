@@ -1,0 +1,23 @@
+\section{Arytmetyzacja funkcji}
+Numerujemy wszystkie funkcje rekurencyjne:
+\begin{itemize}
+\singlespacing
+    \item \(\langle 0,n \rangle\) -- numer zera \(O^n\)
+    \item \(\langle 1 \rangle\) -- numer następnika \(S\)
+    \item \(\langle 2,n,i \rangle\) -- numer rzutowania \(I_i^n, i \leq n\)
+    \item \(\langle 3,b_1,\dots,b_n,a \rangle\) -- numer złożenia:
+    \[ f(\vec{x}) = g(h_1(\vec{x}), \dots, h_n(\vec{x})), \]
+ gdzie \(g\) ma numer \(a\), \(h_i\) ma numer \(b_i\). 
+ \item \(\langle 4,a,b \rangle\) -- numer funkcji \(f\) otrzymanej za pomocą rekursji prostej:
+ \[
+ \begin{cases}
+     f(\vec{x},0) = g(\vec{x}) \\
+     f(\vec{x},y+1) = h(\vec{x},y,f(x,y))
+ \end{cases}
+ \]
+ \(a\) to numer funkcji \(g\), a \(b\) to numer funkcji \(h\).
+ \item \(\langle 5,a \rangle\) - numer funkcji otrzymywanej przez \(\mu\)-rekursję:
+ \[ f(\vec{x}) = \mu y[g(\vec{x},y)=0], \]
+ gdzie \(a\) to numer funkcji \(g\).
+\end{itemize}
+Kodowanie nie jest suriektywne, ale możemy sprawdzić, czy kod jest poprawny, przeglądając kolejne funkcje. Dla \(f \subseteq Rec\) \: przez \(e_f\) oznaczamy najmniejszy kod \(f\).

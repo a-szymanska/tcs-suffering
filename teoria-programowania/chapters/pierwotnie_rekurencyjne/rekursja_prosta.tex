@@ -1,0 +1,61 @@
+\section{Rekursja prosta}
+Klasa funkcji pierwotnie rekurencyjnych \(PRec\) to najmniejsza klasa zawierająca:
+\begin{itemize}
+\singlespacing
+    \item \( O^k(x_1, \ldots, x_n) = 0\), zero,
+    \item \( S(x) = x+1\), następnik,
+    \item \( I^n_k(x_1, \ldots, x_n) = x_k\) dla \(k \leq n\), rzutowania.
+\end{itemize}
+i zamknięta na schemat rekursji prostej 
+
+
+
+% zabrane z licencjat/chapters/mfi/natural_operations
+\begin{theorem}[Schemat rekursji (indukcji) prostej]
+    Niech dane będą zbiory \( A, Z \) oraz funkcje \( g: A \rightarrow Z, h : Z \times \natural \times A \rightarrow Z \).
+    
+    Wtedy istnieje dokładnie jedna funkcja \( f : \natural \times A \rightarrow Z \), dla której zachodzi
+    \begin{enumerate}
+        \item \( f(0, a) = g(a) \) -- warunek początkowy (bazowy)
+        \item \( f(n', a) = h(f(n, a), n, a) \) -- rekursor
+    \end{enumerate}
+\end{theorem}
+
+Przy pomocy tego schematu możemy zdefiniować podstawowe operacje dla \( A = Z = \natural \).
+
+\begin{multicols}{2}
+    \textbf{Dodawanie}
+    \[
+    \begin{cases}
+        f(0, n) = g(n) = n \\
+        f(k + 1, n) = h(f(k, n), k, n) = f(k, n) + 1
+    \end{cases}
+    \]
+    Dodawanie definiujemy jako \( k + n = f(k, n) \)
+\columnbreak\vfill
+    \textbf{Mnożenie}
+    \[
+    \begin{cases}
+        f(0, n) = g(n) = 0 \\
+        f(k + 1, n) = h(f(k, n), k, n) = f(k, n) + n
+    \end{cases}
+    \]
+    Mnożenie definiujemy jako \( k \cdot n = f(k, n) \)
+\end{multicols}
+
+\textbf{Odejmowanie}
+\[
+    x \dotminus y =
+    \begin{cases}
+        x - y \text{ gdy } x \geq y \\
+        0 \text{ gdy } x < y
+    \end{cases}
+\]
+Definiujemy funkcję pomocniczą \(g(x) = x \dotminus 1\):
+\begin{align*}
+    g(0) & = 0 & g(x+1) & = x
+\end{align*}
+Teraz możemy zdefiniować \(x \dotminus y\) jako:
+\begin{align*}
+    x \dotminus 0 & = x & x \dotminus (y+1)& = x \dotminus y \dotminus 1
+\end{align*}

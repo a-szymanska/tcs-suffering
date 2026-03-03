@@ -1,0 +1,98 @@
+Po podstawowe definicje, czym są termy lambda, odsyłam do notatek z ćwiczeń.
+
+Podstawienie \( M[x := n] \) oznacza term powstały z \( M \) poprzez zastąpienie wszystkich wolnych wystąpień \( x \) przez \( N \).
+
+\subsubsection*{\( \alpha \)-konwersja}
+Operacja zmiany nazw zmiennych związanych
+\begin{align*}
+    & M =_{\alpha} M \\
+    & \lambda x.M =_{\alpha} \lambda y.M[x := y] \quad \text{dla } y \notin FV(M)
+\end{align*}
+
+\subsubsection*{\( \beta \)-redukcja}
+Operacja przekształcenia termu w postaci \textbf{redeks} (\((\lambda x.M)N\)) poprzez zastąpienie wolnych wystąpień zmiennej argumentem
+\[ (\lambda x.M)N \rightarrow_{\beta} M[x := N] \]
+Warunek: żadna zmienna z \( FV(N) \) nie zostanie związana po podstawieniu do \( M \).
+
+Przykład, jak nie można:
+\[ (\lambda xy.xy)y \xrightarrow[]{{\color{red} \times}}_{\beta} \lambda y.yy \]
+Należy wcześniej zastosować \( \alpha \)-konwersję.
+\[ (\lambda xy.xy)y =_{\alpha} (\lambda xz.xz)y \rightarrow_{\beta} \lambda z.yz \]
+
+Jeśli \( M \rightarrow_{\beta} N \), to
+\begin{itemize}
+    \item \( \lambda x.M \rightarrow_{\beta} \lambda x.N \)
+    \item \( MK \rightarrow_{\beta} NK \)
+    \item \( KM \rightarrow_{\beta} KN \)
+\end{itemize}
+
+Definiujemy: \\
+\( \twoheadrightarrow_{\beta} \) domknięcie przechodnie i zwrotne relacji \( \rightarrow_{\beta} \cup =_{\alpha} \), \\
+\( =_{\beta} \) domknięcie symetryczne relacji \( \twoheadrightarrow_{\beta} \).
+
+\begin{theorem}[Church-Rosser, 1936]
+    Dla dowolnych termów \( M, \ N, \ K \), które spełniają \( M \twoheadrightarrow_{\beta} N \) i \( M \twoheadrightarrow_{\beta} K \) istnieje term \( L \) taki, że \( N \twoheadrightarrow_{\beta} L \) i \( K \twoheadrightarrow_{\beta} L \).
+    \begin{center}
+        \input{diagrams/CR1}
+    \end{center}
+\end{theorem}
+
+\begin{theorem}[O zygzaku, Church-Rosser]
+    Jeśli \( M =_{\beta} N \), to istnieje zygzak.
+\end{theorem}
+\begin{proof}[Szkic]
+    Wynika z poprzedniego twierdzenia.
+    \begin{center}
+        \input{diagrams/CR2}
+    \end{center}
+\end{proof}
+
+\begin{theorem}[Church-Rosser]
+    Dla dowolnych termów \( M =_{\beta} N \) istnieje \( L \), dla którego \( M \twoheadrightarrow_{\beta} L \twoheadleftarrow_{\beta} N \).
+\end{theorem}
+\begin{proof}[Szkic]
+    Wynika z poprzedniego twierdzenia.
+    \begin{center}
+        \input{diagrams/CR3}
+    \end{center}
+\end{proof}
+
+Term \( M \) jest w formie normalnej, jeśli nie posiada redeksów.
+
+\begin{theorem}[O formie normalnej, Church-Rosser]
+    Dla dowolnych termów \( M, \ N, \ K \), które spełniają \( M \twoheadrightarrow_{\beta} N \) i \( M \twoheadrightarrow_{\beta} K \), jeśli \( N \) i \( K \) są normalne, to \( N =_{\beta} K \).
+\end{theorem}
+\begin{proof}[Szkic]
+    Na mocy pierwszego twierdzenia Churcha-Rossera istnieje \( L \) takie, że \( N \twoheadrightarrow_{\beta} L \) i \( K \twoheadrightarrow_{\beta} L \).
+    Skoro \( N \) i \( K \) są normalne, to nie zawierają redeksów, więc dalsze \( \beta \)-redukcje są niemożliwe, czyli \( N \twoheadrightarrow_{\alpha} L \) i \( K \twoheadrightarrow_{\alpha} L \), a zatem \( N =_{\beta} K \).
+    \begin{center}
+        \input{diagrams/CR4}
+    \end{center}
+\end{proof}
+\subsection*{Ważne termy}
+\begin{itemize}
+    \item \(K = \lambda xy.x = \pi_i\) 
+    \item \(K^* = \lambda xy.y = \pi_2\)
+    \item Para uporządkowana:
+    \[ \lambda yzx.xyz=U \] 
+    \[ [p,q] = Upq = \lambda x.x pq \]
+    \[ [p,q]\pi_1 = p \qquad [p,q]\pi_2=q \]
+    \item \(S = \lambda xyz,xz(yz)\)
+    \item \(\omega = \lambda x.xx\)
+    \item \(\Omega = \omega \omega = (\lambda y.yy)(\lambda x.xx) \to_{\beta} (\lambda x.xx)(\lambda x.xx) \to_{\beta} \dots \) najprostszy term bez postaci normalnej
+    \item Operator punktu stałego \(Y\) to taki term, że dla każdego termu \(M\)
+    \[ YM =_\beta M(YM) \]
+    najkrótszym operatorem punktu stałego (potwierdzone bruteforcem) jest:
+    \[ Y = \lambda y(\lambda x.y(xx))(\lambda x.y(xx)) \]
+\end{itemize}
+
+\section{Numerale Churcha}
+Numerale Churcha reprezentują liczby naturalne w rachunku lambda, można by je zdefiniować inaczej, ale tak jest wygodnie.
+\\
+
+Definiujemy liczby naturalne jako
+\[ 0\equiv\lambda sz.z \]
+\[ 1 \equiv \lambda sz.sz \]
+\[ n \equiv \lambda sz. \underbrace{s(s\dots(s}_{\text{n razy s}}z)) \]
+Interpretacja jest taka, że bierzemy termy \(z\) reprezentujący zero oraz \(s\) reprezentujący następnik i aplikujemy następnik \(n\) razy do zera. \\
+Numerale Churcha są w postaci normalnej więc \(i \neq j \Rightarrow i \neq_\beta j\).

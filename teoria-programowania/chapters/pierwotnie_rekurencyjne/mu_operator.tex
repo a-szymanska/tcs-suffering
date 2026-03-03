@@ -1,0 +1,23 @@
+\paragraph*{Ograniczony $\mu$-operator}
+\textit{Definicja z ćwiczeń:} \\
+Funkcja \( f : \mathbb{N}^k \to \mathbb{N} \) jest zdefiniowana za pomocą 
+\textbf{ograniczonego \(\mu\)-operatora} (\textbf{operacji minimum}) 
+z funkcji \( h : \mathbb{N}^k \to \mathbb{N} \) oraz \( g : \mathbb{N}^{k+1} \to \mathbb{N} \), jeśli
+\[
+    f(\vec{n}) =
+    \begin{cases}
+        \min \{ m \le h(\vec{n}) : g(\vec{n}, m) = 0 \}, & 
+        \text{jeśli } \exists_{m \le h(\vec{n})} \ g(\vec{n}, m) = 0, \\
+        0, & \text{wpp.}
+    \end{cases}
+\]
+Zapisujemy wtedy
+\[
+    f(n_1, \ldots, n_k) = 
+\mu \: m_{\le h(n_1, \ldots, n_k)} \ [\, g(n_1, \ldots, n_k, m) = 0 \,].
+\]
+
+Na ćwiczeniach (1.5) dowiedliśmy bardzo przydatne twierdzenie:
+\begin{theorem}
+    Jeśli \( f \) jest zdefiniowana z funkcji \( g, h \in PRec \) za pomocą ograniczonego \(\mu\)-operatora, to \( f \) jest pierwotnie rekurencyjna.
+\end{theorem}

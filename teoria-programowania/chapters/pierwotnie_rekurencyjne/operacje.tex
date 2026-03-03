@@ -1,0 +1,32 @@
+\section{Predykaty pierwotnie rekurencyjne}
+Relacja \(R \subset \natural^{k+1}\) jest \textbf{relacją regularną} wtw:
+\[ \forall_{\vec{x} \in \natural^k} \ \exists_{y \in \natural} \ (\vec{x},y) \in R \]
+Predykat \(R \subseteq \natural^k\) jest pierwotnie rekurencyjny, gdy istnieje pierwotnie rekurencyjna funkcja charakterystyczna \(f_R: \natural^k \to \natural\)
+\[
+f_R(\vec{x}) = 
+\begin{cases}
+    1 \text{ gdy } \vec{x} \in R \\
+    0 \text{ gdy } \vec{x} \notin R
+\end{cases}
+\]
+\begin{theorem}
+    Rodzina predykatów pierwotnie rekurencyjnych jest zamknięta na operacje logiczne.
+\end{theorem}
+\begin{proof}
+Definiujemy operacje logiczne za pomocą operacji z \(PRec\).
+    \begin{itemize}
+        \item\(a \land b \coloneq a \cdot b\) 
+        \item\(\neg a \coloneq 1 \dotminus a\)
+        \item\(a \lor b \coloneq \neg(\neg a \land \neg b)  \)
+    \end{itemize}
+\end{proof}
+
+\begin{theorem}
+    Rodzina predykatów pierwotnie rekurencyjnych jest zamknięta na kwantyfikatory ograniczone.
+\end{theorem}
+\begin{proof}
+Definiujemy kwantyfikatory ograniczone używając \(\mu\)-rekursji:
+\[\exists_{x \leq a} f(x) := sgn(f(0)+\mu x_{\leq a} (\neg f(x))\]
+\[\forall_{x\leq a} f(x) := \overline{sgn} (\neg f(0)+\mu x_{\leq a} (f(x))\]
+\end{proof}
+
