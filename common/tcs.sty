@@ -52,6 +52,15 @@
 \declaretheorem[numberwithin=section,name=Wniosek]{corollary}
 \declaretheorem[numbered=no,name=Pytanie]{question}
 
+% A fix required for hyperref links
+\renewcommand\theHtheorem{\thesection.\arabic{theorem}}
+\renewcommand\theHlemma{\thesection.\arabic{lemma}}
+\renewcommand\theHexercise{\thesection.\arabic{exercise}}
+\renewcommand\theHdefinition{\thesection.\arabic{definition}}
+\renewcommand\theHexample{\thesection.\arabic{example}}
+\renewcommand\theHfact{\thesection.\arabic{fact}}
+\renewcommand\theHcorollary{\thesection.\arabic{corollary}}
+
 
 % Common sets
 \def\natural{\mathbb{N}}
@@ -165,7 +174,6 @@
 \def\npspace{\textsc{NPSPACE}}
 \def\exptime{\textsc{EXPTIME}}
 \def\re{\textsc{RE}}
-\def\r{\textsc{R}}
 \newcommand{\reg}[1]{\textsc{REG}_#1}
 \newcommand{\cfl}[1]{\textsc{CFL}_#1}
 \newcommand{\csl}[1]{\textsc{CSL}_#1}
@@ -264,3 +272,9 @@
 }{
 	\end{customframe}
 }
+
+% Hyperref must be loaded last for footnote links to work (and it's generally recommended)
+\usepackage{hyperref}
+% This was a part of the Complexity section above, but
+% for some reason, it must happen after hyperref is loadaed
+\def\r{\textsc{R}}
