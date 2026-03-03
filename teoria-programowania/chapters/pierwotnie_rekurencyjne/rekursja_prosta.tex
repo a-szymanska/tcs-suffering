@@ -1,5 +1,5 @@
 \section{Rekursja prosta}
-Klasa funkcji pierwotnie rekurencyjnych \(PRec\) to najmniejsza klasa zawierająca:
+Klasa funkcji pierwotnie rekurencyjnych \(\prec\) to najmniejsza klasa zawierająca:
 \begin{itemize}
 \singlespacing
     \item \( O^k(x_1, \ldots, x_n) = 0\), zero,
@@ -47,8 +47,8 @@ Przy pomocy tego schematu możemy zdefiniować podstawowe operacje dla \( A = Z 
 \[
     x \dotminus y =
     \begin{cases}
-        x - y \text{ gdy } x \geq y \\
-        0 \text{ gdy } x < y
+        x - y, \text{ gdy } x \geq y \\
+        0, \quad\quad \text{ gdy } x < y
     \end{cases}
 \]
 Definiujemy funkcję pomocniczą \(g(x) = x \dotminus 1\):

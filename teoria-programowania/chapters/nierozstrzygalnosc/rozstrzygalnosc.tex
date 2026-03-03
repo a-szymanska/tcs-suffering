@@ -1,11 +1,11 @@
 \section{Rozstrzygalność problemów}
 Rozstrzygalność rozumiemy następująco:
 \begin{align*}
-& \ \: Rec - \text{rozstrzygalne} \\
+& \ \: \rec - \text{rozstrzygalne} \\
 & \left.
 \begin{array}{l}
-RE - \text{częściowo rozstrzygalne} \\
-\overline{RE} - \text{nierozstrzygalne}
+\re - \text{częściowo rozstrzygalne} \\
+\overline{\re} - \text{nierozstrzygalne}
 \end{array}
 \right\} \text{nierozstrzygalne}
 \end{align*}
@@ -14,10 +14,10 @@ RE - \text{częściowo rozstrzygalne} \\
 Definiujemy język diagonalny
 \[ L_D = \set{w_i \in \Sigma_i^*: w_i \notin L(M_i)} \]
 \begin{theorem}
-    \( L_D \notin Rec \)
+    \( L_D \notin \rec \)
 \end{theorem}
 \begin{proof}
-    Nie wprost, załóżmy, że \( L_D \in REC \), istnieje więc maszyna \(M_i\), która go rozstrzyga.
+    Nie wprost, załóżmy, że \( L_D \in \rec \), istnieje więc maszyna \(M_i\), która go rozstrzyga.
     \begin{itemize}
         \item Jeśli \( w_i \in L(M_i) \), to \( w_i \notin L_D = L(M_i) \)
         \item Jeśli \( w_i \notin L(M_i) \), to \( w_i \notin L_D = L(M_i) \)
@@ -27,7 +27,7 @@ Definiujemy język diagonalny
 \subsection{Język uniwersalny}
 \[ L_u = \set{\langle M \rangle, w: w \in \Sigma^*, w \in L(M)} \]
 \begin{theorem}
-    \(L_U \in RE\)
+    \(L_U \in \re\)
 \end{theorem}
 \begin{proof}
 Konstruujemy trzytaśmową maszynę rozstrzygającą \(L_U\):
@@ -43,7 +43,7 @@ Skonstruowana w dowodzie maszyna to uniwersalna maszyna Turinga \(M_U\), \( L_U 
 \end{proof}
 
 \begin{theorem}
-    \(L_U \notin Rec\)
+    \(L_U \notin \rec\)
 \end{theorem}
 To wynika z Twierdzenia Rice'a, które już niedługo :)
 
@@ -54,7 +54,7 @@ To wynika z Twierdzenia Rice'a, które już niedługo :)
 \end{align*}
 
 \begin{theorem}
-    \( L_{ne} \in RE \)
+    \( L_{ne} \in \re \)
 \end{theorem}
 \begin{proof}
     Konstruujemy maszynę rozpoznającą \(L_{ne}\): \\
@@ -74,28 +74,28 @@ To wynika z Twierdzenia Rice'a, które już niedługo :)
 \end{proof}
 
 \begin{theorem}
-    \( L_e \notin RE \)
+    \( L_e \notin \re \)
 \end{theorem}
 \begin{proof}
-    Załóżmy dla dowodu nie wprost, że \( L_e \in Rec \). Konstruujemy maszynę \(N\) z własnością STOP, która akceptuje wszystko, jeśli \(w \in L(M)\) i nic wpp.
+    Załóżmy dla dowodu nie wprost, że \( L_e \in \rec \). Konstruujemy maszynę \(N\) z własnością STOP, która akceptuje wszystko, jeśli \(w \in L(M)\) i nic wpp.
 
-    Maszyna \(N\) rozpoznaje \(L_U \in RE\), co prowadzi do sprzeczności. \\
+    Maszyna \(N\) rozpoznaje \(L_U \in \re\), co prowadzi do sprzeczności. \\
 
-    Zatem \( L_e \notin Rec \), a ponieważ \( L_{ne} = \Sigma^* \setminus L_e \in RE \), to \( L_e \) jest całkiem nierozstrzygalny.
+    Zatem \( L_e \notin \rec \), a ponieważ \( L_{ne} = \Sigma^* \setminus L_e \in \re \), to \( L_e \) jest całkiem nierozstrzygalny.
 \end{proof}
 
 \subsection{Rekurencyjność języków}
 \begin{align*}
-    & L_{rec} = \set{\langle M \rangle : L(M) \in Rec} \\
-    & L_{nrec} = \set{\langle M \rangle : L(M) \notin Rec}
+    & L_{rec} = \set{\langle M \rangle : L(M) \in \rec} \\
+    & L_{nrec} = \set{\langle M \rangle : L(M) \notin \rec}
 \end{align*}
 Przykład nierozstrzygalnych języków,    których suma \( L_{rec} \cup L_{nrec} = \set{\langle M \rangle} \) jest rozstrzygalna.
 
 \begin{theorem}
-    \( L_{rec} \notin RE \)
+    \( L_{rec} \notin \re \)
 \end{theorem}
 \begin{proof}
-     Załóżmy dla dowodu nie wprost, że \( L_{rec} \in RE \). Konstruujemy maszynę \(N\):
+     Załóżmy dla dowodu nie wprost, że \( L_{rec} \in \re \). Konstruujemy maszynę \(N\):
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.75\linewidth]{img/Lrec.png}
@@ -104,10 +104,10 @@ Przykład nierozstrzygalnych języków,    których suma \( L_{rec} \cup L_{nrec
 \end{proof}
 
 \begin{theorem}
-    \( L_{nrec} \notin RE \)
+    \( L_{nrec} \notin \re \)
 \end{theorem}
 \begin{proof}
-    Załóżmy dla dowodu nie wprost, że \( L_{nrec} \in RE \). Konstruujemy maszynę \(N\):
+    Załóżmy dla dowodu nie wprost, że \( L_{nrec} \in \re \). Konstruujemy maszynę \(N\):
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.75\linewidth]{img/Lnrec.png}

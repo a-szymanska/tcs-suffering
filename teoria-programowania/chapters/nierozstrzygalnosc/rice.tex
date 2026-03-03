@@ -2,11 +2,11 @@
 
 \subsection{Pierwsze twierdzenie Rice'a}
 
-Dla \( S \subseteq RE \) definiujemy \( L_S = \set{\langle M \rangle : L(M) \in S} \). \\
-Własność \(S\) jest trywialna, jeśli \(S = \emptyset \) lub \(S = RE\). Takie własności są rozstrzygalne -- jeśli \(S = \emptyset\), to \( L_S = \emptyset \) i jest rozpoznawana przez maszynę z własnością STOP, która odrzuca wszystkie słowa, a jeśli \(S = RE\), to \(L_S\) zawiera wszystkie poprawne kody maszyn, więc do rozpoznania \(L_S\) wystarczy parser.
+Dla \( S \subseteq \re \) definiujemy \( L_S = \set{\langle M \rangle : L(M) \in S} \). \\
+Własność \(S\) jest trywialna, jeśli \(S = \emptyset \) lub \(S = \re\). Takie własności są rozstrzygalne -- jeśli \(S = \emptyset\), to \( L_S = \emptyset \) i jest rozpoznawana przez maszynę z własnością STOP, która odrzuca wszystkie słowa, a jeśli \(S = \re\), to \(L_S\) zawiera wszystkie poprawne kody maszyn, więc do rozpoznania \(L_S\) wystarczy parser.
 
 \begin{theorem}{(Rice)}
-    Każda nietrywialna własność języków rekurencyjnie przeliczalnych jest nierozstrzygalna, czyli poza Rec.
+    Każda nietrywialna własność języków rekurencyjnie przeliczalnych jest nierozstrzygalna, czyli poza \rec.
 \end{theorem}
 \begin{proof}
     Niech \(S\) będzie nietrywialną własnością. Załóżmy, że \( \emptyset \notin S \). Możemy tak zrobić, ponieważ dopełnienie nietrywialnej własności również jest nietrywialne, więc jeśli \( \emptyset \in S \) prowadzimy analogiczne rozumowanie dla dopełnienia \(S\).
@@ -24,13 +24,13 @@ Własność \(S\) jest trywialna, jeśli \(S = \emptyset \) lub \(S = RE\). Taki
 
 \subsection*{Monotoniczność}
 \vspace{-0.8em}
-\[ (L \in S \land L \subset L' \in RE)\Longleftrightarrow L' \in S \]
+\[ (L \in S \land L \subset L' \in \re)\Longleftrightarrow L' \in S \]
 \vspace{-1em}
 \begin{lemma}
-    Jeśli \(S\) nie jest monotoniczna, to \(L_S \notin RE\).
+    Jeśli \(S\) nie jest monotoniczna, to \(L_S \notin \re\).
 \end{lemma}
 \begin{proof}
-    Nie wprost załóżmy, że \(S\) nie jest monotoniczna oraz \(L_S \in RE\). Istnieje maszyna \(M_S\), która rozpoznaje \(L_S\).
+    Nie wprost załóżmy, że \(S\) nie jest monotoniczna oraz \(L_S \in \re\). Istnieje maszyna \(M_S\), która rozpoznaje \(L_S\).
 
     Weźmy \(L_1 \subset L_2\), takie że \(L_1 \in S, L_2 \notin S\) oraz są rozpoznawane przez maszyny \(M_1, M_2\).
     \vspace{-0.8em}
@@ -46,7 +46,7 @@ Własność \(S\) jest trywialna, jeśli \(S = \emptyset \) lub \(S = RE\). Taki
 \[ \forall_{L \in S} \ \exists_{L' \:\subseteq\: L} \ L' \in S \land L' \text{ skończony} \]
 
 \begin{lemma}
-    Jeśli \(S\) nie ma własności skończonego podjęzyka, to \(L(S)\notin RE\).
+    Jeśli \(S\) nie ma własności skończonego podjęzyka, to \(L(S)\notin \re\).
 \end{lemma}
 \begin{proof}
     Nie wprost załóżmy, że \( L\in S\)  i nie ma własności skończonego podjęzyka.
@@ -68,7 +68,7 @@ Klasa skończonych języków \(S\) jest uniwersalna, jeśli istnieje maszyna Tur
 
 \newpage
 \begin{lemma}{(O numeratorze)}
-    Jeśli \(S \subset RE\), to istnieje numerator dla skończonych języków z \(S\).
+    Jeśli \(S \subset \re\), to istnieje numerator dla skończonych języków z \(S\).
 \end{lemma}
 \begin{proof}
     Przechodzimy po \((i,j) \in \mathbb{N}^2 \) przekątniowo. Maszyna \(K\), dostawszy kod skończonego języka \(L\), zwraca maszynę \(M_L\), która go rozpoznaje.
@@ -79,12 +79,12 @@ Klasa skończonych języków \(S\) jest uniwersalna, jeśli istnieje maszyna Tur
 \end{proof}
 
 \begin{theorem}{(Rice)}
-    Język \(L_S=\set{\langle M \rangle: L(M) \in S}\) jest w klasie \(RE\) wtw \(S\) jest monotoniczna, uniwersalna i ma własność skończonego podjęzyka.
+    Język \(L_S=\set{\langle M \rangle: L(M) \in S}\) jest w klasie \(\re\) wtw \(S\) jest monotoniczna, uniwersalna i ma własność skończonego podjęzyka.
 \end{theorem}
 \begin{proof}
-    Jeśli \(L_S \in RE\), to warunki są spełnione, co wynika z lematów.
+    Jeśli \(L_S \in \re\), to warunki są spełnione, co wynika z lematów.
     
-    Dowodzimy, że jeśli warunki są spełnione, to \(L_S \in RE\). Konstruujemy rozpoznawacza \(M_S\).
+    Dowodzimy, że jeśli warunki są spełnione, to \(L_S \in \re\). Konstruujemy rozpoznawacza \(M_S\).
 
     Na wejściu jest \(\langle M \rangle\) z numeratorem \(M_{\text{NUM}}\). Przechodzimy przekątnymi po \((i,j)\).
     \begin{enumerate}

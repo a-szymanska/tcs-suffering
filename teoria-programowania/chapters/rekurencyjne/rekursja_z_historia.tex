@@ -36,7 +36,7 @@ Potrzebna jest jeszcze funkcja \( t \), która, otrzymawszy stan po \( n \) krok
 \[ t(s(\vec{x}, n)) = s(\vec{x}, n+1) \]
 \[ t(z) = \langle \underbrace{\langle z \rangle_0, \ldots, \langle z \rangle_k}_{\vec{x}}, \underbrace{\langle z \rangle_{k+1}}_{n}, \underbrace{h(\langle z \rangle_0, \ldots, \langle z \rangle_k, \langle z \rangle_{k+1}, \langle z \rangle_{k+2})}_{h(\vec{x}, n)} \rangle \]
 \begin{theorem}[O rekursji z historią, Thoralf Skolem]
-    Klasa \( PRec \) jest zamknięta na rekursję z historią.
+    Klasa \( \prec \) jest zamknięta na rekursję z historią.
 \end{theorem}
 \begin{proof}
     Chcemy pokazać, że funkcja \( f \) zdefiniowana następująco:
@@ -50,9 +50,9 @@ Potrzebna jest jeszcze funkcja \( t \), która, otrzymawszy stan po \( n \) krok
         \hat{f}(\vec{x}, 0) = \langle g(\vec{x}) \rangle \\
         \hat{f}(\vec{x}, n+1) = \hat{f}(\vec{x}, n) \* \langle \hat{f}(\vec{x}, n) \rangle,
     \end{cases*}\]
-    więc jest w klasie \( PRec \).
+    więc jest w klasie \( \prec \).
     Korzystając z tego, zapisujemy
     \( f(\vec{x}, n) = \langle \hat{f}(\vec{x}, n) \rangle_{n+1}, \)
-    zatem \( f \in PRec \).
+    zatem \( f \in \prec \).
 \end{proof}
 
